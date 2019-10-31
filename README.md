@@ -12,26 +12,26 @@ MVC Course content
     - [ ] Class Inheritance
     - [ ] Static Methods & Properties
 
-3. The Framework [Part 1] - [ ] The Core
+3. The Framework [Part 1] - The Core
     - [ ] What Is MVC?
     - [ ] Workflow Explanation
     - [x] Creating The Folder Structure
     - [x] Direct Everything Through index.php
     - [x] Bootstrap File & Core Class
-    - [ ] Loading The Controller From The URL
+    - [x] Loading The Controller From The URL
     - [ ] Mapping Methods & Parameters
 
-+ The Framework [Part 2] - [ ] MVC Workflow
++ The Framework [Part 2] - MVC Workflow
     - [ ] Base Controller Class
     - [ ] Loading Views
     - [ ] Config File & Uploader
     - [ ] Header & Footer Includes
-    - [ ] Aside - [ ] PDO Crash Course
-    - [ ] The Database Class - [ ] Part 1
-    - [ ] The Database Class - [ ] Part 2
+    - [ ] Aside - PDO Crash Course
+    - [ ] The Database Class - Part 1
+    - [ ] The Database Class - Part 2
     - [ ] Clean Up
 
-+ The App [Part 1] - [ ] Setup & User Authentication
++ The App [Part 1] - Setup & User Authentication
     - [ ] Initial App & Database Setup
     - [ ] Pages, Bootstrap & Navbar
     - [ ] Creating The Users Controller
@@ -43,7 +43,7 @@ MVC Course content
     - [ ] User Login
     - [ ] User Session Data & Logout
 
-+ The App [Part 2] - [ ] Posts Functionality
++ The App [Part 2] - Posts Functionality
     - [ ] Posts Controller
     - [ ] Posts Access Control
     - [ ] Post Model & Display
@@ -63,6 +63,8 @@ MVC
     --->app 
         --->config
         --->controllers
+            --->Pages.php
+            --->Posts.php
         --->helpers
         --->libraries
             --->Controller.php
@@ -110,4 +112,12 @@ MVC
 - in "MVC->app->libraries->Core.php" -> ceate core class
 - in "MVC/public->index.php" -> init core Library
 - resume (la je peux prend tous les params de URL (GET) comme var WOW !!!)
+
+## 3.6 - Loading The Controller From The URL
+- in "MVC->app->libraries->Core.php" -> Loading controller from URL
+- Add "MVC->app->controllers->Pages.php" -> for test
+
+## 3.7 - [ ] Mapping Methods & Parameters
+
+
 
