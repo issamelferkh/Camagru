@@ -15,8 +15,8 @@ MVC Course content
 3. The Framework [Part 1] - [ ] The Core
     - [ ] What Is MVC?
     - [ ] Workflow Explanation
-    - [ ] Creating The Folder Structure
-    - [ ] Direct Everything Through index.php
+    - [x] Creating The Folder Structure
+    - [x] Direct Everything Through index.php
     - [ ] Bootstrap FIle & Core Class
     - [ ] Loading The Controller From The URL
     - [ ] Mapping Methods & Parameters
@@ -55,3 +55,35 @@ MVC Course content
 
 + App Deployment
     - [ ] Deploying Our App
+
+=============================================================================
+## 3.3 - Creating The Folder Structure
+MVC
+    --->app 
+        --->libraries
+            --->controller.php
+            --->core.php
+            --->database.php
+        --->.htaccess  
+        --->bootstrap.php
+
+    --->public
+        --->css
+            --->style.css
+        --->js
+            --->main.js
+        --->.htaccess
+        --->index.php
+
+## 3.4 - Direct Everything Through index.php (fonction pas encore !!!)
+in MVC->public->.htaccess
+```
+<IfModule mod_rewrite.c>
+    Options -Multiviews
+    RewriteEngine On
+    RewriteBase /MVC/public
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule  ^(.+)$ index.php?url=$1 [QSA,L]
+</IfModule>
+```
