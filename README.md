@@ -17,7 +17,7 @@ MVC Course content
     - [ ] Workflow Explanation
     - [x] Creating The Folder Structure
     - [x] Direct Everything Through index.php
-    - [ ] Bootstrap FIle & Core Class
+    - [x] Bootstrap File & Core Class
     - [ ] Loading The Controller From The URL
     - [ ] Mapping Methods & Parameters
 
@@ -59,31 +59,55 @@ MVC Course content
 =============================================================================
 ## 3.3 - Creating The Folder Structure
 MVC
+
     --->app 
+        --->config
+        --->controllers
+        --->helpers
         --->libraries
-            --->controller.php
-            --->core.php
-            --->database.php
+            --->Controller.php
+            --->Core.php
+            --->Database.php
+        --->models
+        --->views
         --->.htaccess  
         --->bootstrap.php
 
     --->public
         --->css
             --->style.css
+        --->img
         --->js
             --->main.js
         --->.htaccess
         --->index.php
 
-## 3.4 - Direct Everything Through index.php (fonction pas encore !!!)
-in MVC->public->.htaccess
+    --->.htaccess
+
+## 3.4 - Direct Everything Through index.php
+- in "MVC->public->.htaccess"
 ```
 <IfModule mod_rewrite.c>
     Options -Multiviews
     RewriteEngine On
-    RewriteBase /MVC/public
+    RewriteBase /camagru/MVC/public/
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule  ^(.+)$ index.php?url=$1 [QSA,L]
 </IfModule>
 ```
+
+## 3.5 - Bootstrap File & Core Class
+- in "MVC->.htaccess" -> for secure root website folder (MVC in our case)
+```
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteRule ^$ public/ [L]
+    RewriteRule (.*) public/$1 [L]
+</IfModule>
+```
+- in "MVC->app->bootstrap.php" -> load Libraries
+- in "MVC->app->libraries->Core.php" -> ceate core class
+- in "MVC/public->index.php" -> init core Library
+- resume (la je peux prend tous les params de URL (GET) comme var WOW !!!)
+
