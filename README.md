@@ -59,6 +59,7 @@ MVC Course content
 =============================================================================
 ## 3.3 - Creating The Folder Structure
 MVC
+
     --->app 
         --->libraries
             --->controller.php
