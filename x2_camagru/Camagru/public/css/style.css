@@ -1,0 +1,27 @@
+#capture{
+    text-align: center;
+}
+
+li {
+    display: block;
+  }
+  
+ img{
+     width: 200px;
+     height: 200px;
+ }
+
+ #imagefilter{
+     position: relative;
+     width: 400px;
+     height: 300px;
+     margin-left: 42%;
+    
+ }
+
+ #img_filter{
+     position: absolute;
+     top: 10px;
+     left: 10px;
+     display: none;
+ }
