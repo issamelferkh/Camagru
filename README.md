@@ -117,7 +117,7 @@ MVC
 - in "MVC->app->libraries->Core.php" -> Loading controller from URL
 - Add "MVC->app->controllers->Pages.php" -> for test
 
-## 3.7 - [ ] Mapping Methods & Parameters
+## 3.7 - Mapping Methods & Parameters
 
 
 
