@@ -119,6 +119,7 @@ MVC
 - Add "MVC->app->controllers->Pages.php" -> for test
 
 ## 3.7 - Mapping Methods & Parameters
+<<<<<<< HEAD
 - Get and Map => Methods and Params
 
 # The Framework [Part 2] - MVC Workflow
@@ -130,6 +131,8 @@ MVC
 ## 4.6 - The Database Class - Part 1
 ## 4.7 - The Database Class - Part 2
 ## 4.8 - Clean Up
+=======
+>>>>>>> 6cf61a6398ba89d64442dced7bf5ee4d526a12e8
 
 
 
