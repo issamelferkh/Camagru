@@ -21,7 +21,7 @@ MVC Course content
     - [x] Loading The Controller From The URL
     - [ ] Mapping Methods & Parameters
 
-+ The Framework [Part 2] - MVC Workflow
+4. The Framework [Part 2] - MVC Workflow
     - [ ] Base Controller Class
     - [ ] Loading Views
     - [ ] Config File & Uploader
@@ -31,7 +31,7 @@ MVC Course content
     - [ ] The Database Class - Part 2
     - [ ] Clean Up
 
-+ The App [Part 1] - Setup & User Authentication
+5. The App [Part 1] - Setup & User Authentication
     - [ ] Initial App & Database Setup
     - [ ] Pages, Bootstrap & Navbar
     - [ ] Creating The Users Controller
@@ -43,7 +43,7 @@ MVC Course content
     - [ ] User Login
     - [ ] User Session Data & Logout
 
-+ The App [Part 2] - Posts Functionality
+6. The App [Part 2] - Posts Functionality
     - [ ] Posts Controller
     - [ ] Posts Access Control
     - [ ] Post Model & Display
@@ -53,10 +53,11 @@ MVC Course content
     - [ ] Editing Posts
     - [ ] Deleting Posts
 
-+ App Deployment
+7. App Deployment
     - [ ] Deploying Our App
 
 =============================================================================
+# The Framework [Part 1] - The Core
 ## 3.3 - Creating The Folder Structure
 MVC
 
@@ -117,7 +118,18 @@ MVC
 - in "MVC->app->libraries->Core.php" -> Loading controller from URL
 - Add "MVC->app->controllers->Pages.php" -> for test
 
-## 3.7 - [ ] Mapping Methods & Parameters
+## 3.7 - Mapping Methods & Parameters
+- Get and Map => Methods and Params
+
+# The Framework [Part 2] - MVC Workflow
+## 4.1 - Base Controller Class
+## 4.2 - Loading Views
+## 4.3 - Config File & Uploader
+## 4.4 - Header & Footer Includes
+## 4.5 - Aside - PDO Crash Course
+## 4.6 - The Database Class - Part 1
+## 4.7 - The Database Class - Part 2
+## 4.8 - Clean Up
 
 
 
