@@ -57,12 +57,13 @@ MVC Course content
     - [ ] Deploying Our App
 
 =============================================================================
-# The Framework [Part 1] - The Core
+# 3 - The Framework [Part 1] - The Core
 ## 3.3 - Creating The Folder Structure
 MVC
 
     --->app 
         --->config
+            --->config.php (for config DB connection)
         --->controllers
             --->Pages.php
             --->Posts.php
@@ -73,6 +74,12 @@ MVC
             --->Database.php
         --->models
         --->views
+            --->inc
+                --->footer.php
+                --->header.php
+            --->pages
+                --->about.php
+                --->index.php (index page -> 1st page in webapp)
         --->.htaccess  
         --->bootstrap.php
 
@@ -119,10 +126,9 @@ MVC
 - Add "MVC->app->controllers->Pages.php" -> for test
 
 ## 3.7 - Mapping Methods & Parameters
-<<<<<<< HEAD
 - Get and Map => Methods and Params
 
-# The Framework [Part 2] - MVC Workflow
+# 4 - The Framework [Part 2] - MVC Workflow
 ## 4.1 - Base Controller Class
 ## 4.2 - Loading Views
 ## 4.3 - Config File & Uploader
@@ -131,8 +137,37 @@ MVC
 ## 4.6 - The Database Class - Part 1
 ## 4.7 - The Database Class - Part 2
 ## 4.8 - Clean Up
-=======
->>>>>>> 6cf61a6398ba89d64442dced7bf5ee4d526a12e8
 
 
+# 5 - The App [Part 1] - Setup & User Authentication
+## 5.1 Initial App & Database Setup
+- create DB 
 
+## 5.2 Pages, Bootstrap & Navbar
+## 5.3 Creating The Users Controller
+## 5.4 Register & Login Form Views
+## 5.5 Form Validation
+## 5.6 User Model & Email Check
+## 5.7 User Registration
+## 5.8 Custom Flash Messaging
+## 5.9 User Login
+## 5.10 User Session Data & Logout
+
+# 6 - The App [Part 2] - Posts Functionality
+## 6.1 Posts Controller
+## 6.2 Posts Access Control
+## 6.3 Post Model & Display
+## 6.4 Add Post Form
+## 6.5 Inserting Posts
+## 6.6 Post Show Details Page
+## 6.7 Editing Posts
+## 6.8 Deleting Posts
+
+
+## Question
+- in app/config/config.php // App Root-> define('APPROOT', dirname(dirname(__FILE__))); -> APPROOT ???
+
+
+.container in header and end in footer
+add navbar.php in inc 
+    add <nav></nav> in header before body and after container
