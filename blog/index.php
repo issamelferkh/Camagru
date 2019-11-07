@@ -1,12 +1,17 @@
 <?php
-require('modele.php');
-
-if (isset($_GET['id']) && $_GET['id'] > 0){
-    $post = getPost($_GET['id']);
-    $comments = getComments($_GET['id']);
-    require('affichageAccueil.php');
+require('controller.php');
+if (isset($_GET['action'])){
+    if ($_GET['action'] == 'listPosts'){
+        listPosts();
+    } elseif ($_GET['action'] == 'post') {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            post();
+        } else {
+            echo "Error: id sent not found !!!";
+        }
+    }
 } else {
-    echo ("Erreur : aucun identifiant de billet envoyé");
+    listPosts();
 }
 
-
+?>
