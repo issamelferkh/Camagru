@@ -1,0 +1,12 @@
+Le modèle traite les données (modele.php)
+
+La vue affiche les informations (affichageAccueil.php)
+
+Le contrôleur fait le lien entre les deux (index.php)
+
+
+* modele.php -> contient une fonction getBillets() qui renvoie la liste des billets.
+* index.php -> récupérer les données (modele) et d'appeler l'affichage (view).
+* affichageAccueil.php -> il affichera les données dans la page (view).
+
+
