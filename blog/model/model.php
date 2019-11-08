@@ -1,4 +1,14 @@
 <?php
+
+function dbConnect(){
+    try {
+        $db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8','root','');
+        return $db;
+    } catch (Exception $th) {
+        die('DB Error: '.$th->getMessage());
+    }
+}
+
 function getPosts(){
     $db = dbConnect();
     $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') 
@@ -23,11 +33,10 @@ function getComments($postId){
     return $comments;
 }
 
-function dbConnect(){
-    try {
-        $db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8','root','');
-        return $db;
-    } catch (Exception $th) {
-        die('DB Error: '.$th->getMessage());
-    }
+function postComment($postId, $author, $comment){
+    $db = dbConnect();
+    $comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date)
+    VALUES(?, ?, ?, NOW())');
+    $affectedLines = $comments->execute(array($postId, $author, $comment));
+    return $affectedLines;
 }
