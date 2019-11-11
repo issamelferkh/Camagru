@@ -22,9 +22,9 @@
     - Client-side -> Bootstrap CSS without JavaScript.
 
 - [ ] Files -> auteur
-- [ ] Files -> index.php -> containing the input in Web App, located at the root of the Web App.
+- [x] Files -> index.php -> containing the input in Web App, located at the root of the Web App.
 - [ ] Files -> config/setup.php -> creating/re-creating the DB using infos in config/database.php.
-- [ ] Files -> config/database.php -> containing config of DB, that will be instanced via PDO in the following format:
+- [x] Files -> config/database.php -> containing config of DB, that will be instanced via PDO in the following format:
 ```
 <?php
 $DB_DSN = ...;
@@ -42,9 +42,9 @@ vos données en dépendent !
 
 
 ### Partie utilisateur
-- [ ] Sign up => by asking at least a valid email, an username and a password with at least a minimum level of complexity.
+- [ ] Sign up => by asking at least a valid "email", an "username" and a "password" with at least a minimum level of complexity.
 - [ ] Sign up => At the end of the registration process, user should confirm his account via a unique link sent at the email address fullfiled in the registration form.
-- [ ] Sing in => user can connect to App using username/password. 
+- [x] Sing in => user can connect to App using "username/password". 
 - [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
 - [ ] The user should be able to disconnect in one click at any time on any page.
 - [ ] Once connected, an user should modify his username, mail address or password.
