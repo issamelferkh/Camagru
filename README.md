@@ -1,173 +1,79 @@
 # Camagru
 
-MVC Course content 
-1. Course Intro & Setup
-    - [ ] Conf env
-2. Intro To OOP PHP
-    - [ ] About This Section
-    - [ ] What Is OOP?
-    - [ ] Classes, Properties & Methods
-    - [ ] The Constructor & Destructor
-    - [ ] Access Modifiers, Getters & Setters
-    - [ ] Class Inheritance
-    - [ ] Static Methods & Properties
+## Subject
 
-3. The Framework [Part 1] - The Core
-    - [ ] What Is MVC?
-    - [ ] Workflow Explanation
-    - [x] Creating The Folder Structure
-    - [x] Direct Everything Through index.php
-    - [x] Bootstrap File & Core Class
-    - [x] Loading The Controller From The URL
-    - [ ] Mapping Methods & Parameters
+### Partie commune
+- Créer app web permettant de réaliser des montages basiques à l’aide de votre webcam et d’images prédéfinies.
+- Evidemment, ces images auront un canal alpha, sinon votre superposition n’aurait pas la prestance escomptée !
 
-4. The Framework [Part 2] - MVC Workflow
-    - [ ] Base Controller Class
-    - [ ] Loading Views
-    - [ ] Config File & Uploader
-    - [ ] Header & Footer Includes
-    - [ ] Aside - PDO Crash Course
-    - [ ] The Database Class - Part 1
-    - [ ] The Database Class - Part 2
-    - [ ] Clean Up
+- [ ] User peux sélectionner une image dans une liste des images (cadres, objets à l’utilité douteuse)
+- [ ] Prendre une photo depuis sa webcam
+- [ ] Admirer le résultat d’un montage
+- [ ] Toutes les images prises devront être publiques, like-ables et commentables.
 
-5. The App [Part 1] - Setup & User Authentication
-    - [ ] Initial App & Database Setup
-    - [ ] Pages, Bootstrap & Navbar
-    - [ ] Creating The Users Controller
-    - [ ] Register & Login Form Views
-    - [ ] Form Validation
-    - [ ] User Model & Email Check
-    - [ ] User Registration
-    - [ ] Custom Flash Messaging
-    - [ ] User Login
-    - [ ] User Session Data & Logout
+- [ ] Should have a decent page layout (header, main section and a footer)
+- [ ] Responsive design
 
-6. The App [Part 2] - Posts Functionality
-    - [ ] Posts Controller
-    - [ ] Posts Access Control
-    - [ ] Post Model & Display
-    - [ ] Add Post Form
-    - [ ] Inserting Posts
-    - [ ] Post Show Details Page
-    - [ ] Editing Posts
-    - [ ] Deleting Posts
 
-7. App Deployment
-    - [ ] Deploying Our App
+- [ ] Server-side -> PHP (just standard library).
+- [ ] Client-side -> HTML, CSS and JavaScript.
+- [ ] Frameworks: 
+    - Server-side -> Aucun. 
+    - Client-side -> Bootstrap CSS without JavaScript.
 
-=============================================================================
-# 3 - The Framework [Part 1] - The Core
-## 3.3 - Creating The Folder Structure
-MVC
-
-    --->app 
-        --->config
-            --->config.php (for config DB connection)
-        --->controllers
-            --->Pages.php
-            --->Posts.php
-        --->helpers
-        --->libraries
-            --->Controller.php
-            --->Core.php
-            --->Database.php
-        --->models
-        --->views
-            --->inc
-                --->footer.php
-                --->header.php
-            --->pages
-                --->about.php
-                --->index.php (index page -> 1st page in webapp)
-        --->.htaccess  
-        --->bootstrap.php
-
-    --->public
-        --->css
-            --->style.css
-        --->img
-        --->js
-            --->main.js
-        --->.htaccess
-        --->index.php
-
-    --->.htaccess
-
-## 3.4 - Direct Everything Through index.php
-- in "MVC->public->.htaccess"
+- [ ] Files -> auteur
+- [ ] Files -> index.php -> containing the input in Web App, located at the root of the Web App.
+- [ ] Files -> config/setup.php -> creating/re-creating the DB using infos in config/database.php.
+- [ ] Files -> config/database.php -> containing config of DB, that will be instanced via PDO in the following format:
 ```
-<IfModule mod_rewrite.c>
-    Options -Multiviews
-    RewriteEngine On
-    RewriteBase /camagru/MVC/public/
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule  ^(.+)$ index.php?url=$1 [QSA,L]
-</IfModule>
+<?php
+$DB_DSN = ...;
+$DB_USER = ...;
+$DB_PASSWORD = ...;
 ```
+DSN (Data Source Name) contains required information needed to connect to the database, for instance ’mysql:dbname=testdb;host=127.0.0.1’. 
+Generally, a DSN is composed of the PDO driver name, followed by a specific syntax for that driver. 
 
-## 3.5 - Bootstrap File & Core Class
-- in "MVC->.htaccess" -> for secure root website folder (MVC in our case)
-```
-<IfModule mod_rewrite.c>
-    RewriteEngine on
-    RewriteRule ^$ public/ [L]
-    RewriteRule (.*) public/$1 [L]
-</IfModule>
-```
-- in "MVC->app->bootstrap.php" -> load Libraries
-- in "MVC->app->libraries->Core.php" -> ceate core class
-- in "MVC/public->index.php" -> init core Library
-- resume (la je peux prend tous les params de URL (GET) comme var WOW !!!)
-
-## 3.6 - Loading The Controller From The URL
-- in "MVC->app->libraries->Core.php" -> Loading controller from URL
-- Add "MVC->app->controllers->Pages.php" -> for test
-
-## 3.7 - Mapping Methods & Parameters
-- Get and Map => Methods and Params
-
-# 4 - The Framework [Part 2] - MVC Workflow
-## 4.1 - Base Controller Class
-## 4.2 - Loading Views
-## 4.3 - Config File & Uploader
-## 4.4 - Header & Footer Includes
-## 4.5 - Aside - PDO Crash Course
-## 4.6 - The Database Class - Part 1
-## 4.7 - The Database Class - Part 2
-## 4.8 - Clean Up
+- [ ] App Web ne doit produire aucune erreur, warning ou notice, coté serveur et coté client, dans la console web. Toutefois, en raison de l’absence d’HTTPS, les erreurs relatives à getUserMedia() sur la console web seront tolérées.
+- [ ] You must use the PDO abstraction driver to communicate with DB. The error mode must be set to PDO::ERRMODE_EXCEPTION.
+- [ ] Votre App ne devra comporter aucune faille de sécurité. Gérer ce qui est indiqué dans la partie obligatoire, mais nous vous engageons à aller plus loin dans la sécurité de votre application, la confidentialité de
+vos données en dépendent !
+- [ ] Your web application should be at least be compatible with Firefox (>= 41) and Chrome (>= 46).
 
 
-# 5 - The App [Part 1] - Setup & User Authentication
-## 5.1 Initial App & Database Setup
-- create DB 
+### Partie utilisateur
+- [ ] Sign up => by asking at least a valid email, an username and a password with at least a minimum level of complexity.
+- [ ] Sign up => At the end of the registration process, user should confirm his account via a unique link sent at the email address fullfiled in the registration form.
+- [ ] Sing in => user can connect to App using username/password. 
+- [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
+- [ ] The user should be able to disconnect in one click at any time on any page.
+- [ ] Once connected, an user should modify his username, mail address or password.
 
-## 5.2 Pages, Bootstrap & Navbar
-## 5.3 Creating The Users Controller
-## 5.4 Register & Login Form Views
-## 5.5 Form Validation
-## 5.6 User Model & Email Check
-## 5.7 User Registration
-## 5.8 Custom Flash Messaging
-## 5.9 User Login
-## 5.10 User Session Data & Logout
+### Partie galerie
+- [ ] La galerie devra être publique -> accessible sans authentification. 
+- [ ] doit afficher l’intégralité des images prises par les membres du site, triées par date de création. 
+- [ ] Elle doit pouvoir permettre à l’utilisateur de les commenter et de les liker si celui-ci est authentifié.
+- [ ] Lorsque une image reçoit un nouveau commentaire, l’auteur de cette image doit en être informé par mail. Cette préférence est activée par défaut, mais peut être désactivée dans les préférences de l’utilisateur.
+- [ ] La liste des images doit être paginée, avec au moins 5 éléments par page.
 
-# 6 - The App [Part 2] - Posts Functionality
-## 6.1 Posts Controller
-## 6.2 Posts Access Control
-## 6.3 Post Model & Display
-## 6.4 Add Post Form
-## 6.5 Inserting Posts
-## 6.6 Post Show Details Page
-## 6.7 Editing Posts
-## 6.8 Deleting Posts
+### Partie montage
+- [ ] accessible only to users + gently reject all other users that attempt to access it without being successfully logged in.
+- [ ] Une section principale, contenant l’apercu de votre webcam, la liste des images superposables disponibles et un bouton permettant de prendre la photo.
+- [ ] Une section latérale, affichant les miniatures de toutes les photos prises précedemment. ressembler à la Figure V.1
+- [ ] Les images superposables doivent être sélectionnables.
+- [ ] Le bouton permettant de prendre la photo ne doit pas être cliquable tant qu’aucune image n’est sélectionnée.
+- [ ] Le traitement de l’image finale (donc entre autres la superposition des deux images) doit être fait coté serveur, en PHP.
+- [ ] Parce que tout le monde n’a pas de webcam, vous devez laisser la possibilité d’uploader une image au lieu de la prendre depuis la caméra.
+- [ ] L’utilisateur doit pouvoir supprimer ses montages, et uniquement les siens.
 
+### Security 
+- [ ] PWD encrypted in database.
+- [ ] Not able to inject HTML or “user” JavaScriptHTML in all variables
+- [ ] Not able to upload unwanted content on the server
+- [ ] SQL injection
+- [ ] Use an extern form to manipulate so-called private data
+- [ ] Cross Site Request Forgery
+- [ ] Cross Origin Resource Sharing
 
-## Question
-- in app/config/config.php // App Root-> define('APPROOT', dirname(dirname(__FILE__))); -> APPROOT ???
+### Question
 
-
-.container in header and end in footer
-add navbar.php in inc 
-    add <nav></nav> in header before body and after container
