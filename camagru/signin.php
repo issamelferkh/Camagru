@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("config/setup.php");
+require_once("config/connection.php");
 
 
 if(isset($_POST["signin"])) {
@@ -8,7 +8,10 @@ if(isset($_POST["signin"])) {
         $message = '<label>All fields are required</label>';
     }
     else {
-        $query = 'SELECT * FROM user WHERE username="'.$_POST['username'].'" AND password="'.$_POST['password'].'"';
+        //$tmp['login'] = $_POST['login'];
+        //$tmp['passwd'] = hash('whirlpool', $_POST['passwd']);
+        
+        $query = 'SELECT * FROM user WHERE username="'.$_POST['username'].'" AND password="'.hash('whirlpool', $_POST['password']).'"';
         $query = $db->prepare($query);
         $query->execute();
         $count = $query->rowCount();
@@ -46,27 +49,7 @@ if(isset($_POST["signin"])) {
                     <button type="submit" name="signin" class="pure-button">Sign In</button>
                 </form>
             </div><br><br><br>
-
-            <div class="pure-g">
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="https://via.placeholder.com/1000x1000.jpg" alt="">
-                </div>
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="https://via.placeholder.com/1000x1000.jpg" alt="">
-                </div>
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="https://via.placeholder.com/1000x1000.jpg" alt="">
-                </div>
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="https://via.placeholder.com/1000x1000.jpg" alt="">
-                </div>                
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="https://via.placeholder.com/1000x1000.jpg" alt="">
-                </div>
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="https://via.placeholder.com/1000x1000.jpg" alt="">
-                </div>
-            </div>
+            <?php include 'include/slide.php'; ?>
         </div>
     </div>
 </div>

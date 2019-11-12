@@ -43,7 +43,7 @@ vos données en dépendent !
 
 ### Partie utilisateur
 - [ ] Sign up => by asking at least a valid "email", an "username" and a "password" with at least a minimum level of complexity.
-- [ ] Sign up => At the end of the registration process, user should confirm his account via a unique link sent at the email address fullfiled in the registration form.
+- [ ] Sign up => At the end of the registration process, user should confirm his account via an unique link sent at the email address fullfiled in the registration form.
 - [x] Sing in => user can connect to App using "username/password". 
 - [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
 - [ ] The user should be able to disconnect in one click at any time on any page.
@@ -76,4 +76,4 @@ vos données en dépendent !
 - [ ] Cross Origin Resource Sharing
 
 ### Question
-
+- config/setup.php -> how can I connect o DB if not exists ? !!!
