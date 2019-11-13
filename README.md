@@ -12,18 +12,18 @@
 - [ ] Toutes les images prises devront être publiques, like-ables et commentables.
 
 - [ ] Should have a decent page layout (header, main section and a footer)
-- [ ] Responsive design
+- [x] Responsive design
 
 
 - [ ] Server-side -> PHP (just standard library).
 - [ ] Client-side -> HTML, CSS and JavaScript.
-- [ ] Frameworks: 
+- [x] Frameworks: 
     - Server-side -> Aucun. 
     - Client-side -> Bootstrap CSS without JavaScript.
 
 - [ ] Files -> auteur
 - [x] Files -> index.php -> containing the input in Web App, located at the root of the Web App.
-- [ ] Files -> config/setup.php -> creating/re-creating the DB using infos in config/database.php.
+- [x] Files -> config/setup.php -> creating/re-creating the DB using infos in config/database.php.
 - [x] Files -> config/database.php -> containing config of DB, that will be instanced via PDO in the following format:
 ```
 <?php
@@ -42,7 +42,7 @@ vos données en dépendent !
 
 
 ### Partie utilisateur
-- [ ] Sign up => by asking at least a valid "email", an "username" and a "password" with at least a minimum level of complexity.
+- [x] Sign up => by asking at least a valid "email", an "username" and a "password" with at least a minimum level of complexity.
 - [ ] Sign up => At the end of the registration process, user should confirm his account via an unique link sent at the email address fullfiled in the registration form.
 - [x] Sing in => user can connect to App using "username/password". 
 - [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
@@ -77,3 +77,16 @@ vos données en dépendent !
 
 ### Question
 - config/setup.php -> how can I connect o DB if not exists ? !!!
+- config/setup.php -> execute une fois ou chaque fois ?
+
+### Taches -> Objectif: finish user part
+- [ ] Sign up => At the end of the registration process, user should confirm his account via an unique link sent at the email address fullfiled in the registration form. 
+- email confirmation -> https://code.tutsplus.com/tutorials/how-to-code-a-signup-form-with-email-confirmation--net-6860
+                     -> https://code.tutsplus.com/tutorials/how-to-implement-email-verification-for-new-members--net-3824
+
+- [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
+- [ ] The user should be able to disconnect in one click at any time on any page.
+- [ ] Once connected, an user should modify his username, mail address or password.
+- Frontend for user account 
+- gestion des session user -> no url manipulation
+

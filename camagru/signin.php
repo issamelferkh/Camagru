@@ -5,12 +5,9 @@ require_once("config/connection.php");
 
 if(isset($_POST["signin"])) {
     if(empty($_POST["username"]) || empty($_POST["password"])) {
-        $message = '<label>All fields are required</label>';
+        $message = '<label>All fields are required.</label>';
     }
-    else {
-        //$tmp['login'] = $_POST['login'];
-        //$tmp['passwd'] = hash('whirlpool', $_POST['passwd']);
-        
+    else {        
         $query = 'SELECT * FROM user WHERE username="'.$_POST['username'].'" AND password="'.hash('whirlpool', $_POST['password']).'"';
         $query = $db->prepare($query);
         $query->execute();
@@ -24,7 +21,7 @@ if(isset($_POST["signin"])) {
             $_SESSION['email']=$la_case['email'];
             header("location:user/index.php");
         } else {
-            $message = '<label>Wrong Data</label>';
+            $message = '<label>Incorrect Username or Password.</label>';
         }
     }
 } 
@@ -43,8 +40,8 @@ if(isset($_POST["signin"])) {
             <h2 class="content-subhead">Sign In</h2>
             <div class="pure-u-1-4">
                 <form class="pure-form" method="post" action="signin.php">
-                    <input type="text" name="username" value="<?php if (isset($_POST['username'])) echo htmlspecialchars(trim($_POST['username'])); ?>"    placeholder="Username" class="pure-input-rounded">
-                    <input type="password" name="password" value="<?php if (isset($_POST['password'])) echo htmlspecialchars(trim($_POST['password'])); ?>"    placeholder="Password" class="pure-input-rounded">
+                    <input type="text" name="username" value="<?php if (isset($_POST['username'])) echo htmlspecialchars(trim($_POST['username'])); ?>"    placeholder="Username" class="pure-input-rounded" required>
+                    <input type="password" name="password" value="<?php if (isset($_POST['password'])) echo htmlspecialchars(trim($_POST['password'])); ?>"    placeholder="Password" class="pure-input-rounded" required>
                     <?php if(isset($message)) {echo '<label class="text-danger">'.$message.'</label>'; } ?><br>
                     <button type="submit" name="signin" class="pure-button">Sign In</button>
                 </form>
