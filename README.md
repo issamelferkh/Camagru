@@ -80,7 +80,10 @@ vos données en dépendent !
 - config/setup.php -> execute une fois ou chaque fois ?
 
 ### Taches -> Objectif: finish user part
-- [ ] Sign up => At the end of the registration process, user should confirm his account via an unique link sent at the email address fullfiled in the registration form. 
+- [ ] Sign up => At the end of the registration process, user should confirm his account via an unique link sent at the email address fullfiled in the registration form.
+https://wpaq.com/configure-postfix-smtp-relay/
+https://devanswers.co/how-to-get-php-mail-working-on-ubuntu-16-04-digitalocean-droplet/
+ 
 - email confirmation -> https://code.tutsplus.com/tutorials/how-to-code-a-signup-form-with-email-confirmation--net-6860
                      -> https://code.tutsplus.com/tutorials/how-to-implement-email-verification-for-new-members--net-3824
 
