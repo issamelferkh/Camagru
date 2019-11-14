@@ -12,14 +12,20 @@ if(isset($_POST["signin"])) {
         $query = $db->prepare($query);
         $query->execute();
         $count = $query->rowCount();
+        $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
         if ($count > 0) {
-            $_SESSION['id_user']=$la_case['id'];
-            $_SESSION['username']=$la_case['username'];
-            $_SESSION['password']=$la_case['password'];
-            $_SESSION['f_name']=$la_case['f_name'];
-            $_SESSION['l_name']=$la_case['l_name'];
-            $_SESSION['email']=$la_case['email'];
-            header("location:user/index.php");
+            if ($la_case[0]['active'] == 1) {
+                $_SESSION['id_user']=$la_case['id'];
+                $_SESSION['username']=$la_case['username'];
+                $_SESSION['password']=$la_case['password'];
+                $_SESSION['f_name']=$la_case['f_name'];
+                $_SESSION['l_name']=$la_case['l_name'];
+                $_SESSION['email']=$la_case['email'];
+                header("location:user/index.php");
+            } else {
+                $message = '<label>Your account is not activated yet!</label>';
+            }
+            
         } else {
             $message = '<label>Incorrect Username or Password.</label>';
         }
@@ -28,7 +34,7 @@ if(isset($_POST["signin"])) {
 ?>
 
 <!-- header -->
-<?php include 'include/header.php'; ?>
+<?php //include 'include/header.php'; ?>
 
 <!-- menu -->
 <?php include 'include/menu.php'; ?>
@@ -38,6 +44,11 @@ if(isset($_POST["signin"])) {
 <br><br><br>
         <div class="content" style="text-align: center;">
             <h2 class="content-subhead">Sign In</h2>
+            <?php //echo "-->".$la_case[0]['active']; ?>
+            <?php //print_r ($la_case); ?>
+
+
+            <?php if(isset($_GET['msg'])) {echo '<h3 class="content-subhead">'.$_GET['msg'].'</h3>'; } ?><br>
             <div class="pure-u-1-4">
                 <form class="pure-form" method="post" action="signin.php">
                     <input type="text" name="username" value="<?php if (isset($_POST['username'])) echo htmlspecialchars(trim($_POST['username'])); ?>"    placeholder="Username" class="pure-input-rounded" required>

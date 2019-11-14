@@ -85,8 +85,9 @@ vos données en dépendent !
                      -> https://code.tutsplus.com/tutorials/how-to-implement-email-verification-for-new-members--net-3824
 
 - [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
-- [ ] The user should be able to disconnect in one click at any time on any page.
-- [ ] Once connected, an user should modify his username, mail address or password.
 - Frontend for user account 
 - gestion des session user -> no url manipulation
+- [ ] The user should be able to disconnect in one click at any time on any page.
+- [ ] Once connected, an user should modify his username, mail address or password.
+
 
