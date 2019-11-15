@@ -10,17 +10,12 @@
 - [ ] Prendre une photo depuis sa webcam
 - [ ] Admirer le résultat d’un montage
 - [ ] Toutes les images prises devront être publiques, like-ables et commentables.
-
 - [ ] Should have a decent page layout (header, main section and a footer)
 - [x] Responsive design
-
-
-- [ ] Server-side -> PHP (just standard library).
-- [ ] Client-side -> HTML, CSS and JavaScript.
-- [x] Frameworks: 
-    - Server-side -> Aucun. 
-    - Client-side -> Bootstrap CSS without JavaScript.
-
+- [x] Server-side -> PHP (just standard library).
+- [x] Client-side -> HTML, CSS and JavaScript.
+- [x] Server-side -> Frameworks: Aucun. 
+- [x] Client-side -> Frameworks: Bootstrap CSS without JavaScript.
 - [ ] Files -> auteur
 - [x] Files -> index.php -> containing the input in Web App, located at the root of the Web App.
 - [x] Files -> config/setup.php -> creating/re-creating the DB using infos in config/database.php.
@@ -33,13 +28,11 @@ $DB_PASSWORD = ...;
 ```
 DSN (Data Source Name) contains required information needed to connect to the database, for instance ’mysql:dbname=testdb;host=127.0.0.1’. 
 Generally, a DSN is composed of the PDO driver name, followed by a specific syntax for that driver. 
-
 - [ ] App Web ne doit produire aucune erreur, warning ou notice, coté serveur et coté client, dans la console web. Toutefois, en raison de l’absence d’HTTPS, les erreurs relatives à getUserMedia() sur la console web seront tolérées.
 - [ ] You must use the PDO abstraction driver to communicate with DB. The error mode must be set to PDO::ERRMODE_EXCEPTION.
 - [ ] Votre App ne devra comporter aucune faille de sécurité. Gérer ce qui est indiqué dans la partie obligatoire, mais nous vous engageons à aller plus loin dans la sécurité de votre application, la confidentialité de
 vos données en dépendent !
 - [ ] Your web application should be at least be compatible with Firefox (>= 41) and Chrome (>= 46).
-
 
 ### Partie utilisateur
 - [x] Sign up => by asking at least a valid "email", an "username" and a "password" with at least a minimum level of complexity.
@@ -88,8 +81,8 @@ https://devanswers.co/how-to-get-php-mail-working-on-ubuntu-16-04-digitalocean-d
                      -> https://code.tutsplus.com/tutorials/how-to-implement-email-verification-for-new-members--net-3824
 
 - [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
-- Frontend for user account 
-- gestion des session user -> no url manipulation
+- [ ] Frontend for user account 
+- [ ] gestion des session user -> no url manipulation
 - [ ] The user should be able to disconnect in one click at any time on any page.
 - [ ] Once connected, an user should modify his username, mail address or password.
 
