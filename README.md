@@ -77,8 +77,8 @@ vos données en dépendent !
 https://wpaq.com/configure-postfix-smtp-relay/
 https://devanswers.co/how-to-get-php-mail-working-on-ubuntu-16-04-digitalocean-droplet/
  
-- email confirmation -> https://code.tutsplus.com/tutorials/how-to-code-a-signup-form-with-email-confirmation--net-6860
-                     -> https://code.tutsplus.com/tutorials/how-to-implement-email-verification-for-new-members--net-3824
+- [ ] email confirmation -> https://code.tutsplus.com/tutorials/how-to-code-a-signup-form-with-email-confirmation--net-6860
+                         -> https://code.tutsplus.com/tutorials/how-to-implement-email-verification-for-new-members--net-3824
 
 - [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
 - [ ] Frontend for user account 
