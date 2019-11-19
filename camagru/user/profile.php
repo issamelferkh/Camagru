@@ -1,34 +1,35 @@
 <!-- Session -->
-<?php include '../include/session.php'; ?>
+<?php include '../include/session.php'; 
+require_once("../config/connection.php");
+?>
 
 <?php
 
-if(isset($_POST["signup"])) {
-    // if(empty($_POST["username"]) || empty($_POST["password"]) || empty($_POST["email"])) {
-    //     $message = '<label>All fields are required.</label>';
-    // }
+if(isset($_POST["update"])) {
+    if (!empty($_POST["password"])) {
+        $pwdlen = strlen($_POST['password']);
+        $uppercase = preg_match('@[A-Z]@', $_POST['password']);
+        $lowercase = preg_match('@[a-z]@', $_POST['password']);
+        $number    = preg_match('@[0-9]@', $_POST['password']);
+        $specialChars = preg_match('@[^\w]@', $_POST['password']);
+        $hash = md5(rand(0,1000));
 
-    $pwdlen = strlen($_POST['password']);
-    $uppercase = preg_match('@[A-Z]@', $_POST['password']);
-    $lowercase = preg_match('@[a-z]@', $_POST['password']);
-    $number    = preg_match('@[0-9]@', $_POST['password']);
-    $specialChars = preg_match('@[^\w]@', $_POST['password']);
-    $hash = md5(rand(0,1000));
-
-    if($pwdlen < 8) {
-        $message = '<label>Invalid password. Password must be at least 8 characters.</label>';
-    } else if(!$uppercase || !$lowercase || !$number || !$specialChars) {
-        $message = 'Password should be include at least one upper case letter, one number, and one special character.';
+        if($pwdlen < 8) {
+            $message = '<label>Invalid password. Password must be at least 8 characters.</label>';
+        } else if(!$uppercase || !$lowercase || !$number || !$specialChars) {
+            $message = 'Password should be include at least one upper case letter, one number, and one special character.';
+        } else {
+            $password = hash('whirlpool', $_POST['password']);
+            $query = "UPDATE `user` SET `fname`=?, `lname`=?, `username`=?, `email`=?, `password`=? WHERE `id`=?";
+            $query = $db->prepare($query);
+            $query->execute([$_POST['fname'],$_POST['lname'],$_POST['username'],$_POST['email'],$password,$_POST['id_user']]);
+            $message = 'Your profile was successfully updated. thank you to re login for show your new profile information';
+        }
     } else {
-        $query = 'INSERT INTO `user` (`username`, `email`, `password`, `hash`) VALUES (?,?,?,?)';
+        $query = "UPDATE `user` SET `fname`=?, `lname`=?, `username`=?, `email`=? WHERE `id`=?";
         $query = $db->prepare($query);
-        $query->execute([$_POST['username'],$_POST['email'],$_POST['password'],$hash]);
-        $msg = 'Please active your account by clicking the activation link that has been send to your email.';
-        //ft_send_email($_POST['username'], $_POST['email'], $hash); /* Error !!! */
-        header("location:signin.php?msg=".$msg."");
-        // } else {
-        //     $message = '<label>Sorry can\'t create your account, please contact admin</label>';
-        // }
+        $query->execute([$_POST['fname'],$_POST['lname'],$_POST['username'],$_POST['email'],$_POST['id_user']]);
+        $message = 'Your profile was successfully updated. thank you to re login for show your new profile information';
     }
 } 
 ?>
@@ -45,12 +46,16 @@ if(isset($_POST["signup"])) {
         <div class="content" style="text-align: center;">
             <h2 class="content-subhead">Profile: <?php echo $_SESSION['fname'].' '.$_SESSION['lname']; ?></h2>
             <div class="pure-u-1-4">
-                <form class="pure-form" method="post" action="signup.php">
-                    <input type="text"      name="username" value="<?php if (isset($_POST['username'])) echo htmlspecialchars(trim($_POST['username'])); ?>"    placeholder="Username"  class="pure-input-rounded" required>
-                    <input type="email"     name="email"    value="<?php if (isset($_POST['email'])) echo htmlspecialchars(trim($_POST['email'])); ?>"          placeholder="Email"     class="pure-input-rounded" required>
-                    <input type="password"  name="password" value="<?php if (isset($_POST['password'])) echo htmlspecialchars(trim($_POST['password'])); ?>"    placeholder="Password"  class="pure-input-rounded" required>
+                <form class="pure-form" method="post" action="profile.php">
+                    <input type="hidden"    name="id_user"  value="<?php if (isset($_SESSION['id_user']))   echo htmlspecialchars(trim($_SESSION['id_user'])); ?>"      class="pure-input-rounded">
+                    <input type="text"      name="fname"    value="<?php if (isset($_SESSION['fname']))     echo htmlspecialchars(trim($_SESSION['fname'])); ?>"        placeholder="First name" class="pure-input-rounded">
+                    <input type="text"      name="lname"    value="<?php if (isset($_SESSION['lname']))     echo htmlspecialchars(trim($_SESSION['lname'])); ?>"        placeholder="Last name"  class="pure-input-rounded">
+                    <input type="text"      name="username" value="<?php if (isset($_SESSION['username']))  echo htmlspecialchars(trim($_SESSION['username'])); ?>"     placeholder="Username"  class="pure-input-rounded">                    
+                    <input type="password"  name="password" value="<?php if (isset($_POST['password']))     echo htmlspecialchars(trim($_POST['password'])); ?>"        placeholder="New Password"  class="pure-input-rounded">
+                    <input type="email"     name="email"    value="<?php if (isset($_SESSION['email']))     echo htmlspecialchars(trim($_SESSION['email'])); ?>"        placeholder="Email"     class="pure-input-rounded">
+
                     <?php if(isset($message)) {echo '<label class="text-danger">'.$message.'</label>'; } ?><br>
-                    <button type="submit" name="signup" class="pure-button">Sign Up</button>
+                    <button type="submit" name="update" class="pure-button">Update Profile</button>
                 </form>
             </div><br><br><br>
             <!-- Slide -->

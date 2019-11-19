@@ -1,6 +1,6 @@
 <?php
-// session_start();
-// require_once("config/connection.php");
+session_start();
+require_once("config/connection.php");
 // function ft_send_email($username,$email,$hash){
 
 //     $to      = $email; // Send email to our user
@@ -40,9 +40,10 @@ if(isset($_POST["signup"])) {
     } else if(!$uppercase || !$lowercase || !$number || !$specialChars) {
         $message = 'Password should be include at least one upper case letter, one number, and one special character.';
     } else {
+        $password = hash('whirlpool', $_POST['password']);
         $query = 'INSERT INTO `user` (`username`, `email`, `password`, `hash`) VALUES (?,?,?,?)';
         $query = $db->prepare($query);
-        $query->execute([$_POST['username'],$_POST['email'],$_POST['password'],$hash]);
+        $query->execute([$_POST['username'],$_POST['email'],$password,$hash]);
         $msg = 'Please active your account by clicking the activation link that has been send to your email.';
         //ft_send_email($_POST['username'], $_POST['email'], $hash); /* Error !!! */
         header("location:signin.php?msg=".$msg."");

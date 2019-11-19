@@ -40,7 +40,7 @@ vos données en dépendent !
 - [x] Sing in => user can connect to App using "username/password". 
 - [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
 - [x] The user should be able to disconnect in one click at any time on any page.
-- [ ] Once connected, an user should modify his username, mail address or password.
+- [x] Once connected, an user should modify his username, mail address or password.
 
 ### Partie galerie
 - [ ] La galerie devra être publique -> accessible sans authentification. 
@@ -82,6 +82,9 @@ https://devanswers.co/how-to-get-php-mail-working-on-ubuntu-16-04-digitalocean-d
 
 - [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
 
-- [ ] Once connected, an user should modify his username, mail address or password.
+
+
+* jai un grand probleme au niveau des includes -> gerer tous les includes -> tester au niveau de visiteur et user aussi !!!
+
 
 
