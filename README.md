@@ -39,7 +39,7 @@ vos données en dépendent !
 - [ ] Sign up => At the end of the registration process, user should confirm his account via an unique link sent at the email address fullfiled in the registration form.
 - [x] Sing in => user can connect to App using "username/password". 
 - [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
-- [ ] The user should be able to disconnect in one click at any time on any page.
+- [x] The user should be able to disconnect in one click at any time on any page.
 - [ ] Once connected, an user should modify his username, mail address or password.
 
 ### Partie galerie
@@ -81,9 +81,7 @@ https://devanswers.co/how-to-get-php-mail-working-on-ubuntu-16-04-digitalocean-d
                          -> https://code.tutsplus.com/tutorials/how-to-implement-email-verification-for-new-members--net-3824
 
 - [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
-- [ ] Frontend for user account 
-- [ ] gestion des session user -> no url manipulation
-- [ ] The user should be able to disconnect in one click at any time on any page.
+
 - [ ] Once connected, an user should modify his username, mail address or password.
 
 

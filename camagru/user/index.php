@@ -1,3 +1,6 @@
+<!-- Session -->
+<?php include '../include/session.php'; ?>
+
 <!-- header -->
 <?php include '../include/header_user.php'; ?>
 
@@ -24,28 +27,9 @@
                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-
-            <div class="pure-g">
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="https://via.placeholder.com/1000x1000.jpg" alt="">
-                </div>
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="https://via.placeholder.com/1000x1000.jpg" alt="">
-                </div>
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="https://via.placeholder.com/1000x1000.jpg" alt="">
-                </div>
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="https://via.placeholder.com/1000x1000.jpg" alt="">
-                </div>                
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="https://via.placeholder.com/1000x1000.jpg" alt="">
-                </div>
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="https://via.placeholder.com/1000x1000.jpg" alt="">
-                </div>
-            </div>
-
+            <!-- Slide -->
+            <?php include '../include/slide.php'; ?>
+            
             <h2 class="content-subhead">How to use Camagru</h2>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
