@@ -15,12 +15,11 @@ if(isset($_POST["signin"])) {
         $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
         if ($count > 0) {
             if ($la_case[0]['active'] == 1) {
-                $_SESSION['id_user']=$la_case['id'];
-                $_SESSION['username']=$la_case['username'];
-                $_SESSION['password']=$la_case['password'];
-                $_SESSION['f_name']=$la_case['f_name'];
-                $_SESSION['l_name']=$la_case['l_name'];
-                $_SESSION['email']=$la_case['email'];
+                $_SESSION['id_user']=$la_case[0]['id'];
+                $_SESSION['username']=$la_case[0]['username'];
+                $_SESSION['fname']=$la_case[0]['fname'];
+                $_SESSION['lname']=$la_case[0]['lname'];
+                $_SESSION['email']=$la_case[0]['email'];
                 header("location:user/index.php");
             } else {
                 $message = '<label>Your account is not activated yet!</label>';
@@ -34,7 +33,7 @@ if(isset($_POST["signin"])) {
 ?>
 
 <!-- header -->
-<?php //include 'include/header.php'; ?>
+<?php include 'include/header.php'; ?>
 
 <!-- menu -->
 <?php include 'include/menu.php'; ?>
