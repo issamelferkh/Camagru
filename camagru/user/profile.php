@@ -23,13 +23,13 @@ if(isset($_POST["update"])) {
             $query = "UPDATE `user` SET `fname`=?, `lname`=?, `username`=?, `email`=?, `password`=? WHERE `id`=?";
             $query = $db->prepare($query);
             $query->execute([$_POST['fname'],$_POST['lname'],$_POST['username'],$_POST['email'],$password,$_POST['id_user']]);
-            $message = 'Your profile was successfully updated. thank you to re login for show your new profile information';
+            $message = 'Your profile was successfully updated.';
         }
     } else {
         $query = "UPDATE `user` SET `fname`=?, `lname`=?, `username`=?, `email`=? WHERE `id`=?";
         $query = $db->prepare($query);
         $query->execute([$_POST['fname'],$_POST['lname'],$_POST['username'],$_POST['email'],$_POST['id_user']]);
-        $message = 'Your profile was successfully updated. thank you to re login for show your new profile information';
+        $message = 'Your profile was successfully updated.';
     }
 } 
 ?>
@@ -43,16 +43,22 @@ if(isset($_POST["update"])) {
 <!-- start container -->
 <?php include '../include/title_user.php'; ?>
 <br><br><br>
+<?php     
+    $query = 'SELECT * FROM user WHERE id="'.$_SESSION['id_user'].'"';
+    $query = $db->prepare($query);
+    $query->execute();
+    $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
+?>
         <div class="content" style="text-align: center;">
-            <h2 class="content-subhead">Profile: <?php echo $_SESSION['fname'].' '.$_SESSION['lname']; ?></h2>
+            <h2 class="content-subhead">Profile: <?php echo $la_case[0]['fname'].' '.$la_case[0]['lname']; ?></h2>
             <div class="pure-u-1-4">
                 <form class="pure-form" method="post" action="profile.php">
-                    <input type="hidden"    name="id_user"  value="<?php if (isset($_SESSION['id_user']))   echo htmlspecialchars(trim($_SESSION['id_user'])); ?>"      class="pure-input-rounded">
-                    <input type="text"      name="fname"    value="<?php if (isset($_SESSION['fname']))     echo htmlspecialchars(trim($_SESSION['fname'])); ?>"        placeholder="First name" class="pure-input-rounded">
-                    <input type="text"      name="lname"    value="<?php if (isset($_SESSION['lname']))     echo htmlspecialchars(trim($_SESSION['lname'])); ?>"        placeholder="Last name"  class="pure-input-rounded">
-                    <input type="text"      name="username" value="<?php if (isset($_SESSION['username']))  echo htmlspecialchars(trim($_SESSION['username'])); ?>"     placeholder="Username"  class="pure-input-rounded">                    
-                    <input type="password"  name="password" value="<?php if (isset($_POST['password']))     echo htmlspecialchars(trim($_POST['password'])); ?>"        placeholder="New Password"  class="pure-input-rounded">
-                    <input type="email"     name="email"    value="<?php if (isset($_SESSION['email']))     echo htmlspecialchars(trim($_SESSION['email'])); ?>"        placeholder="Email"     class="pure-input-rounded">
+                    <input type="hidden"    name="id_user"  value="<?php if (isset($la_case[0]['id']))   echo htmlspecialchars(trim($la_case[0]['id'])); ?>"      class="pure-input-rounded">
+                    <input type="text"      name="fname"    value="<?php if (isset($la_case[0]['fname']))     echo htmlspecialchars(trim($la_case[0]['fname'])); ?>"        placeholder="First name" class="pure-input-rounded">
+                    <input type="text"      name="lname"    value="<?php if (isset($la_case[0]['lname']))     echo htmlspecialchars(trim($la_case[0]['lname'])); ?>"        placeholder="Last name"  class="pure-input-rounded">
+                    <input type="text"      name="username" value="<?php if (isset($la_case[0]['username']))  echo htmlspecialchars(trim($la_case[0]['username'])); ?>"     placeholder="Username"  class="pure-input-rounded">                    
+                    <input type="password"  name="password" value="<?php if (isset($_POST['password']))       echo htmlspecialchars(trim($_POST['password'])); ?>"          placeholder="New Password"  class="pure-input-rounded">
+                    <input type="email"     name="email"    value="<?php if (isset($la_case[0]['email']))     echo htmlspecialchars(trim($la_case[0]['email'])); ?>"        placeholder="Email"     class="pure-input-rounded">
 
                     <?php if(isset($message)) {echo '<label class="text-danger">'.$message.'</label>'; } ?><br>
                     <button type="submit" name="update" class="pure-button">Update Profile</button>

@@ -1,5 +1,11 @@
 /*own*/
-
+.montage {
+    width: 30vw;
+    height: 30vw;
+    /* background-color: #ccc; */
+    border: 5px solid #ddd;
+    margin: 0 auto;
+}
 
 * {
     -webkit-box-sizing: border-box;
