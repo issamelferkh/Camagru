@@ -1,12 +1,52 @@
 /*own*/
-.montage {
-    width: 30vw;
+.sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .sidenav a {
+    padding: 6px 6px 6px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+/********************************************/
+
+.montage-video {
+    width: 40vw;
     height: 30vw;
     /* background-color: #ccc; */
     border: 5px solid #ddd;
     margin: 0 auto;
 }
 
+.montage-side {
+    float: right;
+    width: 32%
+}
+
+.montage-main {
+    float: left;
+    width: 65%;
+}
+
+.montage-footer {
+    clear: both;
+    margin-bottom: 0;
+  }
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

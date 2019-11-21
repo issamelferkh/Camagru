@@ -50,7 +50,7 @@ vos données en dépendent !
 - [ ] La liste des images doit être paginée, avec au moins 5 éléments par page.
 
 ### Partie montage
-- [ ] accessible only to users + gently reject all other users that attempt to access it without being successfully logged in.
+- [x] accessible only to users + gently reject all other users that attempt to access it without being successfully logged in.
 - [ ] Une section principale, contenant l’apercu de votre webcam, la liste des images superposables disponibles et un bouton permettant de prendre la photo.
 - [ ] Une section latérale, affichant les miniatures de toutes les photos prises précedemment. ressembler à la Figure V.1
 - [ ] Les images superposables doivent être sélectionnables.
@@ -71,6 +71,7 @@ vos données en dépendent !
 ### Question
 - config/setup.php -> how can I connect o DB if not exists ? !!!
 - config/setup.php -> execute une fois ou chaque fois ?
+- Once connected, user should or can modify his username, mail address or password ???
 
 ### Taches -> Objectif: finish user part
 - [ ] Sign up => At the end of the registration process, user should confirm his account via an unique link sent at the email address fullfiled in the registration form.
@@ -80,11 +81,12 @@ https://devanswers.co/how-to-get-php-mail-working-on-ubuntu-16-04-digitalocean-d
 - [ ] email confirmation -> https://code.tutsplus.com/tutorials/how-to-code-a-signup-form-with-email-confirmation--net-6860
                          -> https://code.tutsplus.com/tutorials/how-to-implement-email-verification-for-new-members--net-3824
 
-- [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
-
 
 
 * jai un grand probleme au niveau des includes -> gerer tous les includes -> tester au niveau de visiteur et user aussi !!!
+
+* prob Update Chrome !!!
+
 
 
 

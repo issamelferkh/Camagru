@@ -21,7 +21,7 @@
                     <?php echo '<img class="card-img-top" src="'.$file.'" alt="Card image cap" id="'.$file.'" style="width: 100px; height: 100px;" >'; ?>
                     <input type="radio" value="<?php echo $file; ?>" name="stickers"> stickers
                 <?php endforeach; ?>
-              </div>
+            </div>
         </div>
         </div>
            
