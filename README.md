@@ -85,8 +85,6 @@ https://devanswers.co/how-to-get-php-mail-working-on-ubuntu-16-04-digitalocean-d
 
 * jai un grand probleme au niveau des includes -> gerer tous les includes -> tester au niveau de visiteur et user aussi !!!
 
-* prob Update Chrome !!!
-
 
 
 
