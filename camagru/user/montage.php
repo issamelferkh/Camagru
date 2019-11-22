@@ -11,46 +11,28 @@
 <?php include '../include/title_user.php'; ?>
 
         <div class="content" style="text-align: center;">
-            <h2 class="content-subhead">Montage</h2><hr><br>
+            <h2 class="content-subhead">Montage</h2>
             <!-- filters            -->
-            <!-- <div class="pure-g">
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="../assets/img/filter01.png" alt="">
-                    <form class="pure-form">
-                        <button type="submit" class="pure-button">Choose filter</button>
-                    </form>
+            <div class="pure-g">
+                <div class="pure-u-1-4">
+                    <img id="design" style="width: 100px; height: 100px;" src="../assets/img/x1.png" alt="">
+                    <br>
+                    <input type="radio" value="design" name="stickers" checked> Happy
                 </div>
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="../assets/img/filter02.png" alt="">
-                    <form class="pure-form">
-                        <button type="submit" class="pure-button">Choose filter</button>
-                    </form>
+                <div class="pure-u-1-4">
+                    <img id="design" style="width: 100px; height: 100px;" src="../assets/img/x1.png" alt="">
+                    <br>
+                    <input type="radio" value="design" name="stickers" checked> Happy
                 </div>
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="../assets/img/filter03.png" alt="">
-                    <form class="pure-form">
-                        <button type="submit" class="pure-button">Choose filter</button>
-                    </form>
+                <div class="pure-u-1-4">
+                    <img id="design" style="width: 100px; height: 100px;" src="../assets/img/x1.png" alt="">
+                    <br>
+                    <input type="radio" value="design" name="stickers" checked> Happy
                 </div>
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="../assets/img/filter04.png" alt="">
-                    <form class="pure-form">
-                        <button type="submit" class="pure-button">Choose filter</button>
-                    </form>
+                <div class="pure-u-1-4">
+                    <input type="button" id="noSticker" onclick="no_Sticker();"  class="btn btn-primary" style="margin-top:15%;" value="noSticker" >
                 </div>
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="../assets/img/filter05.png" alt="">
-                    <form class="pure-form">
-                        <button type="submit" class="pure-button">Choose filter</button>
-                    </form>
-                </div>
-                <div class="pure-u-1-6">
-                    <img class="pure-img-responsive" src="../assets/img/filter06.png" alt="">
-                    <form class="pure-form">
-                        <button type="submit" class="pure-button">Choose filter</button>
-                    </form>
-                </div>
-            </div> -->
+            </div><hr><br>
             <!-- video -->
             <div class="montage-main">
                 <div class="pure-u-1">

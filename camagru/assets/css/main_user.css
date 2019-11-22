@@ -43,6 +43,26 @@
     width: 65%;
 }
 
+/* @media screen and (max-width: 991px) {
+    .montage-side {    
+        width: 90%;
+        margin: 20px auto;
+        display: -webkit-box;
+        height: auto;
+        display: -moz-box;
+        float: center;
+        overflow: scroll;
+    }
+
+    .montage-video {
+
+    }
+    
+    .montage-main {
+
+    }
+} */
+
 .montage-footer {
     clear: both;
     margin-bottom: 0;
