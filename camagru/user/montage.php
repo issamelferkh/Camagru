@@ -5,12 +5,25 @@ require_once("../config/connection.php");
 
 
 if(isset($_POST["save"])) {
-    if(isset($_POST["imgB64"])) { $imgB64 = $_POST["imgB64"];}
+    if(isset($_POST["imgB64"])) {
+        list($type, $data) = explode(',', $_POST["imgB64"]);
+        $data = base64_decode($data);
+        if ($data){
+            $imgURL = "../assets/img/";
+            $imgName = date("Y_m_d_H_i_s");
+            $imgName = $_SESSION['id_user']."__".$imgName.".png";
+            $imgURL = $imgURL.$imgName;
+            echo $imgURL;
+            file_put_contents($imgURL, $data);
+        } else {
+            echo "No image !!!";
+        }
+    }
 } 
 ?>
 
 <!-- header -->
-<?php include '../include/header_user.php'; ?>
+<?php //include '../include/header_user.php'; ?>
 
 <!-- menu -->
 <?php include '../include/menu_user.php'; ?>
@@ -62,8 +75,12 @@ if(isset($_POST["save"])) {
                 <div class="montage-side" >
                     <div class="pure-g">
                     <div class="pure-u-1-2">
-                            <?php if(isset($imgB64)) { echo $imgB64; } ?>
-                            <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
+                            <?php 
+                                if(isset($imgB64)) { 
+                                    echo $img; 
+                                } 
+                            ?>
+                            <img class="pure-img-responsive" src="../assets/img/aaa.png" alt="">
                         </div>
                         <div class="pure-u-1-2">
                             <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">

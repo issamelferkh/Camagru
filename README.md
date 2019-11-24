@@ -76,13 +76,16 @@ vos données en dépendent !
 ### Issues
 
 * jai un grand probleme au niveau des includes -> gerer tous les includes -> tester au niveau de visiteur et user aussi !!!
+* verif includes of session and connection_db
+* separer les include de views (header, footer, menu...) et les includes de code(connection_db, session...)
+* auto redirect http to https
 * Menu not responsive with smartphones
 * sendmail -> notification, forget pwd, active pwd ...
+* verif db table links and keys +++
 
 
 ### Taches -> Objectif: finish user part
-- to do + revision de tous les taches
-- save imgB64  in DB and select images from db to "Montage Side" +++ 
+- save img infos in DB and select images from db to "Montage Side" +++ 
 
 
 - save photo from canevas +++

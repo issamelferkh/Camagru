@@ -47,6 +47,6 @@ if (video && canvas) {
 if (capture) {
     capture.addEventListener('click', function() {
         drawInCanvas();
-        document.querySelector('.imgInputData').value = canvas.toDataURL('image/jpeg');
+        document.querySelector('.imgInputData').value = canvas.toDataURL('image/png');
     });
 }
