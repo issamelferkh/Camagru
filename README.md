@@ -81,6 +81,10 @@ vos données en dépendent !
 
 
 ### Taches -> Objectif: finish user part
+- to do + revision de tous les taches
+- save imgB64  in DB and select images from db to "Montage Side" +++ 
+
+
 - save photo from canevas +++
 - montage photo + Imgfilter
 - save final photo in DB

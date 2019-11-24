@@ -1,5 +1,13 @@
-<!-- Session -->
-<?php include '../include/session.php'; ?>
+<?php if(isset($_POST)) ?>
+<?php
+session_start();
+require_once("../config/connection.php");
+
+
+if(isset($_POST["save"])) {
+    if(isset($_POST["imgB64"])) { $imgB64 = $_POST["imgB64"];}
+} 
+?>
 
 <!-- header -->
 <?php include '../include/header_user.php'; ?>
@@ -11,76 +19,79 @@
 <?php include '../include/title_user.php'; ?>
 
         <div class="content" style="text-align: center;">
-            <h2 class="content-subhead">Montage</h2>
-            <!-- filters            -->
-            <br><br><br>
-            <div class="montage-main">
-            <br>
-                <div class="pure-g">
-                    <div class="pure-u-1-4">
-                        <img id="design" style="width: 100px; height: 100px;" src="../assets/img/1000.jpg" alt="">
-                        <br>
-                        <input type="radio" value="design" name="stickers" checked> Filter_1
+            <form action="montage.php" method="POST" enctype="multipart/form-data">
+
+                <h2 class="content-subhead">Montage</h2><br><br><br>
+                <div class="montage-main"><br>
+                    <!-- filters -->
+                    <div class="pure-g">
+                        <div class="pure-u-1-4">
+                            <img id="design" style="width: 100px; height: 100px;" src="../assets/img/1000.jpg" alt="">
+                            <br>
+                            <input type="radio" value="design" name="stickers" checked> Filter_1
+                        </div>
+                        <div class="pure-u-1-4">
+                            <img id="design" style="width: 100px; height: 100px;" src="../assets/img/1000.jpg" alt="">
+                            <br>
+                            <input type="radio" value="design" name="stickers" checked> Filter_2
+                        </div>
+                        <div class="pure-u-1-4">
+                            <img id="design" style="width: 100px; height: 100px;" src="../assets/img/1000.jpg" alt="">
+                            <br>
+                            <input type="radio" value="design" name="stickers" checked> Filter_3
+                        </div>
+                        <div class="pure-u-1-4">
+                            <img id="design" style="width: 100px; height: 100px;" src="../assets/img/1000.jpg" alt="">
+                            <br>
+                            <input type="radio" value="design" name="stickers" checked> Filter_4
+                        </div>
+                    </div><hr><br>
+                    <!-- video -->
+                    <div class="pure-u-1">
+                        <video class="montage-video" id="video"></video><br>
+                        <a type="submit" class="pure-button" id="capture">Capture</a>
+                        <input name="imgB64" type="text" class="imgInputData" value=""/>
                     </div>
-                    <div class="pure-u-1-4">
-                        <img id="design" style="width: 100px; height: 100px;" src="../assets/img/1000.jpg" alt="">
-                        <br>
-                        <input type="radio" value="design" name="stickers" checked> Filter_2
+                    <br><br>
+                    <div class="pure-u-1">
+                        <canvas class="montage-video" id="canvas"></canvas><br>
+                        <input name="save" type="submit" class="pure-button" value="Save"><br>
                     </div>
-                    <div class="pure-u-1-4">
-                        <img id="design" style="width: 100px; height: 100px;" src="../assets/img/1000.jpg" alt="">
-                        <br>
-                        <input type="radio" value="design" name="stickers" checked> Filter_3
-                    </div>
-                    <div class="pure-u-1-4">
-                        <img id="design" style="width: 100px; height: 100px;" src="../assets/img/1000.jpg" alt="">
-                        <br>
-                        <input type="radio" value="design" name="stickers" checked> Filter_4
-                    </div>
-                </div><hr><br>
-            <!-- video -->
-                <div class="pure-u-1">
-                    <video class="montage-video" id="video"></video><br>
-                    <a type="submit" class="pure-button" id="capture">Capture</a>
-                    <input name="imgB64" type="text" class="imgInputData" value=""/>
                 </div>
-                <br><br>
-                <div class="pure-u-1">
-                    <canvas class="montage-video" id="canvas"></canvas>
-                </div>
-            </div>
-            <!-- photo taken   -->
-            <div class="montage-side" >
-                <div class="pure-g">
-                <div class="pure-u-1-2">
-                        <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
-                    </div>
+                <!-- photo taken   -->
+                <div class="montage-side" >
+                    <div class="pure-g">
                     <div class="pure-u-1-2">
-                        <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
-                    </div>
-                    <div class="pure-u-1-2">
-                        <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
-                    </div>
-                    <div class="pure-u-1-2">
-                        <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
-                    </div>
-                    <div class="pure-u-1-2">
-                        <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
-                    </div>
-                    <div class="pure-u-1-2">
-                        <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
-                    </div>
-                    <div class="pure-u-1-2">
-                        <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
-                    </div>
-                    <div class="pure-u-1-2">
-                        <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
-                    </div>
+                            <?php if(isset($imgB64)) { echo $imgB64; } ?>
+                            <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
+                        </div>
+                        <div class="pure-u-1-2">
+                            <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
+                        </div>
+                        <div class="pure-u-1-2">
+                            <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
+                        </div>
+                        <div class="pure-u-1-2">
+                            <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
+                        </div>
+                        <div class="pure-u-1-2">
+                            <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
+                        </div>
+                        <div class="pure-u-1-2">
+                            <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
+                        </div>
+                        <div class="pure-u-1-2">
+                            <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
+                        </div>
+                        <div class="pure-u-1-2">
+                            <img class="pure-img-responsive" src="../assets/img/1000.jpg" alt="">
+                        </div>
+                    </div>                
                 </div>                
-            </div>                
-            <div class="montage-footer"></div>
-            <br><hr>
-            </div>
+                <div class="montage-footer"></div>
+                <br><hr>
+                </div>
+            </form>
         </div>
     </div>
 </div>
