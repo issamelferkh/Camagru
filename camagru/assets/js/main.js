@@ -1,57 +1,52 @@
-// montage
-(function(){
-    var video = document.getElementById('video'),
-        canvas = document.getElementById('canvas'),
-        context = canvas.getContext('2d'),
-        vendorUrl = window.URL || window.webkitURL;
+var video = document.getElementById('video');
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var capture = document.getElementById('capture');
+// var vendorUrl = window.URL || window.webkitURL;
 
-    navigator.getUserMedia = navigator.getUserMedia ||
+function getVideo(video) {
+        navigator.getUserMedia = navigator.getUserMedia ||
                             navigator.webkitGetUserMedia ||
                             navigator.mozGetUserMedia || 
                             navigator.msGetUserMedia;
-
+                            
     if (navigator.getUserMedia) {
-        navigator.getUserMedia({audio: false, video: { width: 430, height: 320 }},
-            function(stream) {
-                var video = document.querySelector('video');
-                video.srcObject = stream;
-                video.onloadedmetadata = function(e) {
-                    video.play();
-                };
-            },
-            function(err) {
+        navigator.getUserMedia({
+            audio: false, 
+            video: { width: 430, height: 320 }
+        }, 
+        function(stream) {
+            var video = document.querySelector('video');
+            video.srcObject = stream;
+            video.onloadedmetadata = function(e) {
+                video.play();
+            };
+        }, 
+        function(err) {
                 console.log("The following error occurred: " + err.name);
             }
         );
-
-        document.getElementById('capture').addEventListener('click', function() {
-            context.drawImage(video, 0, 0, 430, 320, 0, 0, 300, 150);
-        });
     } else {
         console.log("getUserMedia not supported");
     }
-})();
+}
 
-// (function() {
-//     var video = document.getElementById('video'),
-//         vendorUrl = window.URL || window.webkitURL;
+function drawInCanvas() {
+    var width = video.videoWidth;
+    var height = video.videoHeight;
+    canvas.width = width;
+	canvas.height = height;
+    context.drawImage(video, 0, 0, width, height);
+}
 
-//     navigator.getMedia =    navigator.getUserMedia ||
-//                             navigator.webkitGetUserMedia ||
-//                             navigator.mozGetUserMedia || 
-//                             navigator.msGetUserMedia;
+if (video && canvas) {
+	getVideo(video);
+	// video.addEventListener('canplay', drawInCanvas);
+}
 
-//     navigator.getMedia({
-//         audio: false, 
-//         video: true
-//     }, function(stream) {
-//         video.src = vendorUrl.createObjectURL(stream);
-//         console.log(video.src);
-//         video.play();
-//     }, function(error) {
-//         console.log("The following error occured: " + error.name);
-//     });
-// })();
-
-
-
+if (capture) {
+    capture.addEventListener('click', function() {
+        drawInCanvas();
+        document.querySelector('.imgInputData').value = canvas.toDataURL('image/jpeg');
+    });
+}

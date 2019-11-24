@@ -73,18 +73,27 @@ vos données en dépendent !
 - config/setup.php -> execute une fois ou chaque fois ?
 - Once connected, user should or can modify his username, mail address or password ???
 
+### Issues
+
+* jai un grand probleme au niveau des includes -> gerer tous les includes -> tester au niveau de visiteur et user aussi !!!
+* Menu not responsive with smartphones
+* sendmail -> notification, forget pwd, active pwd ...
+
+
 ### Taches -> Objectif: finish user part
+- save photo from canevas +++
+- montage photo + Imgfilter
+- save final photo in DB
+- add filters (Red,Green,Blue,Brightness ...)
+- upload image from iMAC
+
+
+
 - [ ] Sign up => At the end of the registration process, user should confirm his account via an unique link sent at the email address fullfiled in the registration form.
 https://wpaq.com/configure-postfix-smtp-relay/
 https://devanswers.co/how-to-get-php-mail-working-on-ubuntu-16-04-digitalocean-droplet/
  
 - [ ] email confirmation -> https://code.tutsplus.com/tutorials/how-to-code-a-signup-form-with-email-confirmation--net-6860
                          -> https://code.tutsplus.com/tutorials/how-to-implement-email-verification-for-new-members--net-3824
-
-
-
-* jai un grand probleme au niveau des includes -> gerer tous les includes -> tester au niveau de visiteur et user aussi !!!
-
-
 
 

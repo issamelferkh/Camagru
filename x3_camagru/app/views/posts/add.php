@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-	<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
-	<title><?php echo SITENAME; ?></title>
-</head>
-<body>
-	<?php //require APPROOT.'/views/inc/navbar.php'; ?>
-	<div class="container">
+<?php require APPROOT.'/views/inc/header.php'; ?>
 
 	<div class="card card-body bg-light mt-5 add_container">
 		<a href="<?php echo URLROOT; ?>/posts" class="add_container-del"><i class="fa fa-times-circle"></i></a>
-		<form action="<?php echo URLROOT; ?>/posts/add/<?php echo $_SESSION['user_id']; ?>" method="GET" enctype="multipart/form-data">
+		<form action="<?php echo URLROOT; ?>/posts/add/<?php echo $_SESSION['user_id']; ?>" method="post" enctype="multipart/form-data">
 			<div class="row p-3">
 				<div class="col-md-6 canvas_container">
 					<i class="fa fa-upload upload-icon"></i>
@@ -25,7 +12,7 @@
 				</div>
 				<div class="col-md-3 col-sm-6 d-flex flex-column justify-content-around">
 					<div class="form-check d-flex align-items-center justify-content-center">
-						<input type="radio" value="../../assets/img/x1.png" class="form-check-input hidden sup" name="super" id="super1">
+						<input type="radio" value="<?php echo URLROOT; ?>/public/img/sup/1.png" class="form-check-input hidden sup" name="super" id="super1">
 						<label for="super1" class="form-check-label">
 							<img src="<?php echo URLROOT; ?>/public/img/sup/1.png" alt="" class="sup">
 						</label>
@@ -123,7 +110,7 @@
 				</div>
 			</div>
 		</form>
-		<!-- <audio class="snap" src="<?php echo URLROOT; ?>/public/img/snap.mp3" hidden></audio> -->
+		<audio class="snap" src="<?php echo URLROOT; ?>/public/img/snap.mp3" hidden></audio>
 	</div>
 	<div class="strip my-5">
 		<?php foreach($data['posts'] as $post) : ?>
@@ -133,14 +120,4 @@
 		<?php endforeach; ?>
 	</div>
 
-	</div>
-	<footer class="footer py-3 mt-5">
-		<div class="container">
-			<div class="footer-copyright text-white text-center py-3">© 2019 Copyright:
-				<a href=""> Camagru.com</a>
-			</div>
-		</div>
-	</footer>
-	<script src="main.js"></script>
-</body>
-</html>
+<?php require APPROOT.'/views/inc/footer.php'; ?>
