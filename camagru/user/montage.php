@@ -3,8 +3,10 @@
 session_start();
 require_once("../config/connection.php");
 
-function mixTwoImage($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h, $pct, $imgURL){ 
+function mixTwoImage($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $pct, $imgURL){ 
 
+    list($src_w, $src_h) = getimagesize($src_im);
+    
     $dst_im = imagecreatefromstring(file_get_contents($dst_im));
     $src_im = imagecreatefromstring(file_get_contents($src_im));
     
@@ -29,7 +31,7 @@ if(isset($_POST["save"])) {
             $filterURL = "../assets/img/".$_POST['filter'];
 
 
-            mixTwoImage($imgURL, $filterURL, 10, 10, 0, 0, 50, 50, 100,$imgURL);
+            mixTwoImage($imgURL, $filterURL, 10, 10, 0, 0,100,$imgURL);
 
             $query = 'INSERT INTO `post` (`user_id`, `imgName`, `imgURL`,`imgTYPE`, `imgSrcNAME`, `imgSrcURL`, `filter`) 
                       VALUES (?,?,?,?,?,?,?)';
