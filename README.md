@@ -93,11 +93,12 @@ https://devanswers.co/how-to-get-php-mail-working-on-ubuntu-16-04-digitalocean-d
 * change All URLs "../assets/img/" to paths "https://10.12.100.163/camagru/assets/img/"
 
 ### Taches -> Objectif: finish user part
-- add filter with position X and Y
-- choose filters in png
+- choose filters in png -> resize filter -> +50px 
+- check galery partie
 - finish frontend of montage page -> msg info or error + ...
 - add filters (Red,Green,Blue,Brightness ...)
 - add posibility of upload an image from iMAC
+- add filter with position X and Y
 - add posibility of move a filter in canvas 
 - finish montage partie
 

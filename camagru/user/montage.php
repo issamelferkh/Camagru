@@ -3,14 +3,19 @@
 session_start();
 require_once("../config/connection.php");
 
+// mixTwoImage -> for mix two images (pic and filter)
 function mixTwoImage($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $pct, $imgURL){ 
 
     list($src_w, $src_h) = getimagesize($src_im);
-    
-    $dst_im = imagecreatefromstring(file_get_contents($dst_im));
-    $src_im = imagecreatefromstring(file_get_contents($src_im));
-    
-    imagecopymerge($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h, $pct);
+
+    $dst_im = imagecreatefrompng($dst_im);
+    $src_im = imagecreatefrompng($src_im);
+    $cut = imagecreatetruecolor($src_w, $src_h);
+
+    imagecopy($cut, $dst_im, 0, 0, $dst_x, $dst_y, $src_w, $src_h);
+    imagecopy($cut, $src_im, 0, 0, $src_x, $src_y, $src_w, $src_h);
+    imagecopymerge($dst_im, $cut, $dst_x, $dst_y, 0, 0, $src_w, $src_h, $pct);
+   
     header('Content-Type: image/png');
     imagepng($dst_im, $imgURL);
 }
@@ -30,8 +35,7 @@ if(isset($_POST["save"])) {
 
             $filterURL = "../assets/img/".$_POST['filter'];
 
-
-            mixTwoImage($imgURL, $filterURL, 10, 10, 0, 0,100,$imgURL);
+            mixTwoImage($imgURL, $filterURL, 30, 30, 0, 0, 100,$imgURL);
 
             $query = 'INSERT INTO `post` (`user_id`, `imgName`, `imgURL`,`imgTYPE`, `imgSrcNAME`, `imgSrcURL`, `filter`) 
                       VALUES (?,?,?,?,?,?,?)';
@@ -117,9 +121,6 @@ if(isset($_POST["save"])) {
                         </div>
                         <div class='pure-u-1-2'>
                             <img class='pure-img-responsive' src='".$la_case[$i]['imgURL']."'>
-                        </div>
-                        <div class='pure-u-1-2'>
-                            <img class='pure-img-responsive' src='../assets/img/".$la_case[$i]['filter']."'>
                         </div>
                         ";
             $count--;
