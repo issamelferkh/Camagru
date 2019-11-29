@@ -33,9 +33,9 @@ if(isset($_POST["save"])) {
             $imgSrcURL = "../assets/img/".$imgSrcName;
             file_put_contents($imgSrcURL, $imgB64);
 
-            $filterURL = "../assets/img/".$_POST['filter'];
+            $filterURL = "../assets/img/filter/".$_POST['filter'];
 
-            mixTwoImage($imgURL, $filterURL, 30, 30, 0, 0, 100,$imgURL);
+            mixTwoImage($imgURL, $filterURL, 0, 0, 0, 0, 100,$imgURL);
 
             $query = 'INSERT INTO `post` (`user_id`, `imgName`, `imgURL`,`imgTYPE`, `imgSrcNAME`, `imgSrcURL`, `filter`) 
                       VALUES (?,?,?,?,?,?,?)';
@@ -51,7 +51,7 @@ if(isset($_POST["save"])) {
         }
     }
 } 
-?>
+?>fff
 
 <!-- header -->
 <?php include '../include/header_user.php'; ?>
@@ -71,22 +71,22 @@ if(isset($_POST["save"])) {
                     <!-- filters -->
                     <div class="pure-g">
                         <div class="pure-u-1-4">
-                            <img id="design" style="width: 100px; height: 100px;" src="../assets/img/1.jpg" alt="">
+                            <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/camagru/assets/img/filter/1.png" alt="">
                             <br>
                             <input type="radio" value="1.png" name="filter" checked> Filter_1
                         </div>
                         <div class="pure-u-1-4">
-                            <img id="design" style="width: 100px; height: 100px;" src="../assets/img/1000.jpg" alt="">
+                            <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/camagru/assets/img/filter/2.png" alt="">
                             <br>
                             <input type="radio" value="2.png" name="filter" checked> Filter_2
                         </div>
                         <div class="pure-u-1-4">
-                            <img id="design" style="width: 100px; height: 100px;" src="../assets/img/1000.jpg" alt="">
+                            <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/camagru/assets/img/filter/3.png" alt="">
                             <br>
                             <input type="radio" value="3.png" name="filter" checked> Filter_3
                         </div>
                         <div class="pure-u-1-4">
-                            <img id="design" style="width: 100px; height: 100px;" src="../assets/img/1000.jpg" alt="">
+                            <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/camagru/assets/img/filter/4.png" alt="">
                             <br>
                             <input type="radio" value="4.png" name="filter" checked> Filter_4
                         </div>
@@ -94,6 +94,20 @@ if(isset($_POST["save"])) {
                     <!-- video -->
                     <div class="pure-u-1">
                         <video class="montage-video" id="video"></video><br>
+                        <div class="">
+							<div class="">
+								<label>Red:</label>
+								<input type="range" class="" id="redSlider" value="0" min="0" max="100" name="red">
+							</div>
+							<div class="">
+								<label>Green:</label>
+								<input type="range" class="" id="greenSlider" value="0" min="0" max="100" name="green">
+							</div>
+							<div class="">
+								<label>Blue:</label>
+								<input type="range" class="" id="blueSlider" value="0" min="0" max="100" name="blue">
+							</div>
+						</div>
                         <a type="submit" class="pure-button" id="capture">Capture</a>
                         <input name="imgB64" type="text" class="imgInputData" value=""/>
                     </div>
@@ -105,7 +119,7 @@ if(isset($_POST["save"])) {
                 </div>
                 <!-- photo taken   -->
 <?
-    $query = 'SELECT * FROM `post` WHERE `user_id`="'.$_SESSION['id_user'].'"';
+    $query = 'SELECT * FROM `post` WHERE `user_id`="'.$_SESSION['id_user'].'" ORDER BY `post`.`id` DESC';
     $query = $db->prepare($query);
     $query->execute();
     $count = $query->rowCount();
@@ -117,10 +131,7 @@ if(isset($_POST["save"])) {
         while ($count > 0) {
             $resulta2 = $resulta2."
                         <div class='pure-u-1-2'>
-                            <img class='pure-img-responsive' src='".$la_case[$i]['imgSrcURL']."'>
-                        </div>
-                        <div class='pure-u-1-2'>
-                            <img class='pure-img-responsive' src='".$la_case[$i]['imgURL']."'>
+<a href='post.php?id=".$la_case[$i]['id']."'><img class='pure-img-responsive' src='".$la_case[$i]['imgURL']."'></a>
                         </div>
                         ";
             $count--;

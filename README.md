@@ -50,14 +50,7 @@ vos données en dépendent !
 - [ ] La liste des images doit être paginée, avec au moins 5 éléments par page.
 
 ### Partie montage
-- [x] accessible only to users + gently reject all other users that attempt to access it without being successfully logged in.
-- [ ] Une section principale, contenant l’apercu de votre webcam, la liste des images superposables disponibles et un bouton permettant de prendre la photo.
-- [ ] Une section latérale, affichant les miniatures de toutes les photos prises précedemment. ressembler à la Figure V.1
-- [ ] Les images superposables doivent être sélectionnables.
-- [ ] Le bouton permettant de prendre la photo ne doit pas être cliquable tant qu’aucune image n’est sélectionnée.
-- [ ] Le traitement de l’image finale (donc entre autres la superposition des deux images) doit être fait coté serveur, en PHP.
-- [ ] Parce que tout le monde n’a pas de webcam, vous devez laisser la possibilité d’uploader une image au lieu de la prendre depuis la caméra.
-- [ ] L’utilisateur doit pouvoir supprimer ses montages, et uniquement les siens.
+
 
 ### Security 
 - [ ] PWD encrypted in database.
@@ -67,6 +60,8 @@ vos données en dépendent !
 - [ ] Use an extern form to manipulate so-called private data
 - [ ] Cross Site Request Forgery
 - [ ] Cross Origin Resource Sharing
+- test all forms -> token
+- valide all form -> if (isset(post or get)) ...
 
 ### Question
 - config/setup.php -> how can I connect o DB if not exists ? !!!
@@ -92,13 +87,35 @@ https://devanswers.co/how-to-get-php-mail-working-on-ubuntu-16-04-digitalocean-d
 * msg d'erruers ou d'info !!!
 * change All URLs "../assets/img/" to paths "https://10.12.100.163/camagru/assets/img/"
 
-### Taches -> Objectif: finish user part
-- choose filters in png -> resize filter -> +50px 
-- check galery partie
-- finish frontend of montage page -> msg info or error + ...
+### Taches -> Objectif: finish Montage part
+- OK => choose filters in png -> resize filter
+- [x] accessible only to users + gently reject all other users that attempt to access it without being successfully logged in.
+- [x] Une section principale, contenant l’apercu de votre webcam, la liste des images superposables disponibles et un bouton permettant de prendre la photo.
+- [x] Une section latérale, affichant les miniatures de toutes les photos prises précedemment. ressembler à la Figure V.1
+- [x] Les images superposables doivent être sélectionnables.
+- [x] Le traitement de l’image finale (donc entre autres la superposition des deux images) doit être fait coté serveur, en PHP.
+- [x] L’utilisateur doit pouvoir supprimer ses montages, et uniquement les siens.
+
+- [ ] Parce que tout le monde n’a pas de webcam, vous devez laisser la possibilité d’uploader une image au lieu de la prendre depuis la caméra.
+
+- ******************************************************************************* -
+- Verif galerie part => finish frontend of montage part -> msg info or error + ...
+- [ ] Le bouton permettant de prendre la photo ne doit pas être cliquable tant qu’aucune image n’est sélectionnée.
+- avant choisir filter -> Choose an effect (Red)
+- apres choisir filter -> Shooot ! (Green)
+
 - add filters (Red,Green,Blue,Brightness ...)
-- add posibility of upload an image from iMAC
-- add filter with position X and Y
 - add posibility of move a filter in canvas 
-- finish montage partie
+
+### Plan
+ 
+- Partie montage        => jeudi    28/11
+- Partie utilisateur    => vendredi 29/11
+- Partie galerie        => samedi   30/11
+- Partie commune        => dimanche 01/12
+- Security              => lundi    02/12 
+- Check all             => mardi    03/12
+- bonus + bonus time    => me + je  04/12
+- correction            => vendredi 06/12 
+
 
