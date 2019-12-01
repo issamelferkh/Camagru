@@ -37,10 +37,10 @@ if(isset($_POST["save"])) {
 
             mixTwoImage($imgURL, $filterURL, 0, 0, 0, 0, 100,$imgURL);
 
-            $query = 'INSERT INTO `post` (`user_id`, `imgName`, `imgURL`,`imgTYPE`, `imgSrcNAME`, `imgSrcURL`, `filter`) 
-                      VALUES (?,?,?,?,?,?,?)';
+            $query = 'INSERT INTO `post` (`user_id`, `username`, `imgName`, `imgURL`,`imgTYPE`, `imgSrcNAME`, `imgSrcURL`, `filter`) 
+                      VALUES (?,?,?,?,?,?,?,?)';
             $query = $db->prepare($query);
-            $query->execute([$_SESSION['id_user'],$imgName,$imgURL,$imgTYPE,$imgSrcName,$imgSrcURL,$_POST['filter']]);
+            $query->execute([$_SESSION['id_user'],$_SESSION['username'],$imgName,$imgURL,$imgTYPE,$imgSrcName,$imgSrcURL,$_POST['filter']]);
 
             $msg = 'Your picture is published with succeed.';
             //ft_send_email($_POST['username'], $_POST['email'], $hash); /* Error !!! */

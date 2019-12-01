@@ -28,7 +28,6 @@
 .montage-video {
     width: 40vw;
     height: 30vw;
-    /* background-color: #ccc; */
     border: 5px solid #ddd;
     margin: 0 auto;
 }
@@ -46,6 +45,28 @@
     width: 65%;
 }
 
+.galerie-main {
+    border-radius: 10px;
+    text-align: center; 
+    background-color: #f2f2f2;
+    margin: auto;
+    width: 65%;
+}
+
+.galerie-post {
+    width: 35vw;
+    /* height: 30vw; */
+    text-align: center;
+    border: 5px solid #ddd;
+    margin: auto;
+}
+
+.galerie-form {
+    width: 35vw;
+    /* height: 30vw; */
+    text-align: center;
+    margin: auto;
+}
 /* @media screen and (max-width: 991px) {
     .montage-side {    
         width: 90%;

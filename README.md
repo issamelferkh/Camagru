@@ -42,15 +42,28 @@ vos données en dépendent !
 - [x] The user should be able to disconnect in one click at any time on any page.
 - [x] Once connected, an user should modify his username, mail address or password.
 
-### Partie galerie
-- [ ] La galerie devra être publique -> accessible sans authentification. 
-- [ ] doit afficher l’intégralité des images prises par les membres du site, triées par date de création. 
-- [ ] Elle doit pouvoir permettre à l’utilisateur de les commenter et de les liker si celui-ci est authentifié.
-- [ ] Lorsque une image reçoit un nouveau commentaire, l’auteur de cette image doit en être informé par mail. Cette préférence est activée par défaut, mais peut être désactivée dans les préférences de l’utilisateur.
-- [ ] La liste des images doit être paginée, avec au moins 5 éléments par page.
+### Partie galerie -> sans partie notification !!!
 
-### Partie montage
 
+### Partie montage -> sans partie upload img et la ratie bonus!!!
+- OK => choose filters in png -> resize filter
+- [x] accessible only to users + gently reject all other users that attempt to access it without being successfully logged in.
+- [x] Une section principale, contenant l’apercu de votre webcam, la liste des images superposables disponibles et un bouton permettant de prendre la photo.
+- [x] Une section latérale, affichant les miniatures de toutes les photos prises précedemment. ressembler à la Figure V.1
+- [x] Les images superposables doivent être sélectionnables.
+- [x] Le traitement de l’image finale (donc entre autres la superposition des deux images) doit être fait coté serveur, en PHP.
+- [x] L’utilisateur doit pouvoir supprimer ses montages, et uniquement les siens.
+
+- [ ] upload img: Parce que tout le monde n’a pas de webcam, vous devez laisser la possibilité d’uploader une image au lieu de la prendre depuis la caméra.
+
+- ******************************************************************************* -
+- Verif galerie part => finish frontend of montage part -> msg info or error + ...
+- [ ] Le bouton permettant de prendre la photo ne doit pas être cliquable tant qu’aucune image n’est sélectionnée.
+- avant choisir filter -> Choose an effect (Red)
+- apres choisir filter -> Shooot ! (Green)
+
+- add filters (Red,Green,Blue,Brightness ...)
+- add posibility of move a filter in canvas 
 
 ### Security 
 - [ ] PWD encrypted in database.
@@ -87,31 +100,23 @@ https://devanswers.co/how-to-get-php-mail-working-on-ubuntu-16-04-digitalocean-d
 * msg d'erruers ou d'info !!!
 * change All URLs "../assets/img/" to paths "https://10.12.100.163/camagru/assets/img/"
 
-### Taches -> Objectif: finish Montage part
-- OK => choose filters in png -> resize filter
-- [x] accessible only to users + gently reject all other users that attempt to access it without being successfully logged in.
-- [x] Une section principale, contenant l’apercu de votre webcam, la liste des images superposables disponibles et un bouton permettant de prendre la photo.
-- [x] Une section latérale, affichant les miniatures de toutes les photos prises précedemment. ressembler à la Figure V.1
-- [x] Les images superposables doivent être sélectionnables.
-- [x] Le traitement de l’image finale (donc entre autres la superposition des deux images) doit être fait coté serveur, en PHP.
-- [x] L’utilisateur doit pouvoir supprimer ses montages, et uniquement les siens.
+### Taches 
+Partie Galerie
+2 - [ ] La galerie devra être publique -> accessible sans authentification. 
+- [x] doit afficher l’intégralité des images prises par les membres du site, triées par date de création. 
+3 - [ ] Elle doit pouvoir permettre à l’utilisateur de les commenter et de les liker si celui-ci est authentifié.
+- [ ] notification: Lorsque une image reçoit un nouveau commentaire, l’auteur de cette image doit en être informé par mail. Cette préférence est activée par défaut, mais peut être désactivée dans les préférences de l’utilisateur.
 
-- [ ] Parce que tout le monde n’a pas de webcam, vous devez laisser la possibilité d’uploader une image au lieu de la prendre depuis la caméra.
-
-- ******************************************************************************* -
-- Verif galerie part => finish frontend of montage part -> msg info or error + ...
-- [ ] Le bouton permettant de prendre la photo ne doit pas être cliquable tant qu’aucune image n’est sélectionnée.
-- avant choisir filter -> Choose an effect (Red)
-- apres choisir filter -> Shooot ! (Green)
-
-- add filters (Red,Green,Blue,Brightness ...)
-- add posibility of move a filter in canvas 
+1 - [ ] La liste des images doit être paginée, avec au moins 5 éléments par page.
+4 - Partie utilisateur
+5 - Partie montage
 
 ### Plan
  
 - Partie montage        => jeudi    28/11
 - Partie utilisateur    => vendredi 29/11
 - Partie galerie        => samedi   30/11
+
 - Partie commune        => dimanche 01/12
 - Security              => lundi    02/12 
 - Check all             => mardi    03/12
