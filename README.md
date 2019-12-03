@@ -121,8 +121,14 @@ Partie Galerie
 
 - Partie commune        => dimanche 01/12
 - Security              => lundi    02/12 
+
 - Check all             => mardi    03/12
+
 - bonus + bonus time    => me + je  04/12
+
 - correction            => vendredi 06/12 
+
+
+
 
 
