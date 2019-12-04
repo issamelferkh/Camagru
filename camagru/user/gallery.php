@@ -14,6 +14,7 @@ require_once("../config/connection.php");
 <?php include '../include/title_user.php'; ?>
 
 <?
+/* page nbr */
 $resulta1 = "";
 if (isset($_GET['page']) && isset($_GET['oldpage'])) {
     if ($_GET['oldpage'] == hash('whirlpool', $_GET['page']+17)) {
@@ -32,27 +33,42 @@ if (isset($_GET['page']) && isset($_GET['oldpage'])) {
     $_GET['page'] = 0;
     $page = 0;
 }
-
+/* view post */
     $query = "SELECT * FROM `post` ORDER BY `post`.`created_at` DESC LIMIT $page,5";
     $query = $db->prepare($query);
     $query->execute();
     $count = $query->rowCount();
     $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
+
+    /* view comments of each post */
+    $cmt_query = "SELECT * FROM `comment` ORDER BY `comment`.`created_at` DESC WHERE $la_case[$i]['post_id'] = `comment`.`post_id`";
+    $cmt_query = $db->prepare($query);
+    $cmt_query->execute();
+    $cmt_count = $cmt_query->rowCount();
+    $cmt_la_case = $cmt_query->fetchAll(\PDO::FETCH_ASSOC);
+//=> ICI
+
     if ($count) {
         $resulta1 = $resulta1.'Voila tes photos :)';
         $resulta2="";
         $i = 0;
         while ($count > 0) {
-            $resulta2 = $resulta2."
+            
 
+            $resulta2 = $resulta2."
                         <div class='pure-u-1'>
-                        By <B>".$la_case[$i]['username']."</B>, at <B>".$la_case[$i]['created_at']."</B><br>
+                        Post by <B>".$la_case[$i]['username']."</B>, at <B>".$la_case[$i]['created_at']."</B><br>
                         <img class='pure-img-responsive galerie-post' src='".$la_case[$i]['imgURL']."'>
                             <form class='pure-form galerie-form'>
-                                <input type='text' placeholder='Write a comment...' class='pure-input-rounded'>
+                                Comment by hghghg at hghghg<br>
+                                <textarea class='pure-input-1' readonly>fgdfgd dghfghfg jhgjhg Write a comment... fg jhgjhg Write a comment... fg jhgjhg Write a comment... fg jhgjhg Write a comment...</textarea>
+                            </form><br>
+                            <form class='pure-form galerie-form'>
+                                <input type='text' placeholder='Write a comment...' class='pure-input-1'>
                                 <a href='test.php' class='pure-button'>Like</a>
-                                <button type='submit' class='pure-button'>Share</button>
+                                <button type='submit' class='pure-button'>Comment</button>
                             </form>
+                            
                         </div><br><br><br>
                         ";
             $count--;
@@ -72,7 +88,9 @@ if (isset($_GET['page']) && isset($_GET['oldpage'])) {
                     <br>
                     <?php if(isset($resulta2)) { echo $resulta2; } ;?>
                 </div>
+
 <?php 
+/* page nbr*/
     $query = 'SELECT COUNT(*) FROM `post`';
     $query = $db->prepare($query);
     $query->execute();

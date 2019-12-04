@@ -75,6 +75,7 @@ vos données en dépendent !
 - [ ] Cross Origin Resource Sharing
 - test all forms -> token
 - valide all form -> if (isset(post or get)) ...
+- crypt all GET data sended !!!
 
 ### Question
 - config/setup.php -> how can I connect o DB if not exists ? !!!
@@ -103,15 +104,13 @@ https://devanswers.co/how-to-get-php-mail-working-on-ubuntu-16-04-digitalocean-d
 ### Taches 
 Partie Galerie
 
-- [x] La galerie devra être publique -> accessible sans authentification. 
-
-2 - [ ] La galerie devra être publique -> accessible sans authentification. 
-
+- [x] La galerie devra être publique -> accessible sans authentification.  
 - [x] doit afficher l’intégralité des images prises par les membres du site, triées par date de création. 
-3 - [ ] Elle doit pouvoir permettre à l’utilisateur de les commenter et de les liker si celui-ci est authentifié.
+ ICI +++ - [ ] Elle doit pouvoir permettre à l’utilisateur de les commenter et de les liker si celui-ci est authentifié.
 - [ ] notification: Lorsque une image reçoit un nouveau commentaire, l’auteur de cette image doit en être informé par mail. Cette préférence est activée par défaut, mais peut être désactivée dans les préférences de l’utilisateur.
-
 - [x] La liste des images doit être paginée, avec au moins 5 éléments par page.
+
+
 
 4 - Partie utilisateur
 5 - Partie montage
