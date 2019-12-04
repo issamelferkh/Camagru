@@ -23,7 +23,7 @@
     color: #f1f1f1;
   }
   
-/********************************************/
+/* montage */
 
 .montage-video {
     width: 40vw;
@@ -45,6 +45,7 @@
     width: 65%;
 }
 
+/* galerie */
 .galerie-main {
     border-radius: 10px;
     text-align: center; 

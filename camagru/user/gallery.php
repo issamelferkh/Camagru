@@ -49,9 +49,9 @@ if (isset($_GET['page']) && isset($_GET['oldpage'])) {
                         By <B>".$la_case[$i]['username']."</B>, at <B>".$la_case[$i]['created_at']."</B><br>
                         <img class='pure-img-responsive galerie-post' src='".$la_case[$i]['imgURL']."'>
                             <form class='pure-form galerie-form'>
-                                <input type='text' placeholder='Username' class='pure-input-rounded'>
-                                <button type='submit' class='pure-button'>Sign In</button>
-                                <button type='submit' class='pure-button'>Sign In</button>
+                                <input type='text' placeholder='Write a comment...' class='pure-input-rounded'>
+                                <a href='test.php' class='pure-button'>Like</a>
+                                <button type='submit' class='pure-button'>Share</button>
                             </form>
                         </div><br><br><br>
                         ";
