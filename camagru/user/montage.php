@@ -119,7 +119,7 @@ if(isset($_POST["save"])) {
                 </div>
                 <!-- photo taken   -->
 <?
-    $query = 'SELECT * FROM `post` WHERE `user_id`="'.$_SESSION['id_user'].'" ORDER BY `post`.`id` DESC';
+    $query = 'SELECT * FROM `post` WHERE `user_id`="'.$_SESSION['user_id'].'" ORDER BY `post`.`user_id` DESC';
     $query = $db->prepare($query);
     $query->execute();
     $count = $query->rowCount();
@@ -131,7 +131,7 @@ if(isset($_POST["save"])) {
         while ($count > 0) {
             $resulta2 = $resulta2."
                         <div class='pure-u-1-2'>
-<a href='post.php?id=".$la_case[$i]['id']."'><img class='pure-img-responsive' src='".$la_case[$i]['imgURL']."'></a>
+<a href='post.php?id=".$la_case[$i]['user_id']."'><img class='pure-img-responsive' src='".$la_case[$i]['imgURL']."'></a>
                         </div>
                         ";
             $count--;

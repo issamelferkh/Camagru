@@ -44,7 +44,7 @@ if(isset($_POST["update"])) {
 <?php include '../include/title_user.php'; ?>
 <br><br><br>
 <?php     
-    $query = 'SELECT * FROM user WHERE id="'.$_SESSION['id_user'].'"';
+    $query = 'SELECT * FROM `user` WHERE `user_id`="'.$_SESSION['user_id'].'"';
     $query = $db->prepare($query);
     $query->execute();
     $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);

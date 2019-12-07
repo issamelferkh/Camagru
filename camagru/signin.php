@@ -15,7 +15,7 @@ if(isset($_POST["signin"])) {
         $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
         if ($count > 0) {
             if ($la_case[0]['active'] == 1) {
-                $_SESSION['id_user']=$la_case[0]['id'];
+                $_SESSION['user_id']=$la_case[0]['user_id'];
                 $_SESSION['username']=$la_case[0]['username'];
                 $_SESSION['fname']=$la_case[0]['fname'];
                 $_SESSION['lname']=$la_case[0]['lname'];

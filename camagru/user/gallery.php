@@ -33,6 +33,34 @@ if (isset($_GET['page']) && isset($_GET['oldpage'])) {
     $_GET['page'] = 0;
     $page = 0;
 }
+
+/* view comments of each post */
+$query = "SELECT * FROM `comment`";
+$query = $db->prepare($query);
+$query->execute();
+$count = $query->rowCount();
+$la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
+if ($count) {
+    $i=0;
+    while ($i < $count) {
+        $post_id = $la_case[$i]['post_id'];
+        $msg[$post_id] = "";
+        $j=0;
+        while ($j < $count) {
+            if ($la_case[$i]['post_id'] == $la_case[$j]['post_id']) {
+                $msg[$post_id] = $msg[$post_id]."
+                                <form class='pure-form galerie-form'>
+                                    Comment by <B>".$la_case[$j]['username']."</B> at <B>".$la_case[$j]['created_at']."</B><br>
+                                    <textarea class='pure-input-1' readonly>".$la_case[$j]['comment']."</textarea>
+                                </form><br>
+                            ";
+            }
+            $j++;
+        }
+        $i++;  
+    }
+}
+
 /* view post */
     $query = "SELECT * FROM `post` ORDER BY `post`.`created_at` DESC LIMIT $page,5";
     $query = $db->prepare($query);
@@ -40,29 +68,22 @@ if (isset($_GET['page']) && isset($_GET['oldpage'])) {
     $count = $query->rowCount();
     $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
 
-    /* view comments of each post */
-    $cmt_query = "SELECT * FROM `comment` ORDER BY `comment`.`created_at` DESC WHERE $la_case[$i]['post_id'] = `comment`.`post_id`";
-    $cmt_query = $db->prepare($query);
-    $cmt_query->execute();
-    $cmt_count = $cmt_query->rowCount();
-    $cmt_la_case = $cmt_query->fetchAll(\PDO::FETCH_ASSOC);
-//=> ICI
-
     if ($count) {
         $resulta1 = $resulta1.'Voila tes photos :)';
         $resulta2="";
         $i = 0;
         while ($count > 0) {
-            
-
+            $post_id = $la_case[$i]['post_id'];
+            if (empty($msg[$post_id])) {
+                $comment = "";
+            } else {
+                $comment = $msg[$post_id];
+            }
             $resulta2 = $resulta2."
                         <div class='pure-u-1'>
                         Post by <B>".$la_case[$i]['username']."</B>, at <B>".$la_case[$i]['created_at']."</B><br>
                         <img class='pure-img-responsive galerie-post' src='".$la_case[$i]['imgURL']."'>
-                            <form class='pure-form galerie-form'>
-                                Comment by hghghg at hghghg<br>
-                                <textarea class='pure-input-1' readonly>fgdfgd dghfghfg jhgjhg Write a comment... fg jhgjhg Write a comment... fg jhgjhg Write a comment... fg jhgjhg Write a comment...</textarea>
-                            </form><br>
+                            ".$comment."
                             <form class='pure-form galerie-form'>
                                 <input type='text' placeholder='Write a comment...' class='pure-input-1'>
                                 <a href='test.php' class='pure-button'>Like</a>
