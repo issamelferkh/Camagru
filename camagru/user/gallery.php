@@ -84,10 +84,13 @@ if ($count) {
                         Post by <B>".$la_case[$i]['username']."</B>, at <B>".$la_case[$i]['created_at']."</B><br>
                         <img class='pure-img-responsive galerie-post' src='".$la_case[$i]['imgURL']."'>
                             ".$comment."
-                            <form class='pure-form galerie-form'>
-                                <input type='text' placeholder='Write a comment...' class='pure-input-1'>
+                            <form class='pure-form galerie-form' action='comment_add.php' method='post'>
+                                <input type='text' name='comment' placeholder='Write a comment...' class='pure-input-1'>
+                                <input type='hidden' name='post_id' value='".$la_case[$i]['post_id']."'>
+                                <input type='hidden' name='username' value='".$_SESSION['username']."'>
+                                <input type='hidden' name='user_id' value='".$_SESSION['user_id']."'>
                                 <a href='test.php' class='pure-button'>Like</a>
-                                <button type='submit' class='pure-button'>Comment</button>
+                                <button type='submit' name='OK' class='pure-button'>Comment</button>
                             </form>
                             
                         </div><br><br><br>
