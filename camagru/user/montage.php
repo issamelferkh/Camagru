@@ -25,11 +25,11 @@ if(isset($_POST["save"])) {
         list($imgTYPE, $imgB64) = explode(',', $_POST["imgB64"]);
         $imgB64 = base64_decode($imgB64);
         if ($imgB64){
-            $imgName = $_SESSION['id_user']."__".date("Y_m_d_H_i_s").".png";
+            $imgName = $_SESSION['user_id']."__".date("Y_m_d_H_i_s").".png";
             $imgURL = "../assets/img/".$imgName;
             file_put_contents($imgURL, $imgB64);
 
-            $imgSrcName = $_SESSION['id_user']."__".date("Y_m_d_H_i_s")."Src.png";
+            $imgSrcName = $_SESSION['user_id']."__".date("Y_m_d_H_i_s")."Src.png";
             $imgSrcURL = "../assets/img/".$imgSrcName;
             file_put_contents($imgSrcURL, $imgB64);
 
@@ -40,7 +40,7 @@ if(isset($_POST["save"])) {
             $query = 'INSERT INTO `post` (`user_id`, `username`, `imgName`, `imgURL`,`imgTYPE`, `imgSrcNAME`, `imgSrcURL`, `filter`) 
                       VALUES (?,?,?,?,?,?,?,?)';
             $query = $db->prepare($query);
-            $query->execute([$_SESSION['id_user'],$_SESSION['username'],$imgName,$imgURL,$imgTYPE,$imgSrcName,$imgSrcURL,$_POST['filter']]);
+            $query->execute([$_SESSION['user_id'],$_SESSION['username'],$imgName,$imgURL,$imgTYPE,$imgSrcName,$imgSrcURL,$_POST['filter']]);
 
             $msg = 'Your picture is published with succeed.';
             //ft_send_email($_POST['username'], $_POST['email'], $hash); /* Error !!! */
@@ -131,7 +131,7 @@ if(isset($_POST["save"])) {
         while ($count > 0) {
             $resulta2 = $resulta2."
                         <div class='pure-u-1-2'>
-<a href='post.php?id=".$la_case[$i]['user_id']."'><img class='pure-img-responsive' src='".$la_case[$i]['imgURL']."'></a>
+<a href='post.php?user_id=".$la_case[$i]['user_id']."'><img class='pure-img-responsive' src='".$la_case[$i]['imgURL']."'></a>
                         </div>
                         ";
             $count--;
