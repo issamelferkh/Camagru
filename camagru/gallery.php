@@ -12,6 +12,7 @@ require_once("config/connection.php");
 <?php include 'include/title.php'; ?>
 
 <?
+/* page nbr */
 $resulta1 = "";
 if (isset($_GET['page']) && isset($_GET['oldpage'])) {
     if ($_GET['oldpage'] == hash('whirlpool', $_GET['page']+17)) {
@@ -31,21 +32,56 @@ if (isset($_GET['page']) && isset($_GET['oldpage'])) {
     $page = 0;
 }
 
+/* view comments of each post */
+$query = "SELECT * FROM `comment`";
+$query = $db->prepare($query);
+$query->execute();
+$count = $query->rowCount();
+$la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
+if ($count) {
+    $i=0;
+    while ($i < $count) {
+        $post_id = $la_case[$i]['post_id'];
+        $msg[$post_id] = "";
+        $j=0;
+        while ($j < $count) {
+            if ($la_case[$i]['post_id'] == $la_case[$j]['post_id']) {
+                $msg[$post_id] = $msg[$post_id]."
+                                <form class='pure-form galerie-form'>
+                                    Comment by <B>".$la_case[$j]['username']."</B> at <B>".$la_case[$j]['created_at']."</B><br>
+                                    <textarea class='pure-input-1' readonly>".$la_case[$j]['comment']."</textarea>
+                                </form><br>
+                            ";
+            }
+            $j++;
+        }
+        $i++;  
+    }
+}
+
+/* view post */
     $query = "SELECT * FROM `post` ORDER BY `post`.`created_at` DESC LIMIT $page,5";
     $query = $db->prepare($query);
     $query->execute();
     $count = $query->rowCount();
     $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
+
     if ($count) {
         $resulta1 = $resulta1.'Voila tes photos :)';
         $resulta2="";
         $i = 0;
         while ($count > 0) {
+            $post_id = $la_case[$i]['post_id'];
+            if (empty($msg[$post_id])) {
+                $comment = "";
+            } else {
+                $comment = $msg[$post_id];
+            }
             $resulta2 = $resulta2."
-
                         <div class='pure-u-1'>
-                        By <B>".$la_case[$i]['username']."</B>, at <B>".$la_case[$i]['created_at']."</B><br>
-                            <img class='pure-img-responsive galerie-post' src='assets/".$la_case[$i]['imgURL']."'>
+                        Post by <B>".$la_case[$i]['username']."</B>, at <B>".$la_case[$i]['created_at']."</B><br>
+                        <img class='pure-img-responsive galerie-post' src='assets/".$la_case[$i]['imgURL']."'>
+                            ".$comment."                            
                         </div><br><br><br>
                         ";
             $count--;
@@ -65,7 +101,9 @@ if (isset($_GET['page']) && isset($_GET['oldpage'])) {
                     <br>
                     <?php if(isset($resulta2)) { echo $resulta2; } ;?>
                 </div>
+
 <?php 
+/* page nbr*/
     $query = 'SELECT COUNT(*) FROM `post`';
     $query = $db->prepare($query);
     $query->execute();

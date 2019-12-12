@@ -1,6 +1,7 @@
 // try{
 var video = document.getElementById('video');
 var canvas = document.getElementById('canvas');
+// var image = document.getElementById('image');
 var context = canvas.getContext('2d');
 var capture = document.getElementById('capture');
 // var vendorUrl = window.URL || window.webkitURL;

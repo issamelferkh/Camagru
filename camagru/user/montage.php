@@ -21,6 +21,7 @@ function mixTwoImage($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $pct, $im
 }
 
 if(isset($_POST["save"])) {
+    // if from video
     if(isset($_POST["imgB64"])) {
         list($imgTYPE, $imgB64) = explode(',', $_POST["imgB64"]);
         $imgB64 = base64_decode($imgB64);
@@ -47,11 +48,38 @@ if(isset($_POST["save"])) {
             header("location:montage.php?msg=".$msg."");
 
         } else {
-            echo "No image !!!";
+            $msg = 'No picture !!! Please take a picture or upload it.';
+            header("location:montage.php?msg=".$msg."");
         }
-    }
+    } else if(isset($_POST["imgUpload"])) { // if from upload pic
+            $imgName = $_SESSION['user_id']."__".date("Y_m_d_H_i_s").".png";
+            $imgURL = "../assets/img/".$imgName;
+            file_put_contents($imgURL, $imgB64);
+
+            $imgSrcName = $_SESSION['user_id']."__".date("Y_m_d_H_i_s")."Src.png";
+            $imgSrcURL = "../assets/img/".$imgSrcName;
+            file_put_contents($imgSrcURL, $imgB64);
+
+            $filterURL = "../assets/img/filter/".$_POST['filter'];
+
+            mixTwoImage($imgURL, $filterURL, 0, 0, 0, 0, 100,$imgURL);
+
+            $query = 'INSERT INTO `post` (`user_id`, `username`, `imgName`, `imgURL`,`imgTYPE`, `imgSrcNAME`, `imgSrcURL`, `filter`) 
+                      VALUES (?,?,?,?,?,?,?,?)';
+            $query = $db->prepare($query);
+            $query->execute([$_SESSION['user_id'],$_SESSION['username'],$imgName,$imgURL,$imgTYPE,$imgSrcName,$imgSrcURL,$_POST['filter']]);
+
+            $msg = 'Your picture is published with succeed.';
+            //ft_send_email($_POST['username'], $_POST['email'], $hash); /* Error !!! */
+            header("location:montage.php?msg=".$msg."");
+
+        } else {
+            $msg = 'No picture !!! Please take a picture or upload it.';
+            header("location:montage.php?msg=".$msg."");
+        }
+    } 
 } 
-?>fff
+?>
 
 <!-- header -->
 <?php include '../include/header_user.php'; ?>
@@ -93,28 +121,17 @@ if(isset($_POST["save"])) {
                     </div><hr><br>
                     <!-- video -->
                     <div class="pure-u-1">
-                        <video class="montage-video" id="video"></video><br>
-                        <div class="">
-							<div class="">
-								<label>Red:</label>
-								<input type="range" class="" id="redSlider" value="0" min="0" max="100" name="red">
-							</div>
-							<div class="">
-								<label>Green:</label>
-								<input type="range" class="" id="greenSlider" value="0" min="0" max="100" name="green">
-							</div>
-							<div class="">
-								<label>Blue:</label>
-								<input type="range" class="" id="blueSlider" value="0" min="0" max="100" name="blue">
-							</div>
-						</div>
+                        <video class="montage-video" id="video"></video><br><br>
                         <a type="submit" class="pure-button" id="capture">Capture</a>
-                        <input name="imgB64" type="text" class="imgInputData" value=""/>
+                        <input name="imgB64" type="hidden" class="imgInputData" value=""/>
                     </div>
                     <br><br>
                     <div class="pure-u-1">
-                        <canvas class="montage-video" id="canvas"></canvas><br>
-                        <input name="save" type="submit" class="pure-button" value="Save"><br>
+                        <canvas class="montage-video" id="canvas"></canvas><br><br>
+                        <label>Choose a picture:</label>
+                        <input type="file" name="imgUpload" accept="image/png, image/jpeg, image/jpg"><br><br>
+
+                        <input name="save" type="submit" class="pure-button" value="Save"><br><br>
                     </div>
                 </div>
                 <!-- photo taken   -->
@@ -131,7 +148,7 @@ if(isset($_POST["save"])) {
         while ($count > 0) {
             $resulta2 = $resulta2."
                         <div class='pure-u-1-2'>
-<a href='post.php?user_id=".$la_case[$i]['user_id']."'><img class='pure-img-responsive' src='".$la_case[$i]['imgURL']."'></a>
+<a href='post.php?user_id=".$la_case[$i]['user_id']."&post_id=".$la_case[$i]['post_id']."'><img class='pure-img-responsive' src='".$la_case[$i]['imgURL']."'></a>
                         </div>
                         ";
             $count--;

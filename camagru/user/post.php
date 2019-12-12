@@ -20,7 +20,7 @@ require_once("../config/connection.php");
 <?
     // if (isset($_GET['user_id']))
     // {
-        $query = 'SELECT * FROM `post` WHERE `user_id`="'.$_GET['user_id'].'"';
+        $query = 'SELECT * FROM `post` WHERE `user_id`="'.$_GET['user_id'].'" AND `post_id`="'.$_GET['post_id'].'"';
         $query = $db->prepare($query);
         $query->execute();
         $count = $query->rowCount();
@@ -33,7 +33,7 @@ require_once("../config/connection.php");
     // }
 ?>
                 <form class="pure-form" action="post_delete_script.php" method="POST">
-                <input type="hidden" name="user_id" value="<?php echo $la_case[0]['id']; ?>">
+                <input type="hidden" name="post_id" value="<?php echo $la_case[0]['post_id']; ?>">
                     <button type="submit" class="pure-button">Delete</button>
                 </form>
             </div><br><br><br>

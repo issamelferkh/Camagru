@@ -1,3 +1,11 @@
+/* montage */
+.galerie-form {
+    width: 35vw;
+    /* height: 30vw; */
+    text-align: center;
+    margin: auto;
+}
+
 /* galerie */
 .galerie-main {
     border-radius: 10px;

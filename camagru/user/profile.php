@@ -20,15 +20,15 @@ if(isset($_POST["update"])) {
             $message = 'Password should be include at least one upper case letter, one number, and one special character.';
         } else {
             $password = hash('whirlpool', $_POST['password']);
-            $query = "UPDATE `user` SET `fname`=?, `lname`=?, `username`=?, `email`=?, `password`=? WHERE `id`=?";
+            $query = "UPDATE `user` SET `fname`=?, `lname`=?, `username`=?, `email`=?, `password`=? WHERE `user_id`=?";
             $query = $db->prepare($query);
-            $query->execute([$_POST['fname'],$_POST['lname'],$_POST['username'],$_POST['email'],$password,$_POST['id_user']]);
+            $query->execute([$_POST['fname'],$_POST['lname'],$_POST['username'],$_POST['email'],$password,$_POST['user_id']]);
             $message = 'Your profile was successfully updated.';
         }
     } else {
-        $query = "UPDATE `user` SET `fname`=?, `lname`=?, `username`=?, `email`=? WHERE `id`=?";
+        $query = "UPDATE `user` SET `fname`=?, `lname`=?, `username`=?, `email`=? WHERE `user_id`=?";
         $query = $db->prepare($query);
-        $query->execute([$_POST['fname'],$_POST['lname'],$_POST['username'],$_POST['email'],$_POST['id_user']]);
+        $query->execute([$_POST['fname'],$_POST['lname'],$_POST['username'],$_POST['email'],$_POST['user_id']]);
         $message = 'Your profile was successfully updated.';
     }
 } 
@@ -53,7 +53,7 @@ if(isset($_POST["update"])) {
             <h2 class="content-subhead">Profile: <?php echo $la_case[0]['fname'].' '.$la_case[0]['lname']; ?></h2>
             <div class="pure-u-1-4">
                 <form class="pure-form" method="post" action="profile.php">
-                    <input type="hidden"    name="id_user"  value="<?php if (isset($la_case[0]['id']))   echo htmlspecialchars(trim($la_case[0]['id'])); ?>"      class="pure-input-rounded">
+                    <input type="hidden"    name="user_id"  value="<?php if (isset($la_case[0]['user_id']))   echo htmlspecialchars(trim($la_case[0]['user_id'])); ?>"      class="pure-input-rounded">
                     <input type="text"      name="fname"    value="<?php if (isset($la_case[0]['fname']))     echo htmlspecialchars(trim($la_case[0]['fname'])); ?>"        placeholder="First name" class="pure-input-rounded">
                     <input type="text"      name="lname"    value="<?php if (isset($la_case[0]['lname']))     echo htmlspecialchars(trim($la_case[0]['lname'])); ?>"        placeholder="Last name"  class="pure-input-rounded">
                     <input type="text"      name="username" value="<?php if (isset($la_case[0]['username']))  echo htmlspecialchars(trim($la_case[0]['username'])); ?>"     placeholder="Username"  class="pure-input-rounded">                    
