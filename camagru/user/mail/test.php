@@ -1,14 +1,24 @@
-<?php
-// include("config.php");
-if(isset($_POST['imgUpload'])){
-    $name = $_POST['imgUpload'];
-    echo $name;
- 
+<?php 
+ if(isset($_POST['submit'])){
+    $name       = $_FILES['file']['name'];  
+    $temp_name  = $_FILES['file']['tmp_name'];  
+    if(isset($name)){
+        if(!empty($name)){      
+            $location = '/opt/lampp/htdocs/camagru/camagru/user/mail/';      
+            if(move_uploaded_file($temp_name, $location.$name)){
+                echo 'File uploaded successfully';
+            }
+        }       
+    }  else {
+        echo 'You should select a file to upload !!';
+    }
 }
 ?>
 
-<form method="POST" action="test.php">
-    <label>Choose a picture:</label>
-    <input type="file" name="imgUpload" accept="image/png, image/jpeg, image/jpg"><br><br>
-    <input name="save" type="submit" class="pure-button" value="Save"><br><br>
+<form action="test.php" method="post" enctype="multipart/form-data">
+<input type="file" name="file" id="file"><br><br>
+<input type="submit" value="submit" name="submit">
 </form>
+
+
+

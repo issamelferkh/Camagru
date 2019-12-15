@@ -67,12 +67,30 @@ if ($count) {
     $query->execute();
     $count = $query->rowCount();
     $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
-
+    $like = "8513C69D070A008DF008AEF8624ED24AFC81B170D242FAF5FAFE853D4FE9BF8AA7BADFB0FD045D7B350B19FBF8EF6B2A51F17A07A1F6819ABC9BA5CE43324244";
     if ($count) {
         $resulta1 = $resulta1.'Voila tes photos :)';
         $resulta2="";
         $i = 0;
         while ($count > 0) {
+            /* likes of each post */
+            $query_like = 'SELECT * FROM `like_table` WHERE `user_id`="'.$_SESSION['user_id'].'"';
+            $query_like = $db->prepare($query_like);
+            $query_like->execute();
+            $count_like = $query_like->rowCount();
+            $la_case_like = $query_like->fetchAll(\PDO::FETCH_ASSOC);
+            if ($count_like) {
+                $k=0;
+                while ($k < $count_like) {
+                    if ($la_case_like[$k]['liked'] == 1) {
+                        $isLiked = 1;
+                    }
+                    $k++;
+                }
+            } else {
+                $isLiked = 0;
+            }
+            // verif if there is a comments for this post
             $post_id = $la_case[$i]['post_id'];
             if (empty($msg[$post_id])) {
                 $comment = "";
@@ -84,13 +102,18 @@ if ($count) {
                         Post by <B>".$la_case[$i]['username']."</B>, at <B>".$la_case[$i]['created_at']."</B><br>
                         <img class='pure-img-responsive galerie-post' src='".$la_case[$i]['imgURL']."'>
                             ".$comment."
-                            <form class='pure-form galerie-form' action='comment_add.php' method='post'>
+                            <form class='pure-form galerie-form' action='comment.php' method='post'>
                                 <input type='text' name='comment' placeholder='Write a comment...' class='pure-input-1'>
                                 <input type='hidden' name='post_id' value='".$la_case[$i]['post_id']."'>
                                 <input type='hidden' name='username' value='".$_SESSION['username']."'>
-                                <input type='hidden' name='user_id' value='".$_SESSION['user_id']."'>
-                                <a href='test.php' class='pure-button'>Like</a>
-                                <button type='submit' name='OK' class='pure-button'>Comment</button>
+                                <input type='hidden' name='user_id' value='".$_SESSION['user_id']."'>"; 
+if($isLiked == 1) {
+    $resulta2 = $resulta2."<a href='like.php?post_id=".$la_case[$i]['post_id']."&user_id=".$_SESSION['user_id']."&liked=".$like."' class='pure-button'>Like</a>";
+} else {
+    $resulta2 = $resulta2."<a href='#' class='pure-button'>Liked</a>";
+}
+
+            $resulta2 = $resulta2."<button type='submit' name='OK' class='pure-button'>Comment</button>
                             </form>
                             
                         </div><br><br><br>

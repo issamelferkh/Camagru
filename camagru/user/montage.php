@@ -20,9 +20,8 @@ function mixTwoImage($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $pct, $im
     imagepng($dst_im, $imgURL);
 }
 
-if(isset($_POST["save"])) {
-    // if from video
-    if(isset($_POST["imgB64"])) {
+if(isset($_POST["submit"])) {
+    if((!($_POST["imgB64"] == '')) && ($_FILES["imgUpload"]["tmp_name"] == '')) {
         list($imgTYPE, $imgB64) = explode(',', $_POST["imgB64"]);
         $imgB64 = base64_decode($imgB64);
         if ($imgB64){
@@ -39,7 +38,7 @@ if(isset($_POST["save"])) {
             mixTwoImage($imgURL, $filterURL, 0, 0, 0, 0, 100,$imgURL);
 
             $query = 'INSERT INTO `post` (`user_id`, `username`, `imgName`, `imgURL`,`imgTYPE`, `imgSrcNAME`, `imgSrcURL`, `filter`) 
-                      VALUES (?,?,?,?,?,?,?,?)';
+                        VALUES (?,?,?,?,?,?,?,?)';
             $query = $db->prepare($query);
             $query->execute([$_SESSION['user_id'],$_SESSION['username'],$imgName,$imgURL,$imgTYPE,$imgSrcName,$imgSrcURL,$_POST['filter']]);
 
@@ -51,34 +50,51 @@ if(isset($_POST["save"])) {
             $msg = 'No picture !!! Please take a picture or upload it.';
             header("location:montage.php?msg=".$msg."");
         }
-    } else if(isset($_POST["imgUpload"])) { // if from upload pic
-            $imgName = $_SESSION['user_id']."__".date("Y_m_d_H_i_s").".png";
-            $imgURL = "../assets/img/".$imgName;
-            file_put_contents($imgURL, $imgB64);
+    }
+    else if ((!($_FILES["imgUpload"]["tmp_name"] == '')) && ($_POST["imgB64"] == '')){
+        $imgName = $_SESSION['user_id']."__".date("Y_m_d_H_i_s")."Upload.png";
+        $imgURL = "../assets/img/".$imgName;
 
-            $imgSrcName = $_SESSION['user_id']."__".date("Y_m_d_H_i_s")."Src.png";
-            $imgSrcURL = "../assets/img/".$imgSrcName;
-            file_put_contents($imgSrcURL, $imgB64);
+        $imageFileType = strtolower(pathinfo($imgURL,PATHINFO_EXTENSION));
+        // Check if image file is a actual image or fake image
+        if(isset($_POST["submit"])) {
+            $check = getimagesize($_FILES["imgUpload"]["tmp_name"]);
+            if($check !== false) {
+                $imgTYPE = $check["mime"];
+                $imgSrcName = $imgName;
+                $imgSrcURL = $imgURL;
 
-            $filterURL = "../assets/img/filter/".$_POST['filter'];
+                imagepng(imagecreatefromstring(file_get_contents($_FILES["imgUpload"]["tmp_name"])), $imgURL);
 
-            mixTwoImage($imgURL, $filterURL, 0, 0, 0, 0, 100,$imgURL);
+                $filterURL = "../assets/img/filter/".$_POST['filter'];
 
-            $query = 'INSERT INTO `post` (`user_id`, `username`, `imgName`, `imgURL`,`imgTYPE`, `imgSrcNAME`, `imgSrcURL`, `filter`) 
-                      VALUES (?,?,?,?,?,?,?,?)';
-            $query = $db->prepare($query);
-            $query->execute([$_SESSION['user_id'],$_SESSION['username'],$imgName,$imgURL,$imgTYPE,$imgSrcName,$imgSrcURL,$_POST['filter']]);
+                mixTwoImage($imgURL, $filterURL, 0, 0, 0, 0, 100,$imgURL);
 
-            $msg = 'Your picture is published with succeed.';
-            //ft_send_email($_POST['username'], $_POST['email'], $hash); /* Error !!! */
-            header("location:montage.php?msg=".$msg."");
+                $query = 'INSERT INTO `post` (`user_id`, `username`, `imgName`, `imgURL`,`imgTYPE`, `imgSrcNAME`, `imgSrcURL`, `filter`) 
+                            VALUES (?,?,?,?,?,?,?,?)';
+                $query = $db->prepare($query);
+                $query->execute([$_SESSION['user_id'],$_SESSION['username'],$imgName,$imgURL,$imgTYPE,$imgSrcName,$imgSrcURL,$_POST['filter']]);
 
-        } else {
-            $msg = 'No picture !!! Please take a picture or upload it.';
-            header("location:montage.php?msg=".$msg."");
+                $msg = 'Your picture is published with succeed.';
+                //ft_send_email($_POST['username'], $_POST['email'], $hash); /* Error !!! */
+                header("location:montage.php?msg=".$msg."");
+            } 
+            else 
+            {
+                $msg = 'This file is not an image !!!';
+                header("location:montage.php?msg=".$msg."");
+            }
         }
-    } 
-} 
+    } else if ((!($_FILES["imgUpload"]["tmp_name"] == '')) && (!($_POST["imgB64"] == ''))){
+        $msg = 'Sorry you can\'t use Webcam and upload a picture both :( ';
+        header("location:montage.php?msg=".$msg."");
+    } else {
+        $msg = 'No picture !!! Please take a picture or upload it.';
+        header("location:montage.php?msg=".$msg."");
+    }
+}
+
+
 ?>
 
 <!-- header -->
@@ -91,7 +107,7 @@ if(isset($_POST["save"])) {
 <?php include '../include/title_user.php'; ?>
 
         <div class="content" style="text-align: center;">
-            <form action="montage.php" method="POST" enctype="multipart/form-data">
+            <form action="montage.php" method="post" enctype="multipart/form-data">
 
                 <h2 class="content-subhead">Montage</h2><br><br><br>
                 <?php if(isset($_GET['msg'])) {echo '<h3 class="content-subhead">'.$_GET['msg'].'</h3>'; } ?><br>
@@ -106,17 +122,17 @@ if(isset($_POST["save"])) {
                         <div class="pure-u-1-4">
                             <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/camagru/assets/img/filter/2.png" alt="">
                             <br>
-                            <input type="radio" value="2.png" name="filter" checked> Filter_2
+                            <input type="radio" value="2.png" name="filter"> Filter_2
                         </div>
                         <div class="pure-u-1-4">
                             <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/camagru/assets/img/filter/3.png" alt="">
                             <br>
-                            <input type="radio" value="3.png" name="filter" checked> Filter_3
+                            <input type="radio" value="3.png" name="filter"> Filter_3
                         </div>
                         <div class="pure-u-1-4">
                             <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/camagru/assets/img/filter/4.png" alt="">
                             <br>
-                            <input type="radio" value="4.png" name="filter" checked> Filter_4
+                            <input type="radio" value="4.png" name="filter"> Filter_4
                         </div>
                     </div><hr><br>
                     <!-- video -->
@@ -130,8 +146,7 @@ if(isset($_POST["save"])) {
                         <canvas class="montage-video" id="canvas"></canvas><br><br>
                         <label>Choose a picture:</label>
                         <input type="file" name="imgUpload" accept="image/png, image/jpeg, image/jpg"><br><br>
-
-                        <input name="save" type="submit" class="pure-button" value="Save"><br><br>
+                        <input name="submit" type="submit" class="pure-button" value="Save"><br><br>
                     </div>
                 </div>
                 <!-- photo taken   -->
