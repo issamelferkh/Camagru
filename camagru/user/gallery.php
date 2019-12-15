@@ -74,21 +74,15 @@ if ($count) {
         $i = 0;
         while ($count > 0) {
             /* likes of each post */
-            $query_like = 'SELECT * FROM `like_table` WHERE `user_id`="'.$_SESSION['user_id'].'"';
+            $query_like = 'SELECT * FROM `like_table` WHERE `user_id`="'.$_SESSION['user_id'].'" AND `post_id`="'.$la_case[$i]['post_id'].'"';
             $query_like = $db->prepare($query_like);
             $query_like->execute();
             $count_like = $query_like->rowCount();
             $la_case_like = $query_like->fetchAll(\PDO::FETCH_ASSOC);
-            if ($count_like) {
-                $k=0;
-                while ($k < $count_like) {
-                    if ($la_case_like[$k]['liked'] == 1) {
-                        $isLiked = 1;
-                    }
-                    $k++;
-                }
+            if (($count_like) && ($la_case_like[0]['liked'] == 1)) {
+                $isLiked = true;
             } else {
-                $isLiked = 0;
+                $isLiked = false;
             }
             // verif if there is a comments for this post
             $post_id = $la_case[$i]['post_id'];
@@ -107,10 +101,10 @@ if ($count) {
                                 <input type='hidden' name='post_id' value='".$la_case[$i]['post_id']."'>
                                 <input type='hidden' name='username' value='".$_SESSION['username']."'>
                                 <input type='hidden' name='user_id' value='".$_SESSION['user_id']."'>"; 
-if($isLiked == 1) {
-    $resulta2 = $resulta2."<a href='like.php?post_id=".$la_case[$i]['post_id']."&user_id=".$_SESSION['user_id']."&liked=".$like."' class='pure-button'>Like</a>";
+if($isLiked) {
+    $resulta2 = $resulta2."<a href='#' class='pure-button'>Likeeeeed</a>";
 } else {
-    $resulta2 = $resulta2."<a href='#' class='pure-button'>Liked</a>";
+    $resulta2 = $resulta2."<a href='like.php?post_id=".$la_case[$i]['post_id']."&user_id=".$_SESSION['user_id']."&liked=".$like."' class='pure-button'>Like</a>";
 }
 
             $resulta2 = $resulta2."<button type='submit' name='OK' class='pure-button'>Comment</button>
