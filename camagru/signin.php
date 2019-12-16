@@ -50,6 +50,7 @@ if(isset($_POST["signin"])) {
                     <input type="password" name="password" value="<?php if (isset($_POST['password'])) echo htmlspecialchars(trim($_POST['password'])); ?>"    placeholder="Password" class="pure-input-rounded" required>
                     <?php if(isset($message)) {echo '<label class="text-danger">'.$message.'</label>'; } ?><br>
                     <button type="submit" name="signin" class="pure-button">Sign In</button>
+                    <a href='forget_pwd.php' class='pure-button'>Forgot Password</a>
                 </form>
             </div><br><br><br>
             <?php include 'include/slide.php'; ?>

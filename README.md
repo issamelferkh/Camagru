@@ -35,7 +35,7 @@ vos données en dépendent !
 - [x] Sing in => user can connect to App using "username/password".
 - [x] The user should be able to disconnect in one click at any time on any page.
 - [x] Sign up => At the end of the registration process, user should confirm his account via an unique link sent at the email address fullfiled in the registration form.
-- [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
+- [x] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
 - [x] Once connected, an user should modify his username, mail address or password.
 ### Partie galerie -> sans partie notification !!!
 - [x] doit afficher l’intégralité des images prises par les membres du site, triées par date de création.
@@ -55,11 +55,6 @@ vos données en dépendent !
 ### Security
 - [ ] 0%
 ### Taches ################################################################################################
-* Why sendmail is too long ???
-* test send mail a lot
-
-### Partie utilisateur
-- [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
 ### Partie galerie -> sans partie notification !!!
 - [ ] notification: Lorsque une image reçoit un nouveau commentaire, l’auteur de cette image doit en être informé par mail. Cette préférence est activée par défaut, mais peut être désactivée dans les préférences de l’utilisateur.
 
