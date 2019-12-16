@@ -34,7 +34,7 @@ vos données en dépendent !
 - [x] Sign up => by asking at least a valid "email", an "username" and a "password" with at least a minimum level of complexity.
 - [x] Sing in => user can connect to App using "username/password".
 - [x] The user should be able to disconnect in one click at any time on any page.
-- [ ] Sign up => At the end of the registration process, user should confirm his account via an unique link sent at the email address fullfiled in the registration form.
+- [x] Sign up => At the end of the registration process, user should confirm his account via an unique link sent at the email address fullfiled in the registration form.
 - [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
 - [x] Once connected, an user should modify his username, mail address or password.
 ### Partie galerie -> sans partie notification !!!
@@ -55,15 +55,16 @@ vos données en dépendent !
 ### Security
 - [ ] 0%
 ### Taches ################################################################################################
+* Why sendmail is too long ???
+* test send mail a lot
+
 ### Partie utilisateur
-- [ ] Sign up => At the end of the registration process, user should confirm his account via an unique link sent at the email address fullfiled in the registration form.
 - [ ] Forget PWD => User can reinitialise his pwd -> by send a password reinitialisation mail, if he forget his password.
 ### Partie galerie -> sans partie notification !!!
 - [ ] notification: Lorsque une image reçoit un nouveau commentaire, l’auteur de cette image doit en être informé par mail. Cette préférence est activée par défaut, mais peut être désactivée dans les préférences de l’utilisateur.
 
 #### Issues
 * [ ] send mail -> +++ is a BIG BIG PROB -> Should fix it in all parts (-> notification, forget pwd, active pwd ...)
-* [ ] Sign up => At the end of the registration process, user should confirm his account via an unique link sent at the email address fullfiled in the registration form.
 * [ ] email confirmation -> https://code.tutsplus.com/tutorials/how-to-code-a-signup-form-with-email-confirmation--net-6860
                          -> https://code.tutsplus.com/tutorials/how-to-implement-email-verification-for-new-members--net-3824
 * auto redirect http to https
@@ -72,6 +73,7 @@ vos données en dépendent !
 - config/setup.php -> execute une fois ou chaque fois ?
 - Once connected, user should or can modify his username, mail address or password ???
 #### Security Taches
+- check if isalready user (singup) mail, username
 - check source avant delete image !!!
 - [ ] crypte all GET data (like, msg ...)
 - [ ] PWD encrypted in database.

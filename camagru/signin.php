@@ -43,10 +43,6 @@ if(isset($_POST["signin"])) {
 <br><br><br>
         <div class="content" style="text-align: center;">
             <h2 class="content-subhead">Sign In</h2>
-            <?php //echo "-->".$la_case[0]['active']; ?>
-            <?php //print_r ($la_case); ?>
-
-
             <?php if(isset($_GET['msg'])) {echo '<h3 class="content-subhead">'.$_GET['msg'].'</h3>'; } ?><br>
             <div class="pure-u-1-4">
                 <form class="pure-form" method="post" action="signin.php">

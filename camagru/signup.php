@@ -1,32 +1,34 @@
 <?php
 session_start();
 require_once("config/connection.php");
-// function ft_send_email($username,$email,$hash){
+function ft_send_email($username,$email,$hash){
 
-//     $to      = $email; // Send email to our user
-//     $subject = 'Signup | Verification'; // Give the email a subject 
-//     $message = '
+    $to      = $email; // Send email to our user
+    $subject = 'Signup | Verification'; // Give the email a subject 
+    $message = '
      
-//     Thanks for signing up In Camagru!
-//     Your account has been created, you can login with the following username and password after you have activated your account by pressing the url below.
+    Thanks for using Camagru!
+    Your account has been created, you can login with the following username and password after you have activated your account by pressing the url below.
      
-//     ------------------------
-//     Username: '.$username.'
-//     ------------------------
+    ------------------------
+    Username: '.$username.'
+    ------------------------
      
-//     Please click this link to activate your account:
-//     http://10.12.100.163/verify.php?email='.$email.'&hash='.$hash.'
+    Please click this link to activate your account:
+    https://10.12.100.163/camagru/verify.php?email='.$email.'&hash='.$hash.'
      
-//     '; // Our message above including the link
+    '; // Our message above including the link
                          
-//     $headers = 'From:noreply@camagru.com' . "\r\n"; // Set from headers
-//     mail($to, $subject, $message, $headers); // Send our email
-// }
+    $headers = 'From:no-reply@camagru.com' . "\r\n"; // Set from headers
+    // mail($to, $subject, $message, $headers); // Send our email
+
+    mail($to, $subject, $message, $headers);
+}
 
 if(isset($_POST["signup"])) {
-    // if(empty($_POST["username"]) || empty($_POST["password"]) || empty($_POST["email"])) {
-    //     $message = '<label>All fields are required.</label>';
-    // }
+    if(empty($_POST["username"]) || empty($_POST["password"]) || empty($_POST["email"])) {
+        $message = '<label>All fields are required.</label>';
+    }
 
     $pwdlen = strlen($_POST['password']);
     $uppercase = preg_match('@[A-Z]@', $_POST['password']);
@@ -45,11 +47,8 @@ if(isset($_POST["signup"])) {
         $query = $db->prepare($query);
         $query->execute([$_POST['username'],$_POST['email'],$password,$hash]);
         $msg = 'Please active your account by clicking the activation link that has been send to your email.';
-        //ft_send_email($_POST['username'], $_POST['email'], $hash); /* Error !!! */
+        ft_send_email($_POST['username'], $_POST['email'], $hash); /* Error !!! */
         header("location:signin.php?msg=".$msg."");
-        // } else {
-        //     $message = '<label>Sorry can\'t create your account, please contact admin</label>';
-        // }
     }
 } 
 ?>
