@@ -7,19 +7,12 @@ function ft_send_email($username,$email,$hash){
     $subject = 'Password | Reset'; // Give the email a subject 
     $message = '
      
-    Hi, '.$username.'
-
-    Thanks for using Camagru!
-     
-    ------------------------
-    Username: '.$username.'
-    ------------------------
-    Email: '.$email.'
-    ------------------------
+    Hi "'.$username.'",
      
     Please click this link to Reset your password:
     https://10.12.100.163/camagru/forget_pwd_email.php?email='.$email.'&hash='.$hash.'
      
+    Thanks for using Camagru!
     '; // Our message above including the link
                          
     $headers = 'From:no-reply@camagru.com' . "\r\n"; // Set from headers

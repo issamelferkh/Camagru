@@ -41,7 +41,7 @@ vos données en dépendent !
 - [x] doit afficher l’intégralité des images prises par les membres du site, triées par date de création.
 - [x] Elle doit pouvoir permettre à l’utilisateur de les commenter si celui-ci est authentifié.
 - [x] La liste des images doit être paginée, avec au moins 5 éléments par page.
-- [ ] notification: Lorsque une image reçoit un nouveau commentaire, l’auteur de cette image doit en être informé par mail. Cette préférence est activée par défaut, mais peut être désactivée dans les préférences de l’utilisateur.
+- [x] notification: Lorsque une image reçoit un nouveau commentaire, l’auteur de cette image doit en être informé par mail. Cette préférence est activée par défaut, mais peut être désactivée dans les préférences de l’utilisateur.
 - [x] La galerie devra être publique -> accessible sans authentification. => avec les commentaires
 - [x] Elle doit pouvoir permettre à l’utilisateur de les liker si celui-ci est authentifié.
 ### Partie montage
@@ -55,19 +55,30 @@ vos données en dépendent !
 ### Security
 - [ ] 0%
 ### Taches ################################################################################################
-### Partie galerie -> sans partie notification !!!
-- [ ] notification: Lorsque une image reçoit un nouveau commentaire, l’auteur de cette image doit en être informé par mail. Cette préférence est activée par défaut, mais peut être désactivée dans les préférences de l’utilisateur.
-
 #### Issues
-* [ ] send mail -> +++ is a BIG BIG PROB -> Should fix it in all parts (-> notification, forget pwd, active pwd ...)
-* [ ] email confirmation -> https://code.tutsplus.com/tutorials/how-to-code-a-signup-form-with-email-confirmation--net-6860
-                         -> https://code.tutsplus.com/tutorials/how-to-implement-email-verification-for-new-members--net-3824
-* auto redirect http to https
+- [ ] auto redirect http to https
 #### Question
 - config/setup.php -> how can I connect o DB if not exists ? !!!
 - config/setup.php -> execute une fois ou chaque fois ?
-- Once connected, user should or can modify his username, mail address or password ???
+#### Optimise + TEST 
+* likes
+* TEST comments
+#### Testing and Check all
+- [ ] Responsive design (Menu not responsive with smartphones)
+- [ ] Files -> auteur
+- [ ] App Web ne doit produire aucune erreur, warning ou notice, coté serveur et coté client, dans la console web. Toutefois, en raison de l’absence d’HTTPS, les erreurs relatives à getUserMedia() sur la console web seront tolérées.
+- [ ] Votre App ne devra comporter aucune faille de sécurité. Gérer ce qui est indiqué dans la partie obligatoire, mais nous vous engageons à aller plus loin dans la sécurité de votre application, la confidentialité de
+vos données en dépendent !
+- [ ] Your web application should be at least be compatible with Firefox (>= 41) and Chrome (>= 46).
+
+* delete db and test db config
+* remove table or plus and test db config
+* msg d'erruers ou d'info !!!
+* gerer includes
+* verif if comments is empty + msg info "Write a comment please"
+* like -> msg info
 #### Security Taches
+- add htaccess -> url manipulation
 - check if isalready user (singup) mail, username
 - check source avant delete image !!!
 - [ ] crypte all GET data (like, msg ...)
@@ -98,24 +109,6 @@ if($stmt->execute(array(':login' => $login)) && $row = $stmt->fetch())
 - check php error
 - check js console error
 * change All URLs "../assets/img/" to paths "https://10.12.100.163/camagru/assets/img/"
-#### Optimise + TEST 
-* likes
-* TEST comments
-#### Testing and Check all
-- [ ] Responsive design (Menu not responsive with smartphones)
-- [ ] Files -> auteur
-- [ ] App Web ne doit produire aucune erreur, warning ou notice, coté serveur et coté client, dans la console web. Toutefois, en raison de l’absence d’HTTPS, les erreurs relatives à getUserMedia() sur la console web seront tolérées.
-- [ ] Votre App ne devra comporter aucune faille de sécurité. Gérer ce qui est indiqué dans la partie obligatoire, mais nous vous engageons à aller plus loin dans la sécurité de votre application, la confidentialité de
-vos données en dépendent !
-- [ ] Your web application should be at least be compatible with Firefox (>= 41) and Chrome (>= 46).
-
-* delete db and test db config
-* remove table or plus and test db config
-* msg d'erruers ou d'info !!!
-* gerer includes
-* verif if comments is empty + msg info "Write a comment please"
-* like -> msg info
-
 ### Bonus ################################################################################################
 #### Partie galerie 
 #### Partie montage

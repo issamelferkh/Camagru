@@ -20,8 +20,4 @@ else{
         header("location:signin.php?msg=".$message."");
     }
 }
-// if($la_case[0]['active'] == 0) {
-//     $active = 1;
-//     $sql = "UPDATE user SET active=?";
-//     $db->prepare($sql)->execute([$active]);
 ?>

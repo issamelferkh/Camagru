@@ -99,6 +99,7 @@ if ($count) {
                             <form class='pure-form galerie-form' action='comment.php' method='post'>
                                 <input type='text' name='comment' placeholder='Write a comment...' class='pure-input-1'>
                                 <input type='hidden' name='post_id' value='".$la_case[$i]['post_id']."'>
+                                <input type='hidden' name='auteur_id' value='".$la_case[$i]['user_id']."'>
                                 <input type='hidden' name='username' value='".$_SESSION['username']."'>
                                 <input type='hidden' name='user_id' value='".$_SESSION['user_id']."'>"; 
 if($isLiked) {
