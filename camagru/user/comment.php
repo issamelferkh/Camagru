@@ -20,9 +20,8 @@ function ft_send_email($username,$email,$post,$auteur){
 }
 
 if(isset($_POST["OK"])) {
-    if(empty($_POST["comment"]) || empty($_POST["post_id"]) || empty($_POST["username"])) {
-        // $message = '<label>Write a comment please</label>';
-        header("location:gallery.php");
+    if(empty($_POST["comment"]) || empty($_POST["post_id"]) || empty($_POST["username"]) || empty($_POST["token"]) || ($_SESSION["token"] != $_POST["token"]) ) {
+        header("location:gallery.php?");
     }
     else {        
         $query = 'INSERT INTO `comment` (`comment`, `post_id`, `username`,`user_id`) VALUES (?,?,?,?)';

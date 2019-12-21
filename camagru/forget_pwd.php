@@ -10,7 +10,7 @@ function ft_send_email($username,$email,$hash){
     Hi "'.$username.'",
      
     Please click this link to Reset your password:
-    https://10.12.100.163/camagru/forget_pwd_email.php?email='.$email.'&hash='.$hash.'
+    https://10.12.100.163/camagru/forget_pwd_verif.php?email='.$email.'&hash='.$hash.'
      
     Thanks for using Camagru!
     '; // Our message above including the link

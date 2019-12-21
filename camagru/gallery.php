@@ -2,10 +2,8 @@
 require_once("config/connection.php");
 ?>
 
-<!-- header -->
 <?php include 'include/header.php'; ?>
 
-<!-- menu -->
 <?php include 'include/menu.php'; ?>
 
 <!-- start container -->
@@ -67,7 +65,7 @@ if ($count) {
     $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
 
     if ($count) {
-        $resulta1 = $resulta1.'Voila tes photos :)';
+        $resulta1 = $resulta1.'All Posts';
         $resulta2="";
         $i = 0;
         while ($count > 0) {
@@ -88,7 +86,7 @@ if ($count) {
             $i++;  
         }
     } else {
-        $resulta1 = $resulta1.'B9i ma3ndek tsawer!!!';
+        $resulta1 = $resulta1.'No post yet !!!';
     }
 ?>
 
@@ -103,14 +101,14 @@ if ($count) {
                 </div>
 
 <?php 
-/* page nbr*/
+/* calculer le nomber des pages */
     $query = 'SELECT COUNT(*) FROM `post`';
     $query = $db->prepare($query);
     $query->execute();
     $nbr_page = $query->fetchColumn();
-    $i = ceil($nbr_page/5);
+    $i = ceil($nbr_page/5); /* nbr des page */
     for ($j=1;$j<=$i;$j++) {
-        $k = hash('whirlpool', $j+17);
+        $k = hash('whirlpool', $j+17); /* for secure GET*/
         ?><a href="gallery.php?page=<?php echo $j; ?>&oldpage=<?php echo $k; ?>" style="text-decoration:none"><?php echo $j." ";?></a><?php
     }
 

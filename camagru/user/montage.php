@@ -1,8 +1,9 @@
-<?php if(isset($_POST)) ?>
 <?php
-session_start();
 require_once("../config/connection.php");
+?>
+<?php include '../include/session.php'; ?>
 
+<?php
 // mixTwoImage -> for mix two images (pic and filter)
 function mixTwoImage($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $pct, $imgURL){ 
 
@@ -21,50 +22,18 @@ function mixTwoImage($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $pct, $im
 }
 
 if(isset($_POST["submit"])) {
-    if((!($_POST["imgB64"] == '')) && ($_FILES["imgUpload"]["tmp_name"] == '')) {
-        list($imgTYPE, $imgB64) = explode(',', $_POST["imgB64"]);
-        $imgB64 = base64_decode($imgB64);
-        if ($imgB64){
-            $imgName = $_SESSION['user_id']."__".date("Y_m_d_H_i_s").".png";
-            $imgURL = "../assets/img/".$imgName;
-            file_put_contents($imgURL, $imgB64);
+    if (!($_POST['filter'] == '')) {
+        if((!($_POST["imgB64"] == '')) && ($_FILES["imgUpload"]["tmp_name"] == '')) {
+            list($imgTYPE, $imgB64) = explode(',', $_POST["imgB64"]);
+            $imgB64 = base64_decode($imgB64);
+            if ($imgB64){
+                $imgName = $_SESSION['user_id']."__".date("Y_m_d_H_i_s").".png";
+                $imgURL = "../assets/img/".$imgName;
+                file_put_contents($imgURL, $imgB64);
 
-            $imgSrcName = $_SESSION['user_id']."__".date("Y_m_d_H_i_s")."Src.png";
-            $imgSrcURL = "../assets/img/".$imgSrcName;
-            file_put_contents($imgSrcURL, $imgB64);
-
-            $filterURL = "../assets/img/filter/".$_POST['filter'];
-
-            mixTwoImage($imgURL, $filterURL, 0, 0, 0, 0, 100,$imgURL);
-
-            $query = 'INSERT INTO `post` (`user_id`, `username`, `imgName`, `imgURL`,`imgTYPE`, `imgSrcNAME`, `imgSrcURL`, `filter`) 
-                        VALUES (?,?,?,?,?,?,?,?)';
-            $query = $db->prepare($query);
-            $query->execute([$_SESSION['user_id'],$_SESSION['username'],$imgName,$imgURL,$imgTYPE,$imgSrcName,$imgSrcURL,$_POST['filter']]);
-
-            $msg = 'Your picture is published with succeed.';
-            //ft_send_email($_POST['username'], $_POST['email'], $hash); /* Error !!! */
-            header("location:montage.php?msg=".$msg."");
-
-        } else {
-            $msg = 'No picture !!! Please take a picture or upload it.';
-            header("location:montage.php?msg=".$msg."");
-        }
-    }
-    else if ((!($_FILES["imgUpload"]["tmp_name"] == '')) && ($_POST["imgB64"] == '')){
-        $imgName = $_SESSION['user_id']."__".date("Y_m_d_H_i_s")."Upload.png";
-        $imgURL = "../assets/img/".$imgName;
-
-        $imageFileType = strtolower(pathinfo($imgURL,PATHINFO_EXTENSION));
-        // Check if image file is a actual image or fake image
-        if(isset($_POST["submit"])) {
-            $check = getimagesize($_FILES["imgUpload"]["tmp_name"]);
-            if($check !== false) {
-                $imgTYPE = $check["mime"];
-                $imgSrcName = $imgName;
-                $imgSrcURL = $imgURL;
-
-                imagepng(imagecreatefromstring(file_get_contents($_FILES["imgUpload"]["tmp_name"])), $imgURL);
+                $imgSrcName = $_SESSION['user_id']."__".date("Y_m_d_H_i_s")."Src.png";
+                $imgSrcURL = "../assets/img/".$imgSrcName;
+                file_put_contents($imgSrcURL, $imgB64);
 
                 $filterURL = "../assets/img/filter/".$_POST['filter'];
 
@@ -78,29 +47,64 @@ if(isset($_POST["submit"])) {
                 $msg = 'Your picture is published with succeed.';
                 //ft_send_email($_POST['username'], $_POST['email'], $hash); /* Error !!! */
                 header("location:montage.php?msg=".$msg."");
-            } 
-            else 
-            {
-                $msg = 'This file is not an image !!!';
+
+            } else {
+                $msg = 'No picture !!! Please take a picture or upload it.';
                 header("location:montage.php?msg=".$msg."");
             }
         }
-    } else if ((!($_FILES["imgUpload"]["tmp_name"] == '')) && (!($_POST["imgB64"] == ''))){
-        $msg = 'Sorry you can\'t use Webcam and upload a picture both :( ';
-        header("location:montage.php?msg=".$msg."");
+        else if ((!($_FILES["imgUpload"]["tmp_name"] == '')) && ($_POST["imgB64"] == '')){
+            $imgName = $_SESSION['user_id']."__".date("Y_m_d_H_i_s")."Upload.png";
+            $imgURL = "../assets/img/".$imgName;
+
+            $imageFileType = strtolower(pathinfo($imgURL,PATHINFO_EXTENSION));
+            // Check if image file is a actual image or fake image
+            if(isset($_POST["submit"])) {
+                $check = getimagesize($_FILES["imgUpload"]["tmp_name"]);
+                if($check !== false) {
+                    $imgTYPE = $check["mime"];
+                    $imgSrcName = $imgName;
+                    $imgSrcURL = $imgURL;
+
+                    imagepng(imagecreatefromstring(file_get_contents($_FILES["imgUpload"]["tmp_name"])), $imgURL);
+
+                    $filterURL = "../assets/img/filter/".$_POST['filter'];
+
+                    mixTwoImage($imgURL, $filterURL, 0, 0, 0, 0, 100,$imgURL);
+
+                    $query = 'INSERT INTO `post` (`user_id`, `username`, `imgName`, `imgURL`,`imgTYPE`, `imgSrcNAME`, `imgSrcURL`, `filter`) 
+                                VALUES (?,?,?,?,?,?,?,?)';
+                    $query = $db->prepare($query);
+                    $query->execute([$_SESSION['user_id'],$_SESSION['username'],$imgName,$imgURL,$imgTYPE,$imgSrcName,$imgSrcURL,$_POST['filter']]);
+
+                    $msg = 'Your picture is published with succeed.';
+                    //ft_send_email($_POST['username'], $_POST['email'], $hash); /* Error !!! */
+                    header("location:montage.php?msg=".$msg."");
+                } 
+                else 
+                {
+                    $msg = 'This file is not an image !!!';
+                    header("location:montage.php?msg=".$msg."");
+                }
+            }
+        } else if ((!($_FILES["imgUpload"]["tmp_name"] == '')) && (!($_POST["imgB64"] == ''))){
+            $msg = 'Sorry you can\'t use Webcam and upload a picture both :( ';
+            header("location:montage.php?msg=".$msg."");
+        } else {
+            $msg = 'No picture !!! Please take a picture or upload it.';
+            header("location:montage.php?msg=".$msg."");
+        }
     } else {
-        $msg = 'No picture !!! Please take a picture or upload it.';
-        header("location:montage.php?msg=".$msg."");
+        $msg = 'No Filter !!! Sorry you can take a picture without filter.';
+        header("location:montage.php?msg=".$msg.""); 
     }
 }
 
 
 ?>
 
-<!-- header -->
 <?php include '../include/header_user.php'; ?>
 
-<!-- menu -->
 <?php include '../include/menu_user.php'; ?>
 
 <!-- start container -->
@@ -115,22 +119,22 @@ if(isset($_POST["submit"])) {
                     <!-- filters -->
                     <div class="pure-g">
                         <div class="pure-u-1-4">
-                            <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/camagru/assets/img/filter/1.png" alt="">
+                            <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/assets/img/filter/1.png" alt="">
                             <br>
                             <input type="radio" value="1.png" name="filter" checked> Filter_1
                         </div>
                         <div class="pure-u-1-4">
-                            <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/camagru/assets/img/filter/2.png" alt="">
+                            <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/assets/img/filter/2.png" alt="">
                             <br>
                             <input type="radio" value="2.png" name="filter"> Filter_2
                         </div>
                         <div class="pure-u-1-4">
-                            <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/camagru/assets/img/filter/3.png" alt="">
+                            <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/assets/img/filter/3.png" alt="">
                             <br>
                             <input type="radio" value="3.png" name="filter"> Filter_3
                         </div>
                         <div class="pure-u-1-4">
-                            <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/camagru/assets/img/filter/4.png" alt="">
+                            <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/assets/img/filter/4.png" alt="">
                             <br>
                             <input type="radio" value="4.png" name="filter"> Filter_4
                         </div>
@@ -157,7 +161,7 @@ if(isset($_POST["submit"])) {
     $count = $query->rowCount();
     $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
     if ($count) {
-        $resulta1 = '<label>Voila tes photos :) </label>';
+        $resulta1 = '<h3>Your Posts</h3>';
         $resulta2="";
         $i = 0;
         while ($count > 0) {
@@ -170,7 +174,7 @@ if(isset($_POST["submit"])) {
             $i++;  
         }
     } else {
-        $resulta1 = '<label>B9i ma3ndek photos a sate!!!</label>';
+        $resulta1 = '<label>No post yet!!!</label>';
     }
 ?>
                 <div class="montage-side" >
@@ -189,6 +193,7 @@ if(isset($_POST["submit"])) {
 <!-- end container -->
 
 <!-- footer -->
+<script src="../assets/js/main.js"></script>
 <?php include '../include/footer_user.php'; ?>
 
 

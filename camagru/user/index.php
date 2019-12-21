@@ -1,10 +1,7 @@
-<!-- Session -->
 <?php include '../include/session.php'; ?>
 
-<!-- header -->
 <?php include '../include/header_user.php'; ?>
 
-<!-- menu -->
 <?php include '../include/menu_user.php'; ?>
 
 <!-- start container -->

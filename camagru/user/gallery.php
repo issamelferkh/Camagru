@@ -1,13 +1,11 @@
 <?php
 require_once("../config/connection.php");
 ?>
-<!-- Session -->
+
 <?php include '../include/session.php'; ?>
 
-<!-- header -->
 <?php include '../include/header_user.php'; ?>
 
-<!-- menu -->
 <?php include '../include/menu_user.php'; ?>
 
 <!-- start container -->
@@ -67,9 +65,9 @@ if ($count) {
     $query->execute();
     $count = $query->rowCount();
     $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
-    $like = "8513C69D070A008DF008AEF8624ED24AFC81B170D242FAF5FAFE853D4FE9BF8AA7BADFB0FD045D7B350B19FBF8EF6B2A51F17A07A1F6819ABC9BA5CE43324244";
+    $like = $_SESSION['token']=hash('whirlpool', (1));
     if ($count) {
-        $resulta1 = $resulta1.'Voila tes photos :)';
+        $resulta1 = $resulta1.'All Posts';
         $resulta2="";
         $i = 0;
         while ($count > 0) {
@@ -98,12 +96,13 @@ if ($count) {
                             ".$comment."
                             <form class='pure-form galerie-form' action='comment.php' method='post'>
                                 <input type='text' name='comment' placeholder='Write a comment...' class='pure-input-1'>
+                                <input type='hidden' name='token' value='".$_SESSION['token']."'>
                                 <input type='hidden' name='post_id' value='".$la_case[$i]['post_id']."'>
                                 <input type='hidden' name='auteur_id' value='".$la_case[$i]['user_id']."'>
                                 <input type='hidden' name='username' value='".$_SESSION['username']."'>
                                 <input type='hidden' name='user_id' value='".$_SESSION['user_id']."'>"; 
 if($isLiked) {
-    $resulta2 = $resulta2."<a href='#' class='pure-button'>Likeeeeed</a>";
+    $resulta2 = $resulta2."<a href='#' class='pure-button'>Liked</a>";
 } else {
     $resulta2 = $resulta2."<a href='like.php?post_id=".$la_case[$i]['post_id']."&user_id=".$_SESSION['user_id']."&liked=".$like."' class='pure-button'>Like</a>";
 }
@@ -117,7 +116,7 @@ if($isLiked) {
             $i++;  
         }
     } else {
-        $resulta1 = $resulta1.'B9i ma3ndek tsawer!!!';
+        $resulta1 = $resulta1.'No post yet!!!';
     }
 ?>
 

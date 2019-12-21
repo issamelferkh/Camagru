@@ -58,10 +58,8 @@ if(isset($_POST["signup"])) {
 } 
 ?>
 
-<!-- header -->
 <?php include 'include/header.php'; ?>
 
-<!-- menu -->
 <?php include 'include/menu.php'; ?>
 
 <!-- start container -->

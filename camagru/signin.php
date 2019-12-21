@@ -20,7 +20,8 @@ if(isset($_POST["signin"])) {
                 $_SESSION['fname']=$la_case[0]['fname'];
                 $_SESSION['lname']=$la_case[0]['lname'];
                 $_SESSION['email']=$la_case[0]['email'];
-                header("location:user/index.php");
+                $_SESSION['token']=hash('whirlpool', (rand(0,1000)));
+                header("location:user/index.php?");
             } else {
                 $message = '<label>Your account is not activated yet!</label>';
             }
@@ -32,10 +33,8 @@ if(isset($_POST["signin"])) {
 } 
 ?>
 
-<!-- header -->
 <?php include 'include/header.php'; ?>
 
-<!-- menu -->
 <?php include 'include/menu.php'; ?>
 
 <!-- start container -->
@@ -49,7 +48,7 @@ if(isset($_POST["signin"])) {
                     <input type="text" name="username" value="<?php if (isset($_POST['username'])) echo htmlspecialchars(trim($_POST['username'])); ?>"    placeholder="Username" class="pure-input-rounded" required>
                     <input type="password" name="password" value="<?php if (isset($_POST['password'])) echo htmlspecialchars(trim($_POST['password'])); ?>"    placeholder="Password" class="pure-input-rounded" required>
                     <?php if(isset($message)) {echo '<label class="text-danger">'.$message.'</label>'; } ?><br>
-                    <button type="submit" name="signin" class="pure-button">Sign In</button>
+                    <button type="submit" name="signin" class="pure-button">Sign In</button><br><br>
                     <a href='forget_pwd.php' class='pure-button'>Forgot Password</a>
                 </form>
             </div><br><br><br>

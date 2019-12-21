@@ -1,4 +1,3 @@
-<!-- Session -->
 <?php include '../include/session.php'; 
 require_once("../config/connection.php");
 ?>
@@ -57,10 +56,8 @@ if(isset($_POST["update"])) {
 } 
 ?>
 
-<!-- header -->
 <?php include '../include/header_user.php'; ?>
 
-<!-- menu -->
 <?php include '../include/menu_user.php'; ?>
 
 <!-- start container -->
@@ -84,9 +81,7 @@ if(isset($_POST["update"])) {
                     <input type="password"  name="password"     value="<?php if (isset($_POST['password']))         echo htmlspecialchars(trim($_POST['password'])); ?>"        placeholder="New Password"      class="pure-input-rounded">
                     <input type="password"  name="password2"    value="<?php if (isset($_POST['password2']))        echo htmlspecialchars(trim($_POST['password2'])); ?>"       placeholder="Confirme Password" class="pure-input-rounded">
                     <input type="email"     name="email"        value="<?php if (isset($la_case[0]['email']))       echo htmlspecialchars(trim($la_case[0]['email'])); ?>"      placeholder="Email"             class="pure-input-rounded">
-                    Notification <input type="checkbox" name="notification" value="1" <?php if ($la_case[0]['notification'] == 1) { echo "checked";} ?> /></br>
-                    <label>Check boxes</label>
-
+                    Notification <input type="checkbox" name="notification" value="1" <?php if ($la_case[0]['notification'] == 1) { echo "checked";} ?> />
                     <?php if(isset($message)) {echo '<label class="text-danger">'.$message.'</label>'; } ?><br>
                     <button type="submit" name="update" class="pure-button">Update Profile</button>
                 </form>
