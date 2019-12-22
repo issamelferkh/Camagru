@@ -16,12 +16,13 @@ require_once("../config/connection.php");
 <br><br><br>
         <div class="content" style="text-align: center;">
             <h2 class="content-subhead">Gallery</h2>
+            <?php if(isset($_GET['msg'])) {echo '<h3 class="content-subhead">'.$_GET['msg'].'</h3>'; } ?><br>
             <div class="pure-u-1">
 <?
     if (isset($_GET['user_id']) && isset($_GET['post_id']) && isset($_GET['user_id2']) && isset($_GET['post_id2']))
     {
         $user_id = hash('whirlpool', $_GET['user_id']+195);
-        $post_id = hash('whirlpool', $_GET['post_id']+917)
+        $post_id = hash('whirlpool', $_GET['post_id']+917);
         
         $user_id2 = $_GET['user_id2'];
         $post_id2 = $_GET['post_id2'];
@@ -38,6 +39,9 @@ require_once("../config/connection.php");
             } else {
                 header("location:montage.php");
             }
+        } else {
+            $msg = 'Sorry, no posts were found !';
+            header("location:post.php?msg=".$msg."");
         }
     }
 ?>

@@ -1,0 +1,100 @@
+# Camagro Doc
+
+## Tree Structure
+-> camagru/
+    -> .htaccess
+    -> index.php
+ 
+    -> home.php
+    -> gallery.php
+    -> signin.php
+    -> signup.php 
+    -> forget_pwd.php
+    -> forget_pwd_verif.php
+    -> forget_pwd_reset.php
+    -> send.php
+    -> verify.php
+    -> config/
+        -> camagru.sql
+        -> connection.php
+        -> database.php
+        -> setup.php
+    -> assets/
+        -> css/
+            -> main_user.css
+            -> main.css
+        -> img/
+            -> filer/(*filters pic)
+            -> *pictures.png
+        -> js/
+            -> main.js
+    -> include/
+        -> footer_user.php
+        -> footer.php
+        -> header_user.php
+        -> header.php
+        -> logout.php
+        -> menu_user.php
+        -> menu.php
+        -> session.php
+        -> slide.php
+        -> title_user.php
+        -> title.php
+    -> user/
+        -> comment.php
+        -> gallery.php
+        -> index.php
+        -> like.php
+        -> montage.php
+        -> post.php
+        -> post_delete_script.php
+        -> profile.php
+
+## Site map
+-> camagru/
+    -> .htaccess ok
+    -> index.php ok 
+    -> home.php  ok
+    -> gallery.php ok
+    -> signin.php ok
+    -> signup.php ok
+    -> forget_pwd.php
+    -> forget_pwd_verif.php
+    -> forget_pwd_reset.php
+    -> send.php
+    -> verify.php
+    -> config/
+        -> camagru.sql
+        -> connection.php
+        -> database.php
+        -> setup.php
+    -> assets/
+        -> css/
+            -> main_user.css
+            -> main.css
+        -> img/
+            -> filer/(*filters pic)
+            -> *pictures.png
+        -> js/
+            -> main.js
+    -> include/
+        -> footer_user.php
+        -> footer.php
+        -> header_user.php
+        -> header.php
+        -> logout.php
+        -> menu_user.php
+        -> menu.php
+        -> session.php
+        -> slide.php
+        -> title_user.php
+        -> title.php
+    -> user/
+        -> comment.php
+        -> gallery.php
+        -> index.php
+        -> like.php
+        -> montage.php
+        -> post.php
+        -> post_delete_script.php
+        -> profile.php

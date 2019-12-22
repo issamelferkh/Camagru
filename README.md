@@ -3,6 +3,10 @@
 ### Partie commune
 - Créer app web permettant de réaliser des montages basiques à l’aide de votre webcam et d’images prédéfinies.
 - Evidemment, ces images auront un canal alpha, sinon votre superposition n’aurait pas la prestance escomptée !
+- [x] Files -> auteur
+- [x] App Web ne doit produire aucune erreur, warning ou notice, coté serveur et coté client, dans la console web. Toutefois, en raison de l’absence d’HTTPS, les erreurs relatives à getUserMedia() sur la console web seront tolérées.
+- [x] Votre App ne devra comporter aucune faille de sécurité. Gérer ce qui est indiqué dans la partie obligatoire, mais nous vous engageons à aller plus loin dans la sécurité de votre application, la confidentialité de
+vos données en dépendent !
 - [x] User peux sélectionner une image dans une liste des images (cadres, objets à l’utilité douteuse)
 - [x] Prendre une photo depuis sa webcam
 - [x] Admirer le résultat d’un montage
@@ -53,46 +57,28 @@ vos données en dépendent !
 - [x] L’utilisateur doit pouvoir supprimer ses montages, et uniquement les siens.
 - [x] upload img: Parce que tout le monde n’a pas de webcam, vous devez laisser la possibilité d’uploader une image au lieu de la prendre depuis la caméra.
 ### Security
-- [ ] 0%
-### Taches ################################################################################################
-#### Issues
-- [ ] auto redirect http to https
-#### Question
-- config/setup.php -> how can I connect o DB if not exists ? !!!
-- config/setup.php -> execute une fois ou chaque fois ?
-#### Optimise + TEST 
-* likes
-* TEST comments
-#### Testing and Check all
+- [x] Check if isset username or email in singup
+- [x] Check if isset username or email in update profile
+- [x] Cross Site Request Forgery
+- [x] PWD encrypted in database.
+- [x] Not able to inject HTML or “user” JavaScriptHTML in all variables
+- [x] Not able to upload unwanted content on the server
+- [x] SQL injection
+- [x] Use an extern form to manipulate so-called private data
+### Testing ################################################################################################
+- [x] verif post after delete it.
 - [ ] Responsive design (Menu not responsive with smartphones)
-- [ ] Files -> auteur
-- [ ] App Web ne doit produire aucune erreur, warning ou notice, coté serveur et coté client, dans la console web. Toutefois, en raison de l’absence d’HTTPS, les erreurs relatives à getUserMedia() sur la console web seront tolérées.
-- [ ] Votre App ne devra comporter aucune faille de sécurité. Gérer ce qui est indiqué dans la partie obligatoire, mais nous vous engageons à aller plus loin dans la sécurité de votre application, la confidentialité de
-vos données en dépendent !
+- [ ] notification design ?
+- [ ] resize image uploaded !
 - [ ] Your web application should be at least be compatible with Firefox (>= 41) and Chrome (>= 46).
-
-* delete db and test db config
-* remove table or plus and test db config
-* msg d'erruers ou d'info !!!
-* gerer includes
-* verif if comments is empty + msg info "Write a comment please"
-* like -> msg info
-#### Security Taches
-- add htaccess -> url manipulation
-- check if isalready user (singup) mail, username
-- check source avant delete image !!!
+- [ ] add footer
+- [ ] Sendmail error -> Outlook and temp mails 
 - [ ] crypte all GET data (like, msg ...)
-- [ ] PWD encrypted in database.
-- [ ] Not able to inject HTML or “user” JavaScriptHTML in all variables
-- [ ] Not able to upload unwanted content on the server
-- [ ] SQL injection
-- [ ] Use an extern form to manipulate so-called private data
-- [ ] Cross Site Request Forgery
+- [ ] add .htaccess in all folders -> url manipulation
+
+### Security Taches
 - [ ] Cross Origin Resource Sharing
-- test all forms -> token
 - valide all form -> if (isset(post or get)) ...
-- crypt all GET data sended !!!
-- check queries
 ```
 $stmt = $dbh->prepare("SELECT cle,actif FROM membres WHERE login like :login ");
 if($stmt->execute(array(':login' => $login)) && $row = $stmt->fetch())
@@ -109,6 +95,9 @@ if($stmt->execute(array(':login' => $login)) && $row = $stmt->fetch())
 - check php error
 - check js console error
 * change All URLs "../assets/img/" to paths "https://10.12.100.163/camagru/assets/img/"
+#### Question
+- config/setup.php -> how can I connect o DB if not exists ? !!!
+- config/setup.php -> execute une fois ou chaque fois ?
 ### Bonus ################################################################################################
 #### Partie galerie 
 #### Partie montage
@@ -123,7 +112,6 @@ if($stmt->execute(array(':login' => $login)) && $row = $stmt->fetch())
 - add filters (Red,Green,Blue,Brightness ...)
 - add posibility of move a filter in canvas
 =====================================================
-prob f like -> kolchi kaytlika aw la l3aks kolchi makaytlaykach !!!!!!!!!!!!!!!!!
 
 2019@bU <=> issam.web1337@gmail.com
 

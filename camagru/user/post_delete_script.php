@@ -3,7 +3,7 @@ require_once("../config/connection.php");
 
 include '../include/session.php'; 
 
-    if (isset($_POST) ($_SESSION["token"] === $_POST["token"]) )
+    if (isset($_POST) && ($_SESSION["token"] === $_POST["token"]) )
     {
         $query = 'DELETE FROM `post` WHERE `post_id` = :post_id';
         $query = $db->prepare($query);
