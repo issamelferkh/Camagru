@@ -67,6 +67,15 @@ vos données en dépendent !
 - [x] Use an extern form to manipulate so-called private data
 ### Testing ################################################################################################
 - [x] verif post after delete it.
+- [ ] js console -> download background images and delete cmt header
+- [ ] logout -> CSRF -> Prevent unknown source !
+- [ ] main.js -> delete msg error ligne 28
+- [ ] main.js -> if webcam block -> msg error
+- [ ] check notification email-> if comments
+- [ ] error -> delete image if supp user-id2 and post-id2
+- [ ] DB error 
+- [ ] profile and comment inputs -> limit lenght + regex for valid
+
 - [ ] Responsive design (Menu not responsive with smartphones)
 - [ ] notification design ?
 - [ ] resize image uploaded !
