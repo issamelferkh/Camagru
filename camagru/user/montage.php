@@ -21,7 +21,7 @@ function mixTwoImage($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $pct, $im
     imagepng($dst_im, $imgURL);
 }
 
-if(isset($_POST["submit"])) {
+if(isset($_POST["submit"])&& ($_SESSION["token"] === $_POST["token"]) ) {
     if (!($_POST['filter'] == '')) {
         if((!($_POST["imgB64"] == '')) && ($_FILES["imgUpload"]["tmp_name"] == '')) {
             list($imgTYPE, $imgB64) = explode(',', $_POST["imgB64"]);
@@ -112,7 +112,7 @@ if(isset($_POST["submit"])) {
 
         <div class="content" style="text-align: center;">
             <form action="montage.php" method="post" enctype="multipart/form-data">
-
+                <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
                 <h2 class="content-subhead">Montage</h2><br><br><br>
                 <?php if(isset($_GET['msg'])) {echo '<h3 class="content-subhead">'.$_GET['msg'].'</h3>'; } ?><br>
                 <div class="montage-main"><br>
@@ -165,9 +165,14 @@ if(isset($_POST["submit"])) {
         $resulta2="";
         $i = 0;
         while ($count > 0) {
+            $user_id = $la_case[$i]['user_id'];
+            $post_id = $la_case[$i]['post_id'];
+            
+            $user_id2 = hash('whirlpool', $la_case[$i]['user_id']+195);
+            $post_id2 = hash('whirlpool', $la_case[$i]['post_id']+917);
             $resulta2 = $resulta2."
                         <div class='pure-u-1-2'>
-<a href='post.php?user_id=".$la_case[$i]['user_id']."&post_id=".$la_case[$i]['post_id']."'><img class='pure-img-responsive' src='".$la_case[$i]['imgURL']."'></a>
+<a href='post.php?user_id=".$user_id."&post_id=".$post_id."&user_id2=".$user_id2."&post_id2=".$post_id2."'><img class='pure-img-responsive' src='".$la_case[$i]['imgURL']."'></a>
                         </div>
                         ";
             $count--;

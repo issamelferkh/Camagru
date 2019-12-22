@@ -65,7 +65,7 @@ if ($count) {
     $query->execute();
     $count = $query->rowCount();
     $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
-    $like = $_SESSION['token']=hash('whirlpool', (1));
+    $like = hash('whirlpool', (1));
     if ($count) {
         $resulta1 = $resulta1.'All Posts';
         $resulta2="";

@@ -19,7 +19,7 @@ function ft_send_email($username,$email,$hash){
     mail($to, $subject, $message, $headers); // Send our email
 }
 
-if(isset($_POST["reset_pwd"])) {
+if(isset($_POST["reset_pwd"]) && ($_SESSION["token"] === $_POST["token"])) {
     if(empty($_POST["username"]) || empty($_POST["email"])) {
         $message = '<label>All fields are required.</label>';
     } else {
@@ -56,6 +56,7 @@ if(isset($_POST["reset_pwd"])) {
             <h2 class="content-subhead">Reset Password</h2>
             <div class="pure-u-1-4">
                 <form class="pure-form" method="post" action="forget_pwd.php">
+                <input type="hidden"    name="token"        value="<?php echo $_SESSION['token']; ?>">
                 <input type="text"      name="username" value="<?php if (isset($_POST['username'])) echo htmlspecialchars(trim($_POST['username'])); ?>"    placeholder="Username"  class="pure-input-rounded" required>
                 <input type="email"     name="email"    value="<?php if (isset($_POST['email']))    echo htmlspecialchars(trim($_POST['email'])); ?>"          placeholder="Email"     class="pure-input-rounded" required>
                     <?php if(isset($message)) {echo '<label class="text-danger">'.$message.'</label>'; } ?><br>

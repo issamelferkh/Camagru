@@ -23,10 +23,11 @@ if(isset($_POST["OK"])) {
     if(empty($_POST["comment"]) || empty($_POST["post_id"]) || empty($_POST["username"]) || empty($_POST["token"]) || ($_SESSION["token"] != $_POST["token"]) ) {
         header("location:gallery.php?");
     }
-    else {        
+    else {
+        $comment = htmlspecialchars($_POST['comment']);   
         $query = 'INSERT INTO `comment` (`comment`, `post_id`, `username`,`user_id`) VALUES (?,?,?,?)';
         $query = $db->prepare($query);
-        $query->execute([$_POST['comment'],$_POST['post_id'],$_POST['username'],$_POST['user_id']]);
+        $query->execute([$comment,$_POST['post_id'],$_POST['username'],$_POST['user_id']]);
 
         $query = 'SELECT * FROM user WHERE `user_id`="'.$_POST['user_id'].'" ';
         $query = $db->prepare($query);

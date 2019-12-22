@@ -38,7 +38,7 @@ if(isset($_POST["signup"])) {
         } else if(!$uppercase || !$lowercase || !$number || !$specialChars) {
             $message = 'Password should be include at least one upper case letter, one number, and one special character.';
         } else {
-            $query = 'SELECT * FROM user WHERE username="'.$_POST['username'].'"';
+            $query = 'SELECT * FROM user WHERE username="'.$_POST['username'].'" OR email="'.$_POST['email'].'"';
             $query = $db->prepare($query);
             $query->execute();
             $count = $query->rowCount();
@@ -46,9 +46,10 @@ if(isset($_POST["signup"])) {
             if ($count > 0) {
                 $message = '<label>Username is already taken!</label>';
             } else {
-                $query = 'INSERT INTO `user` (`username`, `email`, `password`, `hash`) VALUES (?,?,?,?)';
+                $notification = 1;
+                $query = 'INSERT INTO `user` (`username`, `email`, `password`, `hash`, `notification`) VALUES (?,?,?,?,?)';
                 $query = $db->prepare($query);
-                $query->execute([$_POST['username'],$_POST['email'],$password,$hash]);
+                $query->execute([$_POST['username'],$_POST['email'],$password,$hash,$notification]);
                 ft_send_email($_POST['username'], $_POST['email'], $hash);
                 $msg = 'Please active your account by clicking the activation link that has been send to your email.';
                 header("location:signin.php?msg=".$msg."");
