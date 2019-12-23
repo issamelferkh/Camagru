@@ -67,15 +67,14 @@ vos données en dépendent !
 - [x] Use an extern form to manipulate so-called private data
 ### Testing ################################################################################################
 - [x] verif post after delete it.
+- [ ] DB -> create new DB + save it for install 
 - [ ] js console -> download background images and delete cmt header
 - [ ] logout -> CSRF -> Prevent unknown source !
 - [ ] main.js -> delete msg error ligne 28
 - [ ] main.js -> if webcam block -> msg error
 - [ ] check notification email-> if comments
-- [ ] error -> delete image if supp user-id2 and post-id2
-- [ ] DB error 
+- [ ] error -> delete image if supp user-id2 and post-id2 -> kay3tini msg "delete with succus"
 - [ ] profile and comment inputs -> limit lenght + regex for valid
-
 - [ ] Responsive design (Menu not responsive with smartphones)
 - [ ] notification design ?
 - [ ] resize image uploaded !
@@ -84,9 +83,11 @@ vos données en dépendent !
 - [ ] Sendmail error -> Outlook and temp mails 
 - [ ] crypte all GET data (like, msg ...)
 - [ ] add .htaccess in all folders -> url manipulation
+- [ ] Cross Origin Resource Sharing
+- [ ] Check with onahiz
+- [ ] Bonus
 
 ### Security Taches
-- [ ] Cross Origin Resource Sharing
 - valide all form -> if (isset(post or get)) ...
 ```
 $stmt = $dbh->prepare("SELECT cle,actif FROM membres WHERE login like :login ");
