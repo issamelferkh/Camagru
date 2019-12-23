@@ -6,9 +6,9 @@
     
     <title>Camagru</title>    
     
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://10.12.100.163/camagru/assets/css/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://10.12.100.163/camagru/assets/css/grids-responsive-min.css">
+    <link rel="stylesheet" href="https://10.12.100.163/camagru/assets/css/font-awesome.css">
     
     <link rel="stylesheet" href="../assets/css/main_user.css">
 

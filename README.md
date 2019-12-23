@@ -74,10 +74,10 @@ vos données en dépendent !
 - [x] Sign-up inputs -> limit lenght + regex for valid
 - [x] profile and comment inputs -> limit lenght + regex for valid
 
-- [ ] CSS no CDN
+- [x] CSS no CDN
 - [ ] htmlspecialcharts -> all GET !!!
 - [ ] logout -> CSRF -> Prevent unknown source !
-- [ ] GET https://10.12.100.163/favicon.ico 404 (Not Found) !
+- [x] GET https://10.12.100.163/favicon.ico 404 (Not Found) !
 - [ ] main.js -> delete msg error ligne 28
 - [ ] main.js -> if webcam block -> msg error
 - [ ] Responsive design (Menu not responsive with smartphones)
