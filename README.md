@@ -67,26 +67,31 @@ vos données en dépendent !
 - [x] Use an extern form to manipulate so-called private data
 ### Testing ################################################################################################
 - [x] verif post after delete it.
-- [ ] DB -> create new DB + save it for install 
-- [ ] js console -> download background images and delete cmt header
+- [x] DB -> create new DB  
+- [x] js console -> download background images and delete cmt header
+- [x] check notification email-> if comments
+- [x] error -> delete image if supp user-id2 and post-id2 -> kay3tini msg "delete with succus"
+- [x] Sign-up inputs -> limit lenght + regex for valid
+- [x] profile and comment inputs -> limit lenght + regex for valid
+
+- [ ] CSS no CDN
+- [ ] htmlspecialcharts -> all GET !!!
 - [ ] logout -> CSRF -> Prevent unknown source !
+- [ ] GET https://10.12.100.163/favicon.ico 404 (Not Found) !
 - [ ] main.js -> delete msg error ligne 28
 - [ ] main.js -> if webcam block -> msg error
-- [ ] check notification email-> if comments
-- [ ] error -> delete image if supp user-id2 and post-id2 -> kay3tini msg "delete with succus"
-- [ ] profile and comment inputs -> limit lenght + regex for valid
 - [ ] Responsive design (Menu not responsive with smartphones)
 - [ ] notification design ?
-- [ ] resize image uploaded !
 - [ ] Your web application should be at least be compatible with Firefox (>= 41) and Chrome (>= 46).
 - [ ] add footer
-- [ ] Sendmail error -> Outlook and temp mails 
-- [ ] crypte all GET data (like, msg ...)
 - [ ] add .htaccess in all folders -> url manipulation
-- [ ] Cross Origin Resource Sharing
-- [ ] Check with onahiz
-- [ ] Bonus
 
+- [ ] resize image uploaded !
+- [ ] Sendmail error -> Outlook and temp mails 
+- [ ] Cross Origin Resource Sharing
+- [ ] profile -> delete comments in code !!!
+- [ ] Bonus
+- [ ] Save empty DB for install
 ### Security Taches
 - valide all form -> if (isset(post or get)) ...
 ```

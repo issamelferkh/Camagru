@@ -114,7 +114,7 @@ if(isset($_POST["submit"])&& ($_SESSION["token"] === $_POST["token"]) ) {
             <form action="montage.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
                 <h2 class="content-subhead">Montage</h2><br><br><br>
-                <?php if(isset($_GET['msg'])) {echo '<h3 class="content-subhead">'.$_GET['msg'].'</h3>'; } ?><br>
+                <?php if(isset($_GET['msg'])) {echo '<h3 class="content-subhead">'.htmlspecialchars($_GET['msg']).'</h3>'; } ?><br>
                 <div class="montage-main"><br>
                     <!-- filters -->
                     <div class="pure-g">

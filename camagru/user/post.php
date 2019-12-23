@@ -16,7 +16,6 @@ require_once("../config/connection.php");
 <br><br><br>
         <div class="content" style="text-align: center;">
             <h2 class="content-subhead">Gallery</h2>
-            <?php if(isset($_GET['msg'])) {echo '<h3 class="content-subhead">'.$_GET['msg'].'</h3>'; } ?><br>
             <div class="pure-u-1">
 <?
     if (isset($_GET['user_id']) && isset($_GET['post_id']) && isset($_GET['user_id2']) && isset($_GET['post_id2']))
@@ -27,7 +26,6 @@ require_once("../config/connection.php");
         $user_id2 = $_GET['user_id2'];
         $post_id2 = $_GET['post_id2'];
 
-
         if (($user_id === $user_id2) && ($post_id === $post_id2)) {
             $query = 'SELECT * FROM `post` WHERE `user_id`="'.$_GET['user_id'].'" AND `post_id`="'.$_GET['post_id'].'"';
             $query = $db->prepare($query);
@@ -35,21 +33,25 @@ require_once("../config/connection.php");
             $count = $query->rowCount();
             $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
             if ($count) {
-                echo " <img class='pure-img-responsive' src='".$la_case[0]['imgURL']."'> ";
+                echo "  <img class='pure-img-responsive' src='".$la_case[0]['imgURL']."'> 
+                        <form class='pure-form' action='post_delete_script.php' method='POST'>
+                            <input type='hidden' name='post_id' value='".$la_case[0]['post_id']."'>
+                            <input type='hidden' name='token' value='".$_SESSION['token']."'>
+                            <button type='submit' class='pure-button'>Delete</button>
+                        </form>
+                    ";
             } else {
                 header("location:montage.php");
             }
         } else {
-            $msg = 'Sorry, no posts were found !';
-            header("location:post.php?msg=".$msg."");
-        }
-    }
+            $msg = 'Please don\'t manipulate with the transferred data by URL !!!';
+        } 
+    } else if (!(isset($_GET['user_id'])) || !(isset($_GET['post_id'])) || !(isset($_GET['user_id2'])) || !(isset($_GET['post_id2']))) {
+        $msg = 'Please don\'t delete one of the variables transferred data by URL !!!';
+} 
 ?>
-                <form class="pure-form" action="post_delete_script.php" method="POST">
-                    <input type="hidden" name="post_id" value="<?php echo $la_case[0]['post_id']; ?>">
-                    <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
-                    <button type="submit" class="pure-button">Delete</button>
-                </form>
+
+<?php if(isset($msg)) {echo '<h3 class="content-subhead">'.$msg.'</h3>'; } ?><br>
             </div><br><br><br>
         </div>
     </div>

@@ -26,17 +26,29 @@ if(isset($_POST["signup"])) {
         $message = '<label>All fields are required.</label>';
     } else {
         $hash = md5(rand(0,1000));
+        // check password
         $password = hash('whirlpool', $_POST['password']);
         $pwdlen = strlen($_POST['password']);
         $uppercase = preg_match('@[A-Z]@', $_POST['password']);
         $lowercase = preg_match('@[a-z]@', $_POST['password']);
         $number    = preg_match('@[0-9]@', $_POST['password']);
         $specialChars = preg_match('@[^\w]@', $_POST['password']);
+        // check username
+        $usernamelen = strlen($_POST['username']);
+        // check email
+        $emaillen = strlen($_POST['email']);
+        $emailcheck = preg_match('(^[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]+@[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]*$)', $_POST['email']); 
 
         if($pwdlen < 8) {
             $message = '<label>Invalid password. Password must be at least 8 characters.</label>';
         } else if(!$uppercase || !$lowercase || !$number || !$specialChars) {
             $message = 'Password should be include at least one upper case letter, one number, and one special character.';
+        } else if (($usernamelen > 50) || ($usernamelen < 8)){
+            $message = '<label>Invalid username. Username must be between 8 and 50 characters.</label>';
+        } else if ($emaillen > 320){
+            $message = '<label>Invalid email. Email must be less than 320 characters.</label>';
+        } else if (!($emailcheck)) {
+            $message = '<label>Invalid email format.</label>';
         } else {
             $query = 'SELECT * FROM user WHERE username="'.$_POST['username'].'" OR email="'.$_POST['email'].'"';
             $query = $db->prepare($query);
@@ -59,7 +71,7 @@ if(isset($_POST["signup"])) {
 } 
 ?>
 
-<?php include 'include/header.php'; ?>
+<?php //include 'include/header.php'; ?>
 
 <?php include 'include/menu.php'; ?>
 

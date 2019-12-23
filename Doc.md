@@ -1,3 +1,8 @@
+user        => user_id , username , password , fname , lname , email , hash , notification , active , created_at
+post        => post_id , user_id , username , imgName , imgURL , imgTYPE , imgSrcNAME , imgSrcURL ,  filter , created_at
+comment     => cmt_id  , user_id , post_id , username , comment , created_at
+like_table  => like_id , user_id , post_id , liked , created_at
+
 # Camagro Doc
 
 ## Tree Structure
