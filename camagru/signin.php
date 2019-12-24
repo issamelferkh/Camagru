@@ -5,7 +5,7 @@ require_once("config/connection.php");
 
 if(isset($_POST["signin"])) {
     if(empty($_POST["username"]) || empty($_POST["password"])) {
-        $message = '<label>All fields are required.</label>';
+        $message = 'All fields are required.';
     }
     else {        
         $query = 'SELECT * FROM user WHERE username="'.$_POST['username'].'" AND password="'.hash('whirlpool', $_POST['password']).'"';
@@ -21,13 +21,13 @@ if(isset($_POST["signin"])) {
                 $_SESSION['lname']=$la_case[0]['lname'];
                 $_SESSION['email']=$la_case[0]['email'];
                 $_SESSION['token']=hash('whirlpool', (rand(0,1000)));
-                header("location:user/index.php?");
+                header("location:user/index.php");
             } else {
-                $message = '<label>Your account is not activated yet!</label>';
+                $message = 'Your account is not activated yet!';
             }
             
         } else {
-            $message = '<label>Incorrect Username or Password.</label>';
+            $message = 'Incorrect Username or Password.';
         }
     }
 } 
@@ -42,12 +42,12 @@ if(isset($_POST["signin"])) {
 <br><br><br>
         <div class="content" style="text-align: center;">
             <h2 class="content-subhead">Sign In</h2>
-            <?php if(isset($_GET['msg'])) {echo '<h3 class="content-subhead">'.$_GET['msg'].'</h3>'; } ?><br>
+            <?php if(isset($_GET['msg'])) {echo '<h3 class="content-subhead">'.htmlspecialchars($_GET['msg']).'</h3>'; } ?><br>
             <div class="pure-u-1-4">
                 <form class="pure-form" method="post" action="signin.php">
                     <input type="text" name="username" value="<?php if (isset($_POST['username'])) echo htmlspecialchars(trim($_POST['username'])); ?>"    placeholder="Username" class="pure-input-rounded" required>
                     <input type="password" name="password" value="<?php if (isset($_POST['password'])) echo htmlspecialchars(trim($_POST['password'])); ?>"    placeholder="Password" class="pure-input-rounded" required>
-                    <?php if(isset($message)) {echo '<label class="text-danger">'.$message.'</label>'; } ?><br>
+                    <?php if(isset($message)) {echo '<label class="text-danger">'.htmlspecialchars($message).'</label>'; } ?><br>
                     <button type="submit" name="signin" class="pure-button">Sign In</button><br><br>
                     <a href='forget_pwd.php' class='pure-button'>Forgot Password</a>
                 </form>

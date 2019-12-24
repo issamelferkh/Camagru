@@ -73,18 +73,20 @@ vos données en dépendent !
 - [x] error -> delete image if supp user-id2 and post-id2 -> kay3tini msg "delete with succus"
 - [x] Sign-up inputs -> limit lenght + regex for valid
 - [x] profile and comment inputs -> limit lenght + regex for valid
-
 - [x] CSS no CDN
-- [ ] htmlspecialcharts -> all GET !!!
-- [ ] logout -> CSRF -> Prevent unknown source !
+- [x] htmlspecialcharts -> all GET !!!
+- [x] logout -> CSRF -> Prevent unknown source !
 - [x] GET https://10.12.100.163/favicon.ico 404 (Not Found) !
-- [ ] main.js -> delete msg error ligne 28
-- [ ] main.js -> if webcam block -> msg error
+- [x] auto redirection to home ???
+- [x] main.js -> delete msg error ligne 28
+- [ ] delete all <label> !!!
+- [ ] filters not responsive
 - [ ] Responsive design (Menu not responsive with smartphones)
 - [ ] notification design ?
-- [ ] Your web application should be at least be compatible with Firefox (>= 41) and Chrome (>= 46).
-- [ ] add footer
 - [ ] add .htaccess in all folders -> url manipulation
+- [x] Your web application should be at least be compatible with Firefox (>= 41) and Chrome (>= 46).
+- [x] add footer
+
 
 - [ ] resize image uploaded !
 - [ ] Sendmail error -> Outlook and temp mails 

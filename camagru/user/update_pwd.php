@@ -25,7 +25,7 @@ if(isset($_POST["update"])) {
                     $hash = md5(rand(0,1000));
                     // verif password lenght
                     if($pwdlen < 8) {
-                        $message = '<label>Invalid password. Password must be at least 8 characters.</label>';
+                        $message = 'Invalid password. Password must be at least 8 characters.';
                     } else if(!$uppercase || !$lowercase || !$number || !$specialChars) { // verif password complexity
                         $message = 'Password should be include at least one upper case letter, one number, and one special character.';
                     } else { // update password

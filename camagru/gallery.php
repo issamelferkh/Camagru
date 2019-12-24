@@ -13,8 +13,8 @@ require_once("config/connection.php");
 /* page nbr */
 $resulta1 = "";
 if (isset($_GET['page']) && isset($_GET['oldpage'])) {
-    if ($_GET['oldpage'] == hash('whirlpool', $_GET['page']+17)) {
-        $page = $_GET['page'];
+    if ($_GET['oldpage'] == hash('whirlpool', htmlspecialchars($_GET['page'])+171)) {
+        $page = htmlspecialchars($_GET['page']);
         if ($page == "" || $page == "1") {
             $page = 0;
         } else {
@@ -108,11 +108,11 @@ if ($count) {
     $nbr_page = $query->fetchColumn();
     $i = ceil($nbr_page/5); /* nbr des page */
     for ($j=1;$j<=$i;$j++) {
-        $k = hash('whirlpool', $j+17); /* for secure GET*/
+        $k = hash('whirlpool', $j+171); /* for secure GET*/
         ?><a href="gallery.php?page=<?php echo $j; ?>&oldpage=<?php echo $k; ?>" style="text-decoration:none"><?php echo $j." ";?></a><?php
     }
 
-?>
+?><br><br>
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@ require_once("config/connection.php");
 function ft_send_email($username,$email,$hash){
 
     $to      = $email; // Send email to our user
-    $subject = 'Password | Reset'; // Give the email a subject 
+    $subject = 'Password | Reset Password'; // Give the email a subject 
     $message = '
      
     Hi "'.$username.'",
@@ -18,8 +18,8 @@ function ft_send_email($username,$email,$hash){
     $headers = 'From:no-reply@camagru.com' . "\r\n"; // Set from headers
     mail($to, $subject, $message, $headers); // Send our email
 }
-
-if(isset($_POST["reset_pwd"]) && ($_SESSION["token"] === $_POST["token"])) {
+$token_tmp = hash('whirlpool', $_SERVER['SERVER_ADDR']);
+if(isset($_POST["reset_pwd"]) && ($token_tmp === $_POST["token"])) {
     if(empty($_POST["username"]) || empty($_POST["email"])) {
         $message = '<label>All fields are required.</label>';
     } else {
@@ -44,7 +44,7 @@ if(isset($_POST["reset_pwd"]) && ($_SESSION["token"] === $_POST["token"])) {
 ?>
 
 <!-- header -->
-<?php include 'include/header.php'; ?>
+<?php //include 'include/header.php'; ?>
 
 <!-- menu -->
 <?php include 'include/menu.php'; ?>
@@ -52,14 +52,15 @@ if(isset($_POST["reset_pwd"]) && ($_SESSION["token"] === $_POST["token"])) {
 <!-- start container -->
 <?php include 'include/title.php'; ?>
 <br><br><br>
+<?php $token_tmp = hash('whirlpool', $_SERVER['SERVER_ADDR']); ?>
         <div class="content" style="text-align: center;">
             <h2 class="content-subhead">Reset Password</h2>
             <div class="pure-u-1-4">
                 <form class="pure-form" method="post" action="forget_pwd.php">
-                <input type="hidden"    name="token"        value="<?php echo $_SESSION['token']; ?>">
+                <input type="hidden"    name="token"        value="<?php echo $token_tmp; ?>">
                 <input type="text"      name="username" value="<?php if (isset($_POST['username'])) echo htmlspecialchars(trim($_POST['username'])); ?>"    placeholder="Username"  class="pure-input-rounded" required>
                 <input type="email"     name="email"    value="<?php if (isset($_POST['email']))    echo htmlspecialchars(trim($_POST['email'])); ?>"          placeholder="Email"     class="pure-input-rounded" required>
-                    <?php if(isset($message)) {echo '<label class="text-danger">'.$message.'</label>'; } ?><br>
+                    <?php if(isset($message)) {echo '<label class="text-danger">'.htmlspecialchars($message).'</label>'; } ?><br>
                     <button type="submit" name="reset_pwd" class="pure-button">Reset</button>
                 </form>
             </div><br><br><br>

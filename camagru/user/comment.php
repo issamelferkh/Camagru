@@ -29,7 +29,7 @@ if(isset($_POST["OK"])) {
         $query = $db->prepare($query);
         $query->execute([$comment,$_POST['post_id'],$_POST['username'],$_POST['user_id']]);
 
-        $query = 'SELECT * FROM user WHERE `user_id`="'.$_POST['user_id'].'" ';
+        $query = 'SELECT * FROM user WHERE `user_id`="'.$_POST['auteur_id'].'" ';
         $query = $db->prepare($query);
         $query->execute();
         $count = $query->rowCount();

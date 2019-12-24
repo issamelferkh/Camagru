@@ -249,10 +249,16 @@ a.pure-button-primary {
 
 /* This is the class used for the footer */
 .footer {
-    background: #111;
     position: fixed;
+    left: 0;
     bottom: 0;
     width: 100%;
+    background-color: #2d3e50;
+    color: white;
+    text-align: center;
+}
+.footer a {
+    color: white;
 }
 
 /*

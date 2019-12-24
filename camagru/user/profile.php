@@ -5,39 +5,15 @@ require_once("../config/connection.php");
 <?php
 
 if(isset($_POST["update"]) && ($_SESSION["token"] === $_POST["token"])) {
-
-    /*
-      } else if (($usernamelen > 50) || ($usernamelen < 8)){
-        $message = '<label>Invalid username. Username must be between 8 and 50 characters.</label>';
-    } else if (!($usernamecheck)){
-        $message = '<label>Invalid username format. Can\'t use special character.</label>';
-    } else if ($emaillen > 320){
-        $message = '<label>Invalid email. Email must be less than 320 characters.</label>';
-    } else if (!($emailcheck)) {
-        $message = '<label>Invalid email format.</label>';
-    } else if (($fnamelen > 50) || ($fnamelen < 8)){
-        $message = '<label>Invalid First name. First name must be between 8 and 50 characters.</label>';
-    } else if (!($fnamecheck)){
-        $message = '<label>Invalid First name format. Can\'t use special character.</label>';
-    } else if (($lnamelen > 50) || ($lnamelen < 8)){
-        $message = '<label>Invalid Last name. Last name must be between 8 and 50 characters.</label>';
-    } else if (!($lnamecheck)){
-        $message = '<label>Invalid Last name format. Can\'t use special character.</label>';
-    }
-    */
-
         // check username
     $usernamelen = strlen($_POST['username']);
-    // $usernamecheck = preg_match('/(^[a-zA-Z0-9]([._]|[a-zA-Z0-9]){8,50}[a-zA-Z0-9]$)/', $_POST['username']);
         // check email
     $emaillen = strlen($_POST['email']); 
     $emailcheck = preg_match('(^[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]+@[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]*$)', $_POST['email']);
         // check First name
     $fnamelen = strlen($_POST['fname']);
-    // $fnamecheck = preg_match('([a-zA-Z0-9]{8,50})', $_POST['fname']);
         // check Last name
     $lnamelen = strlen($_POST['lname']);
-    // $lnamecheck = preg_match('([a-zA-Z0-9]{8,50})', $_POST['lname']);
 
     $query = 'SELECT * FROM user WHERE username="'.htmlspecialchars(trim($_POST['username'])).'" OR email="'.htmlspecialchars(trim($_POST['email'])).'"';
     $query = $db->prepare($query);
@@ -45,17 +21,17 @@ if(isset($_POST["update"]) && ($_SESSION["token"] === $_POST["token"])) {
     $count = $query->rowCount();
     $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
     if ($count > 1) {
-        $message = '<label>Sorry this username or email is already taken!</label>';
+        $message = 'Sorry this username or email is already taken!';
     } else if (($usernamelen > 50) || ($usernamelen < 8)){
-        $message = '<label>Invalid username. Username must be between 8 and 50 characters.</label>';
+        $message = 'Invalid username. Username must be between 8 and 50 characters.';
     } else if ($emaillen > 320){
-        $message = '<label>Invalid email. Email must be less than 320 characters.</label>';
+        $message = 'Invalid email. Email must be less than 320 characters.';
     } else if (($fnamelen > 50) || ($fnamelen < 3)){
-        $message = '<label>Invalid First name. First name must be between 3 and 50 characters.</label>';
+        $message = 'Invalid First name. First name must be between 3 and 50 characters.';
     } else if (($lnamelen > 50) || ($lnamelen < 3)){
-        $message = '<label>Invalid Last name. Last name must be between 3 and 50 characters.</label>';
+        $message = 'Invalid Last name. Last name must be between 3 and 50 characters.';
     } else if (!($emailcheck)) {
-        $message = '<label>Invalid email format.</label>';
+        $message = 'Invalid email format.';
     } 
     else {
         $query = 'SELECT * FROM user WHERE `user_id`="'.$_SESSION['user_id'].'" ';
@@ -136,7 +112,7 @@ if(isset($_POST["update"]) && ($_SESSION["token"] === $_POST["token"])) {
                     <input type="text"      name="username"     value="<?php if (isset($la_case[0]['username']))    echo htmlspecialchars(trim($la_case[0]['username'])); ?>"   placeholder="Username"          class="pure-input-rounded">                    
                     <input type="email"     name="email"        value="<?php if (isset($la_case[0]['email']))       echo htmlspecialchars(trim($la_case[0]['email'])); ?>"      placeholder="Email"             class="pure-input-rounded">
                     Notification <input type="checkbox" name="notification" value="1" <?php if ($la_case[0]['notification'] == 1) { echo "checked";} ?> />
-                    <?php if(isset($message)) {echo '<label class="text-danger">'.$message.'</label>'; } ?><br>
+                    <?php if(isset($message)) {echo '<label class="text-danger">'.htmlspecialchars($message).''; } ?><br>
                     <button type="submit" name="update" class="pure-button">Update Profile</button><br><br>
                     <a href='update_pwd.php' class='pure-button'>Update Password</a>
                 </form>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("config/connection.php");
+
 function ft_send_email($username,$email,$hash){
 
     $to      = $email; // Send email to our user
@@ -97,11 +98,3 @@ if(isset($_POST["signup"])) {
 
 <!-- footer -->
 <?php include 'include/footer.php'; ?>
-
-
-
-
-
-
-
-

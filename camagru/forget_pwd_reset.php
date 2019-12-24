@@ -4,9 +4,9 @@ require_once("config/connection.php");
 
 if(isset($_POST["signup"])) {
     if(empty($_POST["password1"]) || empty($_POST["password2"])) {
-        $message = '<label>All fields are required.</label>';
+        $message = 'All fields are required.';
     } else if(($_POST["password1"]) !== ($_POST["password2"])) {
-        $message = '<label>Password does not match!</label>';
+        $message = 'Password does not match!';
     } else {
         $password = hash('whirlpool', $_POST['password1']);
         $pwdlen = strlen($_POST['password1']);
@@ -16,7 +16,7 @@ if(isset($_POST["signup"])) {
         $specialChars = preg_match('@[^\w]@', $_POST['password1']);
 
         if($pwdlen < 8) {
-            $message = '<label>Invalid password. Password must be at least 8 characters.</label>';
+            $message = 'Invalid password. Password must be at least 8 characters.';
         } else if(!$uppercase || !$lowercase || !$number || !$specialChars) {
             $message = 'Password should be include at least one upper case letter, one number, and one special character.';
         } else {
@@ -26,7 +26,7 @@ if(isset($_POST["signup"])) {
             $count = $query->rowCount();
             $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
             if ($count > 0) {
-                $message = '<label>Username is already taken!</label>';
+                $message = 'Username is already taken!';
             } else {
                 $sql = "UPDATE user SET `password`=?";
                 $db->prepare($sql)->execute([$password]);
@@ -54,7 +54,7 @@ if(isset($_POST["signup"])) {
                 <form class="pure-form" method="post" action="forget_pwd_reset.php">
                     <input type="password"  name="password1" value="<?php if (isset($_POST['password'])) echo htmlspecialchars(trim($_POST['password'])); ?>"    placeholder="Password"  class="pure-input-rounded" required>
                     <input type="password"  name="password2" value="<?php if (isset($_POST['password'])) echo htmlspecialchars(trim($_POST['password'])); ?>"    placeholder="Confirme Password"  class="pure-input-rounded" required>
-                    <?php if(isset($message)) {echo '<label class="text-danger">'.$message.'</label>'; } ?><br>
+                    <?php if(isset($message)) {echo '<label class="text-danger">'.htmlspecialchars($message).'</label>'; } ?><br>
                     <button type="submit" name="signup" class="pure-button">Submit</button>
                 </form>
             </div><br><br><br>

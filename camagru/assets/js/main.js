@@ -25,7 +25,7 @@ function getVideo(video) {
             };
         }, 
         function(err) {
-                console.log("The following error occurred: " + err.name);
+                console.log("Please enable the webcam in your browser :D");
             }
         );
     } else {

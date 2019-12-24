@@ -7,6 +7,7 @@
 <br><br><br>
         <div class="content">
             <h2 class="content-subhead">About Us</h2>
+            <?php if(isset($_GET['msg'])) {echo '<h3 class="content-subhead">'.htmlspecialchars($_GET['msg']).'</h3>'; } ?><br>
             <p>
                 We are the first to provide IT training in Morocco, completely free of charge, 
                 open and accessible to anyone between the ages of 18 and 30. No need for an IT degree, 
