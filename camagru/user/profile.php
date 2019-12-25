@@ -78,7 +78,8 @@ if(isset($_POST["update"]) && ($_SESSION["token"] === $_POST["token"])) {
             }
             $query = "UPDATE `user` SET `fname`=?, `lname`=?, `username`=?, `email`=? ,`notification`=? WHERE `user_id`=?";
             $query = $db->prepare($query);
-            $query->execute([$fname,$lname,$username,$email,$notification,$user_id]);
+            $query->execute([$fname,$lname,$username,$email,$notification,$_SESSION['user_id']]);
+            $_SESSION["username"] = $username;
             $message = 'Your profile was successfully updated.';
             
         } else {

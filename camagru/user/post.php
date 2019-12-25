@@ -33,7 +33,7 @@ require_once("../config/connection.php");
             $count = $query->rowCount();
             $la_case = $query->fetchAll(\PDO::FETCH_ASSOC);
             if ($count) {
-                echo "  <img class='pure-img-responsive' src='".$la_case[0]['imgURL']."'> 
+                echo "  <img style='width: 40vw; height: 30vw;' src='".$la_case[0]['imgURL']."'> 
                         <form class='pure-form' action='post_delete_script.php' method='POST'>
                             <input type='hidden' name='post_id' value='".$la_case[0]['post_id']."'>
                             <input type='hidden' name='token' value='".$_SESSION['token']."'>

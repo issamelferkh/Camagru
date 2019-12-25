@@ -119,22 +119,22 @@ if(isset($_POST["submit"])&& ($_SESSION["token"] === $_POST["token"]) ) {
                     <!-- filters -->
                     <div class="pure-g">
                         <div class="pure-u-1-4">
-                            <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/assets/img/filter/1.png" alt="">
+                            <img id="design" style="width: 10vw; height: 10vw;" src="https://10.12.100.163/camagru/assets/img/filter/1.png" alt="">
                             <br>
                             <input type="radio" value="1.png" name="filter" checked> Filter_1
                         </div>
                         <div class="pure-u-1-4">
-                            <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/assets/img/filter/2.png" alt="">
+                            <img id="design" style="width: 10vw; height: 10vw;" src="https://10.12.100.163/camagru/assets/img/filter/2.png" alt="">
                             <br>
                             <input type="radio" value="2.png" name="filter"> Filter_2
                         </div>
                         <div class="pure-u-1-4">
-                            <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/assets/img/filter/3.png" alt="">
+                            <img id="design" style="width: 10vw; height: 10vw;" src="https://10.12.100.163/camagru/assets/img/filter/3.png" alt="">
                             <br>
                             <input type="radio" value="3.png" name="filter"> Filter_3
                         </div>
                         <div class="pure-u-1-4">
-                            <img id="design" style="width: 100px; height: 100px;" src="https://10.12.100.163/camagru/assets/img/filter/4.png" alt="">
+                            <img id="design" style="width: 10vw; height: 10vw;" src="https://10.12.100.163/camagru/assets/img/filter/4.png" alt="">
                             <br>
                             <input type="radio" value="4.png" name="filter"> Filter_4
                         </div>
@@ -172,7 +172,7 @@ if(isset($_POST["submit"])&& ($_SESSION["token"] === $_POST["token"]) ) {
             $post_id2 = hash('whirlpool', $la_case[$i]['post_id']+917);
             $resulta2 = $resulta2."
                         <div class='pure-u-1-2'>
-<a href='post.php?user_id=".$user_id."&post_id=".$post_id."&user_id2=".$user_id2."&post_id2=".$post_id2."'><img class='pure-img-responsive' src='".$la_case[$i]['imgURL']."'></a>
+<a href='post.php?user_id=".$user_id."&post_id=".$post_id."&user_id2=".$user_id2."&post_id2=".$post_id2."'><img style='width: 15vw; height: 13vw;' src='".$la_case[$i]['imgURL']."'></a>
                         </div>
                         ";
             $count--;

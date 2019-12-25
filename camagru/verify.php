@@ -15,7 +15,7 @@ else{
     if($count > 0) {
         if($la_case[0]['active'] == 0) {
             $active = 1;
-            $sql = "UPDATE user SET active=?";
+            $sql = 'UPDATE user SET active=? WHERE email="'.$_GET['email'].'" AND hash="'.$_GET['hash'].'"';
             $db->prepare($sql)->execute([$active]);
 
             $message = 'Your account is active now.';

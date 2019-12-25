@@ -68,25 +68,7 @@
     text-align: center;
     margin: auto;
 }
-/* @media screen and (max-width: 991px) {
-    .montage-side {    
-        width: 90%;
-        margin: 20px auto;
-        display: -webkit-box;
-        height: auto;
-        display: -moz-box;
-        float: center;
-        overflow: scroll;
-    }
 
-    .montage-video {
-
-    }
-    
-    .montage-main {
-
-    }
-} */
 
 .montage-footer {
     clear: both;
@@ -105,7 +87,7 @@
 body {
     line-height: 1.7em;
     color: #7f8c8d;
-    font-size: 13px;
+    font-size: 6px;
 }
 
 h1,
@@ -347,9 +329,9 @@ a.pure-button-primary {
     .home-menu {
         text-align: left;
     }
-        .home-menu ul {
-            float: right;
-        }
+    .home-menu ul {
+        float: right;
+    }
 
     /* We increase the height of the splash-container */
 /*    .splash-container {
