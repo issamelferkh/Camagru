@@ -103,3 +103,60 @@ like_table  => like_id , user_id , post_id , liked , created_at
         -> post.php
         -> post_delete_script.php
         -> profile.php
+
+## push 
+        new file:   .htaccess
+        new file:   auteur
+        new file:   camagru/.htaccess
+        new file:   camagru/assets/css/font-awesome.css
+        new file:   camagru/assets/css/grids-responsive-min.css
+        new file:   camagru/assets/css/main.css
+        new file:   camagru/assets/css/main_user.css
+        new file:   camagru/assets/css/pure-min.css
+        new file:   camagru/assets/img/filter/1.png
+        new file:   camagru/assets/img/filter/2.png
+        new file:   camagru/assets/img/filter/3.png
+        new file:   camagru/assets/img/filter/4.png
+        new file:   camagru/assets/img/slide/01.jpg
+        new file:   camagru/assets/img/slide/02.jpg
+        new file:   camagru/assets/img/slide/03.jpg
+        new file:   camagru/assets/img/slide/04.jpg
+        new file:   camagru/assets/img/slide/05.jpg
+        new file:   camagru/assets/img/slide/06.jpg
+        new file:   camagru/assets/js/main.js
+        new file:   camagru/config/camagru.sql
+        new file:   camagru/config/connection.php
+        new file:   camagru/config/database.php
+        new file:   camagru/config/setup.php
+        new file:   camagru/forget_pwd.php
+        new file:   camagru/forget_pwd_reset.php
+        new file:   camagru/forget_pwd_verif.php
+        new file:   camagru/gallery.php
+        new file:   camagru/home.php
+        new file:   camagru/include/footer.php
+        new file:   camagru/include/footer_user.php
+        new file:   camagru/include/header.php
+        new file:   camagru/include/header_user.php
+        new file:   camagru/include/logout.php
+        new file:   camagru/include/menu.php
+        new file:   camagru/include/menu_user copy.php
+        new file:   camagru/include/menu_user.php
+        new file:   camagru/include/session.php
+        new file:   camagru/include/slide.php
+        new file:   camagru/include/title.php
+        new file:   camagru/include/title_user.php
+        new file:   camagru/index.php
+        new file:   camagru/signin.php
+        new file:   camagru/signup.php
+        new file:   camagru/user/comment.php
+        new file:   camagru/user/gallery.php
+        new file:   camagru/user/index.php
+        new file:   camagru/user/like.php
+        new file:   camagru/user/montage.php
+        new file:   camagru/user/post.php
+        new file:   camagru/user/post_delete_script.php
+        new file:   camagru/user/profile.php
+        new file:   camagru/user/update_pwd.php
+        new file:   camagru/verify.php
+        new file:   favicon.ico
+        new file:   index.php
